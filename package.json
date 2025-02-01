@@ -1,14 +1,23 @@
 {
-  "name": "",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "astro": "^5.2.3"
-  }
+	"name": "issys",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"lint": "biome lint --write .",
+		"lint:fix": "biome check --write ."
+	},
+	"dependencies": {
+		"@astrojs/sitemap": "^3.2.1",
+		"@astrojs/vue": "^5.0.6",
+		"astro": "^5.2.3",
+		"dialog-polyfill": "^0.5.6",
+		"lightningcss": "^1.29.1",
+		"vue": "^3.5.13"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"lefthook": "^1.10.1"
+	}
 }

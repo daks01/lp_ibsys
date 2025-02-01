@@ -1,6 +1,6 @@
 ---
-import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
+import astroLogo from "../assets/astro.svg";
+import background from "../assets/background.svg";
 ---
 
 <div id="container">
@@ -51,10 +51,14 @@ import background from '../assets/background.svg';
 		z-index: -1;
 		filter: blur(100px);
 	}
-
+	
 	#container {
 		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
 		height: 100%;
+		
+		& > * {
+			background: rgba(0,0,0,.5)
+		}
 	}
 
 	main {

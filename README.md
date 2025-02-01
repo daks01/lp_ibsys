@@ -1,48 +1,80 @@
-# Astro Starter Kit: Basics
+# Readme
 
-```sh
-npm create astro@latest -- --template basics
+> Сайт собран с помощью Astro.Build 
+- [Blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+- [Documentation](https://docs.astro.build) 
+- [Discord server](https://astro.build/chat)
+
+Фичи:
+- ✅ 100/100 Lighthouse performance
+- ✅ SEO-friendly
+- ✅ Sitemap
+- ✅ JSX в качестве шаблонизатора
+- ✅ генерация статичного сайта
+- ✅ возможность писать компоненты на любом фреймворке: react, vue, svelte etc
+- ✅ и встраивать их в статичный сайт как интерактивные острова
+
+## 🧞 Как какать 
+
+для локальной разработки и билда статичного сайта нужно:
+- поставить Node.js (lts) https://nodejs.org/en
+- в терминале перейти в корнь проекта 
+- поставить зависимости
+  `npm сi`
+- для старта локального девсервера выполнить
+  `npm run dev`
+
+## 👾 Скрипты
+
+```
+"dev": "astro dev",  // start local devServer
+"build": "astro build",  // build Release
+"lint": "biome lint --write .",  // lints
+"lint:fix": "biome check --write ."  // lints, formats and organizes imports
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## 🚀 Структура
 
 ```text
-/
 ├── public/
-│   └── favicon.svg
+│   ├── fonts
+│   ├── email.php
 ├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
+│   ├── components/
+│   │   ├── ui/
+│   │   ├── blocks/
+│   │   ├── vue/
+│   ├── assets/
+│   ├── layouts/
+│   ├── utils/
+│   └── pages/
+├── astro.config.mjs
+├── README.md
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+В папке `/layout` лежит шаблон для всех страниц
 
-## 🧞 Commands
+Файлы `*.astro` в папке `src/pages/` - это страницы сайта.
+Роуты строятся на основе имен этих файлов
 
-All commands are run from the root of the project, from a terminal:
+В папке `src/components/` в подпахках лежат:
+- `ui` - базовые компоненты: кнопка, инпут, контейнер итп
+- `layout` - компоненты лейаута: шапка, подвал
+- `blocks` - секции с контентом, из которых собраны страницы
+- `vue` - интерактивные vue компоненты (острова)
+  (может быть и react/svelte. встраиваются подобно виджетам, не блокирую общий ренедр страницы)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Статика:
+- фавиконки, шрифты и php-скрипты лежат в `public/`
+  (это те файлы, которые не нуждаются в трансформации или оптимизации)
+- глобальные стили в `/assets/css`
+- картинки `/assets/images`
+  подключаются через компонент <Image /> или <Picture > и оптимизируются при билде
+  подключенные через <img> или `style='background-image'` не оптимизируются,(
 
-## 👀 Want to learn more?
+## Деплой
+билд и деплой происходит автоматически на push в ветку 'master'
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Staging
+для деплоя на гитлаб пейджес нужно запушить в ветку 'staging'
