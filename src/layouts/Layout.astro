@@ -1,11 +1,44 @@
+---
+import "/src/assets/css/index.css";
+// import { getImage } from 'astro:assets';
+// import og_image from "/src/assets/img/og_image.png";
+
+// const optimizedOGImage = await getImage({ 
+//     src: og_image, 
+//     width: 1200,
+//     format: 'png'
+// });
+
+const { title = "IBSYS" } = Astro.props;
+const og_title = "Цифровые решения для вашего бизнеса";
+const og_description = "Проекты в сфере информационных технологий - мобильная разработка, корпоративные системы, in-door системы для бизнеса и другие проекты.";
+const pageUrl = Astro.url;
+const baseUrl = import.meta.env.BASE_URL === "/" ? "" : import.meta.env.BASE_URL;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
+
+		<title>{`${title}. ${og_title}`}</title>
+		<meta name="description" content={og_description} />
+		<meta property="og:url" content={pageUrl} />
+		<meta property="og:title" content={og_title} />
+		<meta property="og:description" content={og_description} />
+		<!-- <meta property="og:image" content={`${pageUrl.origin}${optimizedOGImage.src}`} />
+		<meta property="og:image:secure_url" content={`${pageUrl.origin}${optimizedOGImage.src}`} /> -->
+		<meta property="og:type" content="website" />
+
+		<link rel="sitemap" href={`${baseUrl}/sitemap-index.xml`} />
+		<meta name="format-detection" content="telephone=no">
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<slot />
@@ -13,10 +46,26 @@
 </html>
 
 <style>
+	@font-face {
+		font-family: "M PLUS 1p Fallback";
+		src: local(Arial);
+		font-weight: 400;
+		size-adjust: 107%;
+		/* ascent-override: 100.075%;
+		advance-override: 143%;
+		descent-override: 20%; */
+		line-gap-override: 24.2%;
+		font-display: swap;
+	}
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+	}
+	body {
+		font-family: "M PLUS 1p", "M PLUS 1p Fallback", Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+		font-weight: 400;
+		font-style: normal;
 	}
 </style>
