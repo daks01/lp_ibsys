@@ -1,0 +1,2 @@
+/*! CSS custom properties (variables) */
+@custom-media --screen-phone (width < 1024px);

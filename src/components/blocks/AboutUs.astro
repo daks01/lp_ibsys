@@ -1,0 +1,50 @@
+---
+import Section from "../ui/Section.astro";
+
+const { ...props } = Astro.props;
+---
+
+<Section {...props}>
+  <p class="lead">
+    Компания с&nbsp;<span class="h1 text-medium">2013</span> года совместно со&nbsp;своими партнерами
+    реализует проекты в&nbsp;сфере информационных технологий&nbsp;&mdash; мобильная
+    разработка, корпоративные системы, in-door системы для бизнеса и&nbsp;другие
+    проекты.
+  </p>
+  <p class="sub-lead h5">
+    <span class="sub-lead__upper-text">в&nbsp;портфолиo ibsys</span>
+    <span class="sub-lead__main-text h1 text-medium">более 40</span>
+    <span class="sub-lead__bottom-text">успешных кейсов</span>
+  </p>
+</Section>
+
+<style>
+  @import "/src/assets/css/_custom-media.css";
+
+  .lead {
+    margin: var(--50px) 0 var(--60px);
+  }
+  .sub-lead {
+    margin-bottom: var(--60px);
+    padding-right: var(--110px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  } 
+  .sub-lead__upper-text {
+      margin: 0;
+      transform: translateX(calc(var(--20px)* -1));
+  }
+  .sub-lead__main-text {
+      line-height: 0.9;
+      margin: 0 0 calc(var(--1px)* 13);
+  }
+  .sub-lead__bottom-text {
+    margin: 0;
+    transform: translateX(var(--110px));
+  }
+
+
+  @media screen and (--screen-phone) {
+  }
+</style>

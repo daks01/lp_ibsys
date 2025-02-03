@@ -1,6 +1,3 @@
-/*! CSS custom properties (variables) */
-@custom-media --screen-phone (width < 1024px);
-
 :root {
     --container-width: 1440;
     --container-width-in-px: 1440px;
@@ -9,7 +6,7 @@
         равна 1px на экранах 1440px
         и пропорционально скелится на меньших экранах
     */
-    --1px: min(.052085vw, var(--container-width-in-px) / 100 * .052085);
+    --1px: min(.07vw, var(--container-width-in-px) / 100 * .07);
 
     --2px: calc(var(--1px) * 2);
     --4px: calc(var(--1px) * 4);

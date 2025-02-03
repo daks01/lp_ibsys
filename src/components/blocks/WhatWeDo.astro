@@ -1,0 +1,14 @@
+---
+import Section from "../ui/Section.astro";
+
+const { ...props } = Astro.props;
+---
+
+<Section {...props}>1</Section>
+
+<style>
+  @import "/src/assets/css/_custom-media.css";
+
+  @media screen and (--screen-phone) {
+  }
+</style>

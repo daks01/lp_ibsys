@@ -1,0 +1,24 @@
+---
+const { width = 1440, ...props } = Astro.props;
+---
+
+<div class="container" {...props}>
+  <slot />
+</div>
+
+<style define:vars={{ width }}>
+  @import "/src/assets/css/_custom-media.css";
+  
+  .container {
+    width: calc(var(--1px) * var(--width));
+    max-width: calc(100vw - var(--gutter) * 2);
+    padding: 0.02px 0;
+    margin: 0 auto;
+  }
+
+  @media screen and (--screen-phone) {
+    .container {
+      width: calc(var(--1px) * var(--container-width));
+    }
+  }
+</style>

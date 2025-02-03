@@ -1,0 +1,55 @@
+---
+import { getImage } from "astro:assets"
+import Container from "./Container.astro";
+
+const { 
+  as: Element = "section",
+  width,
+  class: className,
+  style ='',
+  backgroundImage,
+  invert = false,
+  ...props
+} = Astro.props;
+
+const optimizedBackgroundImage = backgroundImage 
+	? await getImage({ src: backgroundImage, quality: '80' }) 
+	: {src:''};
+---
+<Element 
+    {...props} 
+    class:list={["section", {"section_invert" : invert}, className]}
+	style={[
+		{ backgroundImage: `url(${optimizedBackgroundImage?.src})` },
+		style
+	]}
+>
+	<Container width={width}>
+		<slot />
+	</Container>
+	<Container>
+		<slot name="after-footer" />
+	</Container>
+</Element>
+
+<style>
+	.section {
+		background-position: top center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-color: var(--color-white);
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	.section_invert {
+		background-color: var(--color-product);
+	}
+	.section_invert,
+	.section_invert * {
+		--text-color: var(--color-white);
+		color: var(--text-color);
+	}
+</style>

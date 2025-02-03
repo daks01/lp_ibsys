@@ -20,6 +20,14 @@ body {
     display: none !important;
 }
 
+a:link {
+    color: var(--text-product);
+    text-decoration: none;
+}
+a:visited {
+    color: var(--text-product);
+}
+
 .sr-only {
     position: absolute;
     width: 1px;

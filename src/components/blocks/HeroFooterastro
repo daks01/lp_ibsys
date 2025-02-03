@@ -1,0 +1,52 @@
+---
+import Section from "../ui/Section.astro";
+---
+
+<Section invert={true} class="hero__footer">
+  <div class="hero__footer-layout">
+    <p class="hero__footer-text">
+      <span class="h5">12 лет на рынке разработки • Аккредитация Минсвязи</span>
+    </p>
+    <a href="#contact-form" class="hero__footer-link">
+      <span class="h2">связаться</span>
+    </a>
+  </div>
+</Section>
+
+<style>
+  @import "/src/assets/css/_custom-media.css";
+
+  .hero__footer {
+    padding: var(--16px) 0;
+  }
+  .hero__footer-layout {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .hero__footer-text {
+    margin: 0;
+  }
+  .hero__footer-link {
+    position: absolute;
+    border-radius: var(--30px);
+    background-color: var(--color-product);
+    padding: var(--20px) var(--50px);
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    transition: box-shadow 0.05s ease;
+    &,
+    & * {
+      color: currentColor;
+    }
+    &:hover {
+      background-color: var(--color-white);
+      color: var(--color-product);
+      text-decoration: none;
+    }
+  }
+
+  @media screen and (--screen-phone) {
+  }
+</style>
