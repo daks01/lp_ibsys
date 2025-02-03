@@ -1,14 +1,13 @@
 /*! Page scroll */
 
 html {
-    scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 html,
 body {
-  scrollbar-gutter: stable;
+	scrollbar-gutter: stable;
 }
-
 
 /* :target {
 	scroll-margin-top: var(--header-height);
@@ -16,9 +15,9 @@ body {
 
 /* Default (light) theme */
 :root {
-	--scrollbar-track: rgba(255,255,255,0.1);
-	--scrollbar-thumb: rgba(255,255,255,0.1);
-	--scrollbar-thumb-hover: rgba(255,255,255,0.2);
+	--scrollbar-track: rgba(255, 255, 255, 0.1);
+	--scrollbar-thumb: rgba(255, 255, 255, 0.1);
+	--scrollbar-thumb-hover: rgba(255, 255, 255, 0.2);
 
 	--scrollbar-width: 12px;
 }

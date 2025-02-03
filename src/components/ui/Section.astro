@@ -1,20 +1,20 @@
 ---
-import { getImage } from "astro:assets"
+import { getImage } from "astro:assets";
 import Container from "./Container.astro";
 
-const { 
-  as: Element = "section",
-  width,
-  class: className,
-  style ='',
-  backgroundImage,
-  invert = false,
-  ...props
+const {
+	as: Element = "section",
+	width,
+	class: className,
+	style = "",
+	backgroundImage,
+	invert = false,
+	...props
 } = Astro.props;
 
-const optimizedBackgroundImage = backgroundImage 
-	? await getImage({ src: backgroundImage, quality: '80' }) 
-	: {src:''};
+const optimizedBackgroundImage = backgroundImage
+	? await getImage({ src: backgroundImage, quality: "80" })
+	: { src: "" };
 ---
 <Element 
     {...props} 

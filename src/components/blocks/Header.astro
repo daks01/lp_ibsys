@@ -1,11 +1,11 @@
 ---
-import Section from "../ui/Section.astro";
-import astroLogo from "/src/assets/img/logo.png";
 import { getImage } from "astro:assets";
+import astroLogo from "/src/assets/img/logo.png";
+import Section from "../ui/Section.astro";
 
 const optimizedLogo = astroLogo
-  ? await getImage({ src: astroLogo, quality: "100" })
-  : { src: "" };
+	? await getImage({ src: astroLogo, quality: "100" })
+	: { src: "" };
 ---
 
 <Section as="header" style="background-color: transparent;">

@@ -29,12 +29,25 @@
 	},
 	"overrides": [
 		{
+			"include": ["*.css"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUnknownMediaFeatureName": "off"
+					}
+				}
+			}
+		},
+		{
 			"include": ["*.astro"],
 			"linter": {
 				"rules": {
 					"style": {
 						"useConst": "off",
 						"useImportType": "off"
+					},
+					"correctness": {
+						"noUnknownMediaFeatureName": "off"
 					}
 				}
 			}

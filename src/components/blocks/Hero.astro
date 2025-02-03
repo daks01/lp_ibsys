@@ -1,10 +1,10 @@
 ---
+import { Image } from "astro:assets";
+import downloadPresentationImg from "/src/assets/img/download-presentation.svg";
+import CubeImg from "/src/assets/img/hero_Cube.png";
+import background from "/src/assets/img/hero_bg.svg";
 import Section from "../ui/Section.astro";
 import Header from "./Header.astro";
-import background from "/src/assets/img/hero_bg.svg";
-import CubeImg from "/src/assets/img/hero_Cube.png";
-import downloadPresentationImg from "/src/assets/img/download-presentation.svg";
-import { Image } from 'astro:assets';
 ---
 
 <div class="hero" style={{ 
@@ -44,13 +44,7 @@ import { Image } from 'astro:assets';
 		role="presentation"
 		loading="lazy"
 	/>
-	<Image
-		src={CubeImg}
-		class="hero__cube hero__cube_small"
-		alt=""
-		role="presentation"
-		loading="lazy"
-	/>
+	<Image src={CubeImg} class="hero__cube hero__cube_small" alt="" role="presentation" loading="lazy" />
   </Section>
   
   <!-- <Section invert={true} class="hero__footer">

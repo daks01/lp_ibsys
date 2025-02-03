@@ -1,17 +1,19 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Hero from "../components/blocks/Hero.astro";
 import AboutUs from "../components/blocks/AboutUs.astro";
-import FullDevCycle from "../components/blocks/FullDevCycle.astro";
-import WhatWeDo from "../components/blocks/WhatWeDo.astro";
-import Clients from "../components/blocks/Clients.astro";
 import Career from "../components/blocks/Career.astro";
+import Clients from "../components/blocks/Clients.astro";
 import ContactForm from "../components/blocks/ContactForm.astro";
 import Footer from "../components/blocks/Footer.astro";
+import FullDevCycle from "../components/blocks/FullDevCycle.astro";
+import Hero from "../components/blocks/Hero.astro";
+import HeroFooter from "../components/blocks/HeroFooter.astro";
+import WhatWeDo from "../components/blocks/WhatWeDo.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
 	<Hero/>
+	<HeroFooter />
 	<AboutUs id="about-us" invert={true} />
 	<FullDevCycle id="full-dev-cyrcle" />
 	<WhatWeDo id="what-we-do" />

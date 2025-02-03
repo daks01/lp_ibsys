@@ -2,6 +2,9 @@
 	"name": "issys",
 	"type": "module",
 	"version": "0.0.1",
+	"engines": {
+		"node": ">=18.14.1"
+	},
 	"scripts": {
 		"dev": "astro dev",
 		"build": "astro build",
@@ -19,6 +22,6 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"lefthook": "^1.10.1"
+		"lefthook": "^1.10.10"
 	}
 }

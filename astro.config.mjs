@@ -1,7 +1,7 @@
-// @ts-check
-import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import vue from "@astrojs/vue";
+// @ts-check
+import { defineConfig } from "astro/config";
 import { Features } from "lightningcss";
 
 // https://astro.build/config

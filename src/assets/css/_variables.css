@@ -1,74 +1,74 @@
 :root {
-    --container-width: 1440;
-    --container-width-in-px: 1440px;
-    /* 
+	--container-width: 1440;
+	--container-width-in-px: 1440px;
+	/* 
         адаптивная переменная в зависимости от размера экрана
         равна 1px на экранах 1440px
         и пропорционально скелится на меньших экранах
     */
-    --1px: min(.07vw, var(--container-width-in-px) / 100 * .07);
+	--1px: min(.07vw, var(--container-width-in-px) / 100 * 0.07);
 
-    --2px: calc(var(--1px) * 2);
-    --4px: calc(var(--1px) * 4);
-    --8px: calc(var(--1px) * 8);
-    --16px: calc(var(--1px) * 16);
-    --20px: calc(var(--1px) * 20);
-    --30px: calc(var(--1px) * 30);
-    --40px: calc(var(--1px) * 40);
-    --50px: calc(var(--1px) * 50);
-    --60px: calc(var(--1px) * 60);
-    --70px: calc(var(--1px) * 70);
-    --80px: calc(var(--1px) * 80);
-    --90px: calc(var(--1px) * 90);
-    --110px: calc(var(--1px) * 110);
-    --150px: calc(var(--1px) * 150); 
+	--2px: calc(var(--1px) * 2);
+	--4px: calc(var(--1px) * 4);
+	--8px: calc(var(--1px) * 8);
+	--16px: calc(var(--1px) * 16);
+	--20px: calc(var(--1px) * 20);
+	--30px: calc(var(--1px) * 30);
+	--40px: calc(var(--1px) * 40);
+	--50px: calc(var(--1px) * 50);
+	--60px: calc(var(--1px) * 60);
+	--70px: calc(var(--1px) * 70);
+	--80px: calc(var(--1px) * 80);
+	--90px: calc(var(--1px) * 90);
+	--110px: calc(var(--1px) * 110);
+	--150px: calc(var(--1px) * 150);
 
-    --gutter: var(--110px);
+	--gutter: var(--110px);
 
-    --heading-1: calc(var(--1px) * 128);
-    --heading-2: calc(var(--1px) * 96);
-    --heading-3: calc(var(--1px) * 48);
-    --heading-4: calc(var(--1px) * 32);
-    --heading-5: calc(var(--1px) * 24);
-    --lead-font-size: var(--heading-3);
-    --text-font-size: calc(var(--1px) * 20);
-    --small-font-size: calc(var(--1px) * 15);
-    --text-line-height: 1.6;
+	--heading-1: calc(var(--1px) * 128);
+	--heading-2: calc(var(--1px) * 96);
+	--heading-3: calc(var(--1px) * 48);
+	--heading-4: calc(var(--1px) * 32);
+	--heading-5: calc(var(--1px) * 24);
+	--lead-font-size: var(--heading-3);
+	--text-font-size: calc(var(--1px) * 20);
+	--small-font-size: calc(var(--1px) * 15);
+	--text-line-height: 1.6;
 
-    --color-product: #0076FF;
-    --color-white: #FFFFFF;
-    --color-black: #181B24;
-    --color-violet: #9747FF;
+	--color-product: #0076ff;
+	--color-white: #ffffff;
+	--color-black: #181b24;
+	--color-violet: #9747ff;
 
-    --text-product: var(--color-product);
-    --text-color: #1D1D1B;
-    --text-white: var(--color-white);
-    --text-grey: #A2A2A2;
+	--text-product: var(--color-product);
+	--text-color: #1d1d1b;
+	--text-white: var(--color-white);
+	--text-grey: #a2a2a2;
 }
 
 @media screen and (--screen-phone) {
-    :root {
-        --container-width: 320;
-        --container-width-in-px: 320px;
-        /* 
+	:root {
+		--container-width: 320;
+		--container-width-in-px: 320px;
+		/* 
             адаптивная переменная в зависимости от размера экрана
             равна 1px на экранах 320px
             и пропорционально скелится на больших экранах
         */
-        --1px: calc(100vw / var(--container-width));
-        --gutter: calc(var(--1px) * 24);
+		--1px: calc(100vw / var(--container-width));
+		--gutter: calc(var(--1px) * 24);
 
-        --section-height: auto;
-        --header-height: auto;
+		--section-height: auto;
+		--header-height: auto;
 
-        --heading-1: calc(var(--1px) * 74);
-        --heading-2: calc(var(--1px) * 32);
-        --heading-3: calc(var(--1px) * 24);
-        --heading-4: calc(var(--1px) * 18);
-        --heading-5: calc(var(--1px) * 16);
-        --lead-font-size: calc(var(--1px) * 18);
-        --text-font-size: calc(var(--1px) * 16);
-        --small-font-size: calc(var(--1px) * 14);
-        --extra-small-font-size: calc(var(--1px) * 12);
-    }
+		--heading-1: calc(var(--1px) * 74);
+		--heading-2: calc(var(--1px) * 32);
+		--heading-3: calc(var(--1px) * 24);
+		--heading-4: calc(var(--1px) * 18);
+		--heading-5: calc(var(--1px) * 16);
+		--lead-font-size: calc(var(--1px) * 18);
+		--text-font-size: calc(var(--1px) * 16);
+		--small-font-size: calc(var(--1px) * 14);
+		--extra-small-font-size: calc(var(--1px) * 12);
+	}
 }

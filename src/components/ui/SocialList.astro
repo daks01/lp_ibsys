@@ -1,21 +1,18 @@
 ---
-import type { HTMLAttributes } from "astro/types";
 import { Image } from "astro:assets";
+import type { HTMLAttributes } from "astro/types";
 import imgInstagram from "/src/assets/img/social/instagram.png";
 import imgVk from "/src/assets/img/social/vk.png";
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 interface Props extends HTMLAttributes<"a"> {
-  variant?: "iconList" | "imgList";
+	variant?: "iconList" | "imgList";
 }
 
-const {
-  	class: className,
-	variant = 'iconList',
-} = Astro.props;
+const { class: className, variant = "iconList" } = Astro.props;
 ---
 <div class:list={["social-list-wrap", className]}>
 	{ variant === "iconList" && 

@@ -1,16 +1,10 @@
 ---
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const {
-    id,
-    title,
-    width = 985,
-    class: className,
-    ...props
-} = Astro.props;
+const { id, title, width = 985, class: className, ...props } = Astro.props;
 ---
 
 <!-- How to open -->
