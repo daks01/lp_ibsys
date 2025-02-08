@@ -1,5 +1,8 @@
 ---
+// import { Image } from "astro:assets";
 import Section from "../ui/Section.astro";
+
+// import logo1 from "../../assets/img/logo.svg";
 
 const { ...props } = Astro.props;
 ---
@@ -8,28 +11,34 @@ const { ...props } = Astro.props;
   <h2 class="lead">уже работаем вместе — нам доверяют</h2>
   <ul class="client-list">
     <li class="client-list__item">
-      <img src="https://place-hold.it/120x120" alt="">
+      <img src="https://place-hold.it/115x115" alt="" loading="lazy">
+      <!-- <Image
+        src={logo1}
+        alt=""
+        role="presentation"
+        loading="lazy"
+      /> -->
     </li>
     <li class="client-list__item">
-      <img src="https://place-hold.it/120x120" alt="">
+      <img src="https://place-hold.it/175x65" alt="" loading="lazy">
     </li>
     <li class="client-list__item">
-      <img src="https://place-hold.it/120x120" alt="">
+      <img src="https://place-hold.it/185x45" alt="" loading="lazy">
     </li>
     <li class="client-list__item">
-      <img src="https://place-hold.it/120x120" alt="">
+      <img src="https://place-hold.it/190x40" alt="" loading="lazy">
     </li>
     <li class="client-list__item">
-      <img src="https://place-hold.it/120x120" alt="">
+      <img src="https://place-hold.it/120x60" alt="" loading="lazy">
     </li>
     <li class="client-list__item">
-      <img src="https://place-hold.it/120x120" alt="">
+      <img src="https://place-hold.it/160x30" alt="" loading="lazy">
     </li>
     <li class="client-list__item">
-      <img src="https://place-hold.it/120x120" alt="">
+      <img src="https://place-hold.it/100x100" alt="" loading="lazy">
     </li>
     <li class="client-list__item">
-      <img src="https://place-hold.it/120x120" alt="">
+      <img src="https://place-hold.it/185x60" alt="" loading="lazy">
     </li>
   </ul>
 </Section>
@@ -37,17 +46,27 @@ const { ...props } = Astro.props;
 <style>
   @import "/src/assets/css/_custom-media.css";
 
+  .section {
+    padding: 0 0 var(--100px);
+  }
   .client-list {
     display: flex;
-    flex-wrap: nowrap;
-    margin: 0;
+    flex-wrap: wrap;
+    margin: calc(var(--20px) * -1) 0 0;
     padding: 0;
     gap: var(--30px);
+    align-items: center;
+    justify-content: center;
   }
   .client-list__item {
     list-style-type: none;
-    padding: 0;
+    padding: var(--20px) var(--40px);
     margin: 0;
+    width: calc(var(--1px) * 270);
+    height: calc(var(--1px) * 160);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   @media screen and (--screen-phone) {
   }
