@@ -1,14 +1,219 @@
 ---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import Dialog from "../ui/Dialog.astro";
 import Section from "../ui/Section.astro";
+
+const fullDevCycleEntries = await getCollection("fullDevCycle");
 
 const { ...props } = Astro.props;
 ---
 
-<Section {...props}>1</Section>
+<Section {...props}>
+  <p class="lead">
+    В&nbsp;отличие от&nbsp;многих аутсорс компаний, мы&nbsp;реализуем
+    <span class="tag">полный цикл</span> разработки проектов. От&nbsp;анализа запроса
+    клиента и&nbsp;предложений по&nbsp;оптимизации бизнес-процессов до&nbsp;передачи
+    реализованного проекта на&nbsp;поддержку во&nbsp;внутреннюю команду клиента.
+  </p>
+  <Fragment slot="after-footer">
+    <ul class="work-list">
+      {fullDevCycleEntries.map(async (item) => {
+        const { Content } = await item.render();
+        return (
+          <li class="work-list__item">
+            <button class="card" onclick={`window["${item.slug}"]?.showModal();`}>
+              <div class="card__img-wrap">
+                <Image
+                  src={item.data.cover}
+                  class="card__img"
+                  alt=""
+                  role="presentation"
+                  loading="lazy"
+                />
+              </div>
+              <span class="card__title">{item.data.title}</span>
+            </button>
+            <Dialog 
+              id={item.slug} 
+              title={item.data.title}
+            >
+              <Content />
+              
+              <footer class="step-list">
+                {fullDevCycleEntries.map((entry) => (
+                  <span  
+                    onclick={`
+                      window["${item.slug}"]?.close();
+                      window["${entry.slug}"]?.showModal();
+                    `}
+                    class:list={["step-list__item", {"active" : entry.data.step === item.data.step}]}
+                  >
+                    #{entry.data.step}
+                  </span>
+                ))}
+                <span class="step-list__item">&nbsp;</span>
+              </footer>
+            </Dialog>
+          </li>
+        );
+      })}
+    </ul>
+  </Fragment>
+</Section>
 
 <style>
   @import "/src/assets/css/_custom-media.css";
 
+  .section {
+    padding: var(--80px) 0;
+  }
+  .lead {
+    margin: 0 0 var(--60px);
+  }
+  .tag {
+    color: var(--text-white);
+    background-color: var(--color-product);
+    padding: 0 var(--30px) var(--8px);
+    line-height: 1;
+    border-radius: var(--60px);
+    display: inline-block;
+  }
+
+  .work-list {
+    counter-reset: my-awesome-counter;
+    display: flex;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--gutter);
+    scroll-padding-right: var(--gutter);
+    scrollbar-width: none;
+    padding: 0 var(--gutter) 0;
+    margin: 0 auto;
+    gap: var(--30px);
+    justify-content: stretch;
+  }
+  .work-list__item {
+    counter-increment: my-awesome-counter;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    scroll-snap-align: start;
+  }
+
+  .card {
+    border: none;
+    font-family: inherit;
+    padding: 0;
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: calc(var(--1px) * 480);
+    border-radius: calc(var(--1px) * 36);
+    width: max-content;
+    position: relative;
+    margin: 0 0 calc(var(--1px) * 130);
+    cursor: pointer;
+    &:hover img {
+      transform: scale(1.15);
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: calc(var(--110px)* -1);
+      transform: translateY(50%);
+      width: calc(100% + var(--30px));
+      height: calc(var(--1px) * 3);
+      background-color: var(--color-product);
+    }
+    &:after {
+      content: "#"counter(my-awesome-counter);
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      bottom: calc(var(--110px)* -1);
+      font-size: var(--heading-4);
+      padding: 0 var(--16px);
+      line-height: 1;
+      background-color: var(--color-white);
+      color: var(--color-product);
+    }
+  }
+  .card__img-wrap {
+    border-radius: calc(var(--1px) * 36);
+    overflow: hidden;
+  }
+  .card__img {
+    height: calc(var(--1px) * 480);
+    width: max-content;
+    transition: transform 0.15s ease;
+  }
+  .card__title {
+    --height: calc(var(--1px) * 130);
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    font-size: var(--heading-5);
+    color: var(--text-white);
+    text-align: center;
+    padding: 0 var(--50px) var(--30px);
+    margin-top: calc(var(--height) * -1);
+    height: var(--height);
+    background: linear-gradient(180deg, rgba(20, 88, 228, 0) 0%, rgba(0, 59, 194, 0.8) 91.44%);
+    backdrop-filter: blur(2px);
+    white-space: nowrap;
+    border-radius: 0 0 calc(var(--1px) * 36) calc(var(--1px) * 36);
+    width: 100%;
+  }
+
+  .step-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      width: 100%;
+      height: calc(var(--1px) * 3);
+      background-color: var(--color-product);
+      z-index: -1;
+    }
+  } 
+  .step-list__item {
+    color: var(--color-product);
+    width: var(--80px);
+    height: var(--80px);
+    border-radius: var(--80px);
+    font-size: var(--heading-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-white);
+    cursor: pointer;
+    &:last-child {
+      width: var(--16px);
+      height: var(--16px);
+      background-color: var(--color-product);
+      cursor: default;
+      pointer-events: none;
+    }
+    &.active {
+      background-color: var(--color-product);
+      color: var(--text-white);
+      cursor: default;
+      pointer-events: none;
+    }
+  }
   @media screen and (--screen-phone) {
   }
 </style>
