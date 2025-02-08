@@ -31,40 +31,6 @@ const { href, tag, title, ...props } = Astro.props;
 <style>
   @import "/src/assets/css/_custom-media.css";
 
-  .vacancy-list__item {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    margin: 0;
-    min-width: calc(var(--1px) * 520);
-    scroll-snap-align: start;
-
-    &:nth-child(even) {
-      min-width: calc(var(--1px) * 660);
-    }
-    &:nth-child(3n + 2) {
-      .vacancy {
-        color: #181b24;
-        background: linear-gradient(
-            180deg,
-            rgba(20, 88, 228, 0) 0%,
-            rgba(0, 59, 194, 0.5) 91.44%
-          ),
-          currentColor;
-      }
-    }
-    &:nth-child(3n + 3) {
-      .vacancy {
-        color: #9747ff;
-        background: linear-gradient(
-            180deg,
-            rgba(20, 88, 228, 0) 0%,
-            rgba(0, 59, 194, 0.5) 91.44%
-          ),
-          currentColor;
-      }
-    }
-  }
   .vacancy {
     display: flex;
     flex-direction: column;
@@ -77,7 +43,7 @@ const { href, tag, title, ...props } = Astro.props;
   }
   .vacancy__header {
     display: flex;
-    margin-bottom: var(--100px);
+    margin-bottom: calc(var(--1px)* 140);
     gap: var(--16px);
     align-items: start;
     & *:last-child {
@@ -104,7 +70,7 @@ const { href, tag, title, ...props } = Astro.props;
     color: var(--text-white);
     font-size: var(--heading-3);
     line-height: 1;
-    padding-right: var(--40px);
+    padding: 0 var(--40px) 0 var(--20px);
   }
 
   @media screen and (--screen-phone) {

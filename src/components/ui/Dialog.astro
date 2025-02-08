@@ -83,7 +83,7 @@ const { id, title, width = 985, class: className, ...props } = Astro.props;
   }
 </script>
 
-<style lang="scss" define:vars={{ width }}>
+<style define:vars={{ width }}>
   @import "/src/assets/css/_custom-media.css";
   @keyframes animate-top {
     from {
@@ -139,10 +139,10 @@ const { id, title, width = 985, class: className, ...props } = Astro.props;
   .dialog__header {
     padding: var(--dialog-gutter) var(--dialog-gutter) var(--40px);
     position: relative;
-    background-color: var(--color-white);
+    /* background-color: var(--color-white);
     box-shadow: 0 -1px 0 1px var(--color-white);
     position: sticky;
-    z-index: 1;
+    z-index: 1; */
     top: 0;
     display: flex;
     justify-content: space-between;
