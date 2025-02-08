@@ -19,7 +19,7 @@ const pdfPath = "/";
     </a>
 }
 { !Astro.props.isImage && 
-  <Button href={pdfPath} target="_blank" download class="button_type-tertiary" {...props}>
+  <Button as="a" href={pdfPath} target="_blank" download class="button_type-tertiary" {...props}>
     Презентация
   </Button>
 }

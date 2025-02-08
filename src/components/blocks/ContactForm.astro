@@ -1,18 +1,268 @@
 ---
+import ColoredText from "../ui/ColoredText.astro";
 import Section from "../ui/Section.astro";
 
 const { ...props } = Astro.props;
 ---
 
 <Section {...props}>
-  <h2 class="lead">
-    есть идеи?  — напишите нам  —   реализуем
+  <h2 class="lead" id="form-title">
+    есть идеи?  — напишите нам  —  реализуем
   </h2>
+
+  <form 
+    action="/contact.php"
+    data-contact-form
+    class="form"
+    aria-labelledby="form-title"
+    novalidate
+  >
+    <input type="hidden" name="email" />
+    <div class="form-layout">
+      <div class="form-layout__col">
+        <div class="form-row">
+          <input 
+            type="text" 
+            class="form-field" 
+            name="name" 
+            aria-label="Представьтесь, пожалуйста" 
+            placeholder="Представьтесь, пожалуйста" 
+          />
+          <span class="form-field__error" data-field-error></span>
+        </div>
+        <div class="form-row">
+          <input 
+            type="text" 
+            class="form-field" 
+            name="phone" 
+            aria-label="Телефон" 
+            placeholder="Телефон" 
+            required
+            aria-required="true"
+          />
+          <span class="form-field__error" data-field-error></span>
+        </div>
+        <div class="form-row">
+          <input 
+            type="email" 
+            class="form-field" 
+            name="liame" 
+            aria-label="Электропочта" 
+            placeholder="Электропочта" 
+            required
+            aria-required="true"
+          />
+          <span class="form-field__error" data-field-error></span>
+        </div>
+      </div>
+      <div class="form-layout__col">
+        <div class="form-row">
+          <textarea 
+            name="message" 
+            rows="3"
+            aria-label="Расскажите о проекте" 
+            placeholder="Расскажите о проекте"
+            class="form-field"
+          ></textarea>
+          <span class="form-field__error" data-field-error></span>
+        </div>
+        <div class="form-row">
+          <input class="form-field" type="file" name="file" aria-label="Детали проекта" />
+          <span class="form-field__error" data-field-error></span>
+          <span class="form-field__description">Прикрепить файл (максимум 16 Мб)</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-footer">
+      <p
+        role="alert"
+        aria-live="polite"
+        data-form-msg
+        class="form-message"
+      ></p>
+      <button type="submit" class="form-submit">
+        <ColoredText onhover="true">отправить</ColoredText>
+      </button>
+      <p class="processing-of-personal-data">
+        Нажимая на кнопку, вы соглашаетесь с обработкой 
+        <a href="" target="_blank">персональных данных</a>
+      </p>
+    </div>
+  </form>
 </Section>
+
+
+<script>
+  sendContactForm();
+
+  // https://seoneurons.com/create-contact-us-page/
+  function sendContactForm() {
+    const formEl = document.querySelector("[data-contact-form]");
+    const actionMessage = document.querySelector("[data-form-msg]");
+
+    formEl?.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      validateForm();
+
+      if (!formEl.checkValidity()) {
+        // formEl.reportValidity();
+
+        return;
+      }
+
+      const formData = new FormData(e.target);
+      const fetchBody = {
+        name: formData.get("name"),
+        email: formData.get("liame"),
+        phone: formData.get("phone"),
+        message: formData.get("message"),
+        file: formData.get("file"),
+      };
+
+      fetch('/', {
+        redirect: "follow",
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+        body: JSON.stringify(fetchBody),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            actionMessage.innerHTML = "❗ При отправке возникли проблемы.<br> Попробуйте позже";
+            throw new Error("Network error");
+          }
+          return response.json();
+        })
+        .then((response) => {
+          if (response.result === "success") {
+            actionMessage.innerHTML = "✅ Отправлено.";
+            formEl.reset();
+          } else if (response.result === "error") {
+            actionMessage.innerHTML = "❗ При отправке возникли проблемы.<br> Попробуйте позже";
+            throw new Error(response.error);
+          }
+        })
+        .catch((error) => {
+          actionMessage.innerHTML = "❗ При отправке возникли проблемы.<br> Попробуйте позже";
+          console.error(error);
+        });
+    });
+  }
+
+  function validateForm() {
+    const formEl = document.querySelector("[data-contact-form]");
+
+    formEl?.querySelectorAll(".form-field").forEach((element) => {
+      const errorMsgEl = element
+        ?.closest("div")
+        ?.querySelector("[data-field-error]");
+
+      if (!element.checkValidity()) {
+        element.classList.add("form-field_error");
+        errorMsgEl.innerHTML = element?.validationMessage;
+        return;
+      }
+
+      element.classList.remove("form-field_error");
+      errorMsgEl.innerHTML = "";
+    });
+  }
+</script>
 
 <style>
   @import "/src/assets/css/_custom-media.css";
 
+  .section {
+    padding-bottom: var(--90px);
+  }
+  .form {
+    margin-top: var(--110px);
+  }
+  .form-layout {
+    display: flex;
+    gap: var(--90px);
+  }
+  .form-layout__col {
+    flex: 1 1 0px;
+  }
+  .form-row {
+    margin-bottom: var(--30px);
+  }
+  .form-submit {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    color: var(--color-product);
+    font-size: calc(var(--1px) * 240);
+    line-height: 1;
+    cursor: pointer;
+  }
+  .form-message {
+    text-align: center;
+    margin: var(--30px) 0;
+    &:empty {
+      display: none;
+    }
+  }
+
+  .processing-of-personal-data {
+    font-size: calc(var(--1px) * 15);
+    color: var(--color-gray);
+    text-align: right;
+    padding-right: var(--80px);
+    margin-top: calc(var(--16px)* -1);
+  }
+
+  .form-field {
+    background: var(--color-white);
+    color: var(--text-color);
+    font-weight: 400;
+    font-size: var(--heading-6);
+    line-height: 1.33;
+    font-family: inherit;
+    padding: calc(var(--1px) * 12) var(--16px);
+    width: 100%;
+    border: none;
+    border-bottom: var(--1px) solid var(--color-product);
+    &:hover {
+      border-bottom-color: var(--color-black);
+    }
+    &:focus-visible {
+      /* outline: var(--1px) solid var(--color-product); */
+    }
+
+    &_error {
+      outline: 1px solid #ffd8d8;
+    }
+    &::placeholder {
+      color: var(--text-color);
+    }
+  }
+  textarea.form-field {
+    display: block;
+    resize: vertical;
+    min-height: calc(var(--1px) * 140);
+    max-height: calc(var(--1px) * 230);
+  }
+  .form-field__error,
+  .form-field__description {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.3em;
+    color: var(--color-gray);
+    font-size: var(--16px);
+    margin-top: var(--8px);
+    padding-left: var(--16px);
+    &:empty {
+      display: none;
+    }
+  }
+  .form-field__error {
+    color: red;
+  }
   @media screen and (--screen-phone) {
   }
 </style>

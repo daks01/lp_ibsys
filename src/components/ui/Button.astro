@@ -1,17 +1,19 @@
 ---
 const {
 	as: Element = "button",
+	type = Astro.props.as === "button" ? "button" : null,
 	href,
 	class: className,
 	...props
 } = Astro.props;
 ---
 
-<Element {...props} href={href} class:list={["button", className]}>
+<Element {...props} type={type} href={href} class:list={["button", className]}>
   <slot />
 </Element>
 
 <style>
+  @import "/src/assets/css/_custom-media.css";
   .button {
     display: inline-flex;
     align-items: center;
@@ -81,9 +83,6 @@ const {
     }
   }
 
-  @media screen and (width < 768px) {
-    /* // .button {
-    //     width: 100%
-    // } */
+  @media screen and (--screen-phone) {
   }
 </style>

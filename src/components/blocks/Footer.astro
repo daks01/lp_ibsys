@@ -3,6 +3,7 @@ import IconTelegram from "../../assets/img/social-telegram.svg";
 import IconWhatsApp from "../../assets/img/social-whatsapp.svg";
 import Menu from "../blocks/Menu.astro";
 import PresentationLink from "../blocks/PresentationLink.astro";
+import ColoredText from "../ui/ColoredText.astro";
 import Section from "../ui/Section.astro";
 
 const { ...props } = Astro.props;
@@ -20,8 +21,12 @@ const year = new Date().getFullYear();
         <p class="h6">Общество с ограниченной ответственностью “Махуру”</p>
       </div>
       <div class="footer-layout__col">
-        <a href="mailto:info@ibsys.ru" class="h4 colored">info@ibsys.ru</a> <br />
-        <a href="tel:+7 499 649 49 56" class="h4 colored">+7 499 649 49 56</a> <br />
+        <a href="mailto:info@ibsys.ru" class="h4 colored">
+          <ColoredText onhover="true">info@ibsys.ru</ColoredText>
+        </a> <br />
+        <a href="tel:+7 499 649 49 56" class="h4 colored">
+          <ColoredText onhover="true">+7 499 649 49 56</ColoredText>
+        </a> <br />
 
         <ul class="social-list">
           <li class="social-list__item">
@@ -81,12 +86,6 @@ const year = new Date().getFullYear();
   address {
     font-style: normal;
     margin-bottom: var(--20px);
-  }
-  .colored:hover {
-    background: var(--color-product);
-    background: linear-gradient(to right, var(--color-product) 30%, #db7aff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
   .social-list {

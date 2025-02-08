@@ -1,0 +1,26 @@
+---
+const { onhover = false } = Astro.props;
+---
+
+<span class:list={["colored", {"hover" : onhover }]}>
+  <slot />
+</span>
+
+<style>
+  @import "/src/assets/css/_custom-media.css";
+   
+  .colored:not(.hover) {
+    background: var(--color-product);
+    background: linear-gradient(to right, var(--color-product) 30%, #db7aff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  } 
+  .colored.hover:hover {
+    background: var(--color-product);
+    background: linear-gradient(to right, var(--color-product) 30%, #db7aff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @media screen and (--screen-phone) {}
+</style>
