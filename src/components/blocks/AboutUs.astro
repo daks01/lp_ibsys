@@ -6,21 +6,47 @@ const { ...props } = Astro.props;
 
 <Section {...props}>
   <p class="lead">
-    Компания с&nbsp;<span class="h1 text-medium">2013</span> года совместно со&nbsp;своими партнерами
-    реализует проекты в&nbsp;сфере информационных технологий&nbsp;&mdash; мобильная
-    разработка, корпоративные системы, in-door системы для бизнеса и&nbsp;другие
+    Компания с&nbsp;<span class="big-text">2013</span> года совместно со&nbsp;своими
+    партнерами реализует проекты в&nbsp;сфере информационных технологий&nbsp;&mdash;
+    мобильная разработка, корпоративные системы, in-door системы для бизнеса и&nbsp;другие
     проекты.
   </p>
   <p class="sub-lead h5">
     <span class="sub-lead__upper-text">в&nbsp;портфолиo ibsys</span>
-    <span class="sub-lead__main-text h1 text-medium">более 40</span>
+    <span class="sub-lead__main-text big-text">более 40</span>
     <span class="sub-lead__bottom-text">успешных кейсов</span>
+  </p>
+  <p class="lead">
+    которые помогли нашим клиентам решить свои бизнес-задачи. Среди
+    реализованных нами проектов&nbsp;&mdash; CRM системы, сложные веб-сайтыс
+    различными интеграциями, системы аналитики и&nbsp;управления, геолокационные
+    системы и&nbsp;другие.
+  </p>
+  <p class="lead">
+    ibsys обладает большой командой, состоящей из&nbsp;специалистов
+    <span class="img-group">
+      <img src="https://place-hold.it/120x120" alt="" loading="lazy" />
+      <img src="https://place-hold.it/120x120" alt="" loading="lazy" />
+      <img src="https://place-hold.it/120x120" alt="" loading="lazy" />
+      <img src="https://place-hold.it/120x120" alt="" loading="lazy" />
+      <img src="https://place-hold.it/120x120" alt="" loading="lazy" />
+      <img src="https://place-hold.it/120x120" alt="" loading="lazy" />
+    </span>
+    по&nbsp;разработке&nbsp;ИТ проектов практически любой сложности.
   </p>
 </Section>
 
 <style>
   @import "/src/assets/css/_custom-media.css";
 
+  .section {
+    padding: var(--16px) 0 var(--20px);
+  }
+  .big-text {
+    font-size: var(--heading-1);
+    font-weight: 500;
+    line-height: 1;
+  }
   .lead {
     margin: var(--50px) 0 var(--60px);
   }
@@ -30,20 +56,40 @@ const { ...props } = Astro.props;
     display: flex;
     flex-direction: column;
     align-items: center;
-  } 
+  }
   .sub-lead__upper-text {
-      margin: 0;
-      transform: translateX(calc(var(--20px)* -1));
+    margin: 0;
+    transform: translateX(calc(var(--20px) * -1));
+    font-size: var(--heading-6);
   }
   .sub-lead__main-text {
-      line-height: 0.9;
-      margin: 0 0 calc(var(--1px)* 13);
+    line-height: 0.8;
+    margin: 0 0 calc(var(--1px) * 13);
   }
   .sub-lead__bottom-text {
     margin: 0;
     transform: translateX(var(--110px));
+    font-size: var(--heading-6);
   }
 
+  .img-group {
+    display: inline-flex;
+    align-items: center;
+    align-items: end;
+    height: var(--1px);
+    & img {
+      width: var(--60px);
+      height: var(--60px);
+      border-radius: var(--60px);
+      border: calc(var(--1px) * 3) solid #cedfff;
+      background-color: var(--color-product);
+      transform: translateY(var(--16px));
+
+      & + & {
+        margin-left: calc(var(--20px) * -1);
+      }
+    }
+  }
 
   @media screen and (--screen-phone) {
   }
