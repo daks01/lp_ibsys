@@ -4,8 +4,18 @@ import vue from "@astrojs/vue";
 import { defineConfig } from "astro/config";
 import { Features } from "lightningcss";
 
+const siteMapUrlMap = {
+	production: "https://ibsys.ru/",
+	//staging: '',
+	development: "http://localhost:4321",
+};
+const siteUrl = siteMapUrlMap[process?.env?.NODE_ENV];
+// const baseUrl = process?.env?.NODE_ENV === 'staging' ? 'ibsys' : '';
+
 // https://astro.build/config
 export default defineConfig({
+	site: siteUrl,
+	// base: baseUrl,
 	vite: {
 		css: {
 			transformer: "lightningcss",

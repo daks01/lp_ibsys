@@ -2,6 +2,7 @@
 import { getImage } from "astro:assets";
 import astroLogo from "/src/assets/img/logo.png";
 import Section from "../ui/Section.astro";
+import Menu from "./Menu.astro";
 
 const optimizedLogo = astroLogo
 	? await getImage({ src: astroLogo, quality: "100" })
@@ -15,32 +16,13 @@ const optimizedLogo = astroLogo
         src={optimizedLogo.src}
         class="logo"
         width="227"
-        height="141"
-        alt="ISBYS logo"
+        height="137"
+        alt="логотип ИБСИС"
         fetchpriority="high"
       />
     </div>
     <nav>
-      <ul class="menu">
-        <li class="menu__item">
-          <a href="#about-us" class="menu__link active">Компания</a>
-        </li>
-        <li class="menu__item">
-          <a href="#full-dev-cyrcle" class="menu__link">Полный цикл</a>
-        </li>
-        <li class="menu__item">
-          <a href="#what-we-do" class="menu__link">Направления работы</a>
-        </li>
-        <li class="menu__item">
-          <a href="#clients" class="menu__link">Клиенты</a>
-        </li>
-        <li class="menu__item">
-          <a href="#career" class="menu__link">Карьера</a>
-        </li>
-        <li class="menu__item">
-          <a href="#contact-form" class="menu__link">Контакты</a>
-        </li>
-      </ul>
+      <Menu />
     </nav>
   </div>
 </Section>
@@ -55,36 +37,10 @@ const optimizedLogo = astroLogo
   }
 
   .logo {
-    transform: translateX(calc(var(--90px) * -1));
+    transform: translateX(calc((var(--gutter) - var(--30px)) * -1));
     width: calc(var(--1px) * 227);
     height: auto;
     display: block;
-  }
-
-  .menu {
-    padding: 0;
-    margin: 0;
-    display: flex;
-  }
-  .menu__item {
-    list-style-type: none;
-    padding: 0;
-    margin: 0 var(--20px);
-  }
-  .menu__link {
-    text-decoration: none;
-    font-size: var(--text-font-size);
-    &.active {
-      text-decoration: underline;
-      text-underline-offset: var(--8px);
-      text-decoration-thickness: var(--2px);
-    }
-    &:hover {
-      text-decoration: underline;
-      text-underline-offset: var(--8px);
-      text-decoration-thickness: var(--1px);
-      cursor: pointer;
-    }
   }
 
   @media screen and (--screen-phone) {

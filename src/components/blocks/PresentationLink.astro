@@ -1,0 +1,43 @@
+---
+import downloadPresentationImg from "/src/assets/img/download-presentation.svg";
+import Button from "../ui/Button.astro";
+
+const { isImage: boolean = true, ...props } = Astro.props;
+
+const pdfPath = "/";
+---
+
+{ Astro.props.isImage && 
+    <a href={pdfPath} target="_blank" download class="download-presentation" {...props}>
+      <span class="sr-only">Скачать презентацию</span>
+      <img
+        src={downloadPresentationImg.src}
+        alt=""
+        role="presentation"
+        fetchpriority="high"
+      />
+    </a>
+}
+{ !Astro.props.isImage && 
+  <Button href={pdfPath} target="_blank" download class="button_type-tertiary" {...props}>
+    Презентация
+  </Button>
+}
+
+<style>
+  @import "/src/assets/css/_custom-media.css";
+
+  .download-presentation {
+    position: absolute;
+    top: var(--110px);
+    left: 50%;
+    transform: translateX(calc(var(--1px) * 540));
+    text-decoration: none;
+    &:hover {
+      filter: hue-rotate(45deg);
+    }
+  }
+
+  @media screen and (--screen-phone) {
+  }
+</style>

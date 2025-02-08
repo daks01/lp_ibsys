@@ -1,13 +1,122 @@
 ---
+import IconTelegram from "../../assets/img/social-telegram.svg";
+import IconWhatsApp from "../../assets/img/social-whatsapp.svg";
+import Menu from "../blocks/Menu.astro";
+import PresentationLink from "../blocks/PresentationLink.astro";
 import Section from "../ui/Section.astro";
 
 const { ...props } = Astro.props;
+const year = new Date().getFullYear();
 ---
 
-<Section {...props}>1</Section>
+<Section {...props} as="footer" class="footer" data-copyright={`@Copyright ${year}`}>
+  <div class="footer-1">
+    <div class="footer-layout">
+      <div class="footer-layout__col">
+        <address class="h4">
+          Москва, Научный пр. 14а, стр. 1 <br />
+          м. Калужская
+        </address>
+        <p class="h6">Общество с ограниченной ответственностью “Махуру”</p>
+      </div>
+      <div class="footer-layout__col">
+        <a href="mailto:info@ibsys.ru" class="h4 colored">info@ibsys.ru</a> <br />
+        <a href="tel:+7 499 649 49 56" class="h4 colored">+7 499 649 49 56</a> <br />
+
+        <ul class="social-list">
+          <li class="social-list__item">
+            <a href="" class="social-list__link" target="_blank" rel="nofollow noopener" title="Telegramm">
+              <span class="sr-only" lang="en">WhatsApp</span>
+              <img src={IconWhatsApp.src} alt="" loading="lazy">
+            </a>
+          </li>
+          <li class="social-list__item">
+            <a href="" class="social-list__link" target="_blank" rel="nofollow noopener" title="Telegramm">
+              <span class="sr-only" lang="en">Telegram</span>
+              <img src={IconTelegram.src} alt="" loading="lazy">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-2">
+    <Menu>
+      <Fragment slot="last">
+        <PresentationLink />
+      </Fragment>
+    </Menu>
+  </div>
+</Section>
 
 <style>
   @import "/src/assets/css/_custom-media.css";
+
+  .footer {
+    position: relative;
+    padding: var(--100px) 0 var(--50px);
+
+    &::after {
+      content: attr(data-copyright);
+      position: absolute;
+      right: var(--16px);
+      bottom: var(--50px);
+      font-size: calc(var(--1px) * 14);
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+    }
+  }
+  .footer-1 {
+    margin-bottom: calc(var(--1px) * 180);
+  }
+  .footer-2 {}
+  .footer-layout {
+    display: flex;
+    gap: var(--30px);
+    justify-content: space-between;
+  }
+  .footer-layout__col + .footer-layout__col {
+    text-align: right;
+  }
+  address {
+    font-style: normal;
+    margin-bottom: var(--20px);
+  }
+  .colored:hover {
+    background: var(--color-product);
+    background: linear-gradient(to right, var(--color-product) 30%, #db7aff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .social-list {
+    display: flex;
+    gap: var(--30px);
+    justify-content: end;
+    margin: 0;
+    padding: 0;
+  }
+  .social-list__item {
+    list-style-type: none;
+    padding: var(--40px) 0 0;
+    margin: 0;
+  }
+  .social-list__link {
+    display: block;
+    position: relative;
+    &:hover:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-product);
+      background: linear-gradient(to right, var(--color-product) 0%, var(--color-violet) 100%);
+      z-index: 1;
+      mix-blend-mode: lighten;
+    }
+  }
 
   @media screen and (--screen-phone) {
   }

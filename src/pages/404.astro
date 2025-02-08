@@ -1,0 +1,39 @@
+---
+import Header from "../components/blocks/Header.astro";
+import Section from "../components/ui/Section.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+	<main>
+		<Header />
+		<Section invert={true} style="background-color: transparent;">
+			<div class="layout-404">
+				<h1>404</h1>
+				<p>страница не найдена</p>
+			</div>
+		</Section>
+	</main>
+</Layout>
+
+
+<style>
+	@import "/src/assets/css/_custom-media.css";
+  
+	main {
+		background-color: #141a2e;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+  	}
+	.layout-404 {
+		text-align: center;
+	}
+	h1 {
+		margin-bottom: var(--10px);
+	}
+  
+	@media screen and (--screen-phone) {
+	}
+  </style>
+  

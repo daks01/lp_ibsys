@@ -1,13 +1,13 @@
 ---
 import "/src/assets/css/index.css";
-// import { getImage } from 'astro:assets';
-// import og_image from "/src/assets/img/og_image.png";
+import { getImage } from "astro:assets";
+import og_image from "/src/assets/img/og_image.png";
 
-// const optimizedOGImage = await getImage({
-//     src: og_image,
-//     width: 1200,
-//     format: 'png'
-// });
+const optimizedOGImage = await getImage({
+	src: og_image,
+	width: 1200,
+	format: "png",
+});
 
 const { title = "IBSYS" } = Astro.props;
 const og_title = "Цифровые решения для вашего бизнеса";
@@ -31,8 +31,8 @@ const baseUrl =
 		<meta property="og:url" content={pageUrl} />
 		<meta property="og:title" content={og_title} />
 		<meta property="og:description" content={og_description} />
-		<!-- <meta property="og:image" content={`${pageUrl.origin}${optimizedOGImage.src}`} />
-		<meta property="og:image:secure_url" content={`${pageUrl.origin}${optimizedOGImage.src}`} /> -->
+		<meta property="og:image" content={`${pageUrl.origin}${optimizedOGImage.src}`} />
+		<meta property="og:image:secure_url" content={`${pageUrl.origin}${optimizedOGImage.src}`} />
 		<meta property="og:type" content="website" />
 
 		<link rel="sitemap" href={`${baseUrl}/sitemap-index.xml`} />
