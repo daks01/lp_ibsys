@@ -10,9 +10,9 @@ const { width = 1440, ...props } = Astro.props;
   @import "/src/assets/css/_custom-media.css";
   
   .container {
-    width: calc(var(--1px) * var(--width));
-    max-width: calc(100vw - var(--gutter) * 2);
-    padding: 0.02px 0;
+    max-width: calc(var(--1px) * var(--container-width));
+    width: 100%;
+    padding: 0 var(--gutter) 0.02px;
     margin: 0 auto;
   }
 

@@ -4,11 +4,51 @@ import Section from "../ui/Section.astro";
 const { ...props } = Astro.props;
 ---
 
-<Section {...props}>1</Section>
+<Section {...props}>
+  <h2 class="lead">уже работаем вместе — нам доверяют</h2>
+  <ul class="client-list">
+    <li class="client-list__item">
+      <img src="https://place-hold.it/120x120" alt="">
+    </li>
+    <li class="client-list__item">
+      <img src="https://place-hold.it/120x120" alt="">
+    </li>
+    <li class="client-list__item">
+      <img src="https://place-hold.it/120x120" alt="">
+    </li>
+    <li class="client-list__item">
+      <img src="https://place-hold.it/120x120" alt="">
+    </li>
+    <li class="client-list__item">
+      <img src="https://place-hold.it/120x120" alt="">
+    </li>
+    <li class="client-list__item">
+      <img src="https://place-hold.it/120x120" alt="">
+    </li>
+    <li class="client-list__item">
+      <img src="https://place-hold.it/120x120" alt="">
+    </li>
+    <li class="client-list__item">
+      <img src="https://place-hold.it/120x120" alt="">
+    </li>
+  </ul>
+</Section>
 
 <style>
   @import "/src/assets/css/_custom-media.css";
 
+  .client-list {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0;
+    gap: var(--30px);
+  }
+  .client-list__item {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
   @media screen and (--screen-phone) {
   }
 </style>

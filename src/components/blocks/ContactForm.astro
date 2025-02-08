@@ -4,7 +4,11 @@ import Section from "../ui/Section.astro";
 const { ...props } = Astro.props;
 ---
 
-<Section {...props}>1</Section>
+<Section {...props}>
+  <h2 class="lead">
+    есть идеи?  — напишите нам  —   реализуем
+  </h2>
+</Section>
 
 <style>
   @import "/src/assets/css/_custom-media.css";
