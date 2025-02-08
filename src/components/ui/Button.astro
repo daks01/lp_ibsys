@@ -1,0 +1,89 @@
+---
+const {
+	as: Element = "button",
+	href,
+	class: className,
+	...props
+} = Astro.props;
+---
+
+<Element {...props} href={href} class:list={["button", className]}>
+  <slot />
+</Element>
+
+<style>
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    transition: filter 0.1s;
+    border: none;
+    border-radius: var(--60px);
+    background-color: var(--color-product);
+    color: var(--text-white);
+    font-family: inherit;
+    font-weight: 400;
+    font-size: var(--heading-6);
+    line-height: 1.4;
+    padding: var(--8px) var(--20px);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.15s ease;
+
+    &:not(span) {
+      cursor: pointer;
+      user-select: none;
+      &:hover {
+      }
+      &:active {
+      }
+    }
+
+    &:disabled {
+      filter: brightness(0.9);
+      cursor: default;
+    }
+  }
+
+  .button_type-secondary {
+    background-color: transparent;
+    color: var(--color-black);
+    &:not(span) {
+      &:hover {
+      }
+      &:active {
+      }
+    }
+  }
+
+  .button_type-tertiary {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    &:not(span) {
+      &:hover {
+        background-color: var(--color-product);
+      }
+      &:active {
+      }
+    }
+  }
+
+  .button_type-transparent {
+    background-color: transparent;
+    color: var(--color-black);
+    box-shadow: 0 0 0 var(--1px) currentColor;
+    &:not(span) {
+      &:hover {
+      }
+      &:active {
+      }
+    }
+  }
+
+  @media screen and (width < 768px) {
+    /* // .button {
+    //     width: 100%
+    // } */
+  }
+</style>
