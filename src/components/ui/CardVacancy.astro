@@ -1,0 +1,112 @@
+---
+import { Image } from "astro:assets";
+import ArrowIcon from "/src/assets/img/arrow.svg";
+import Logo from "/src/assets/img/logo.svg";
+import Button from "../ui/Button.astro";
+
+const { href, tag, title, ...props } = Astro.props;
+---
+
+<a href={href} class="vacancy" {...props}>
+  <div class="vacancy__header">
+    <Button as="span" class="vacancy__tag">{tag}</Button>
+    <Image
+      src={Logo}
+      class="vacancy__logo"
+      alt=""
+      role="presentation"
+      loading="lazy"
+    />
+    <Image
+      src={ArrowIcon}
+      class="vacancy__arrow"
+      alt=""
+      role="presentation"
+      loading="lazy"
+    />
+  </div>
+  <span class="vacancy__title">{title}</span>
+</a>
+
+<style>
+  @import "/src/assets/css/_custom-media.css";
+
+  .vacancy-list__item {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+    min-width: calc(var(--1px) * 520);
+    scroll-snap-align: start;
+
+    &:nth-child(even) {
+      min-width: calc(var(--1px) * 660);
+    }
+    &:nth-child(3n + 2) {
+      .vacancy {
+        color: #181b24;
+        background: linear-gradient(
+            180deg,
+            rgba(20, 88, 228, 0) 0%,
+            rgba(0, 59, 194, 0.5) 91.44%
+          ),
+          currentColor;
+      }
+    }
+    &:nth-child(3n + 3) {
+      .vacancy {
+        color: #9747ff;
+        background: linear-gradient(
+            180deg,
+            rgba(20, 88, 228, 0) 0%,
+            rgba(0, 59, 194, 0.5) 91.44%
+          ),
+          currentColor;
+      }
+    }
+  }
+  .vacancy {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: calc(var(--1px) * 36);
+    background-color: var(--color-product);
+    color: var(--color-product);
+    padding: calc(var(--1px) * 24) calc(var(--1px) * 36) calc(var(--1px) * 36) calc(var(--1px) * 24);
+    height: 100%;
+  }
+  .vacancy__header {
+    display: flex;
+    margin-bottom: var(--100px);
+    gap: var(--16px);
+    align-items: start;
+    & *:last-child {
+      margin-left: auto;
+    }
+  }
+  .vacancy__tag {
+    background-color: var(--color-white);
+    color: currentColor;
+    font-size: var(--heading-6);
+    border-radius: var(--60px);
+    line-height: 1.4;
+    padding: var(--8px) var(--20px);
+    white-space: nowrap;
+  }
+  .vacancy__logo {
+    height: calc(var(--1px) * 48);
+    width: auto;
+  }
+  .vacancy__arrow {
+    transform: translateY(var(--8px));
+  }
+  .vacancy__title {
+    color: var(--text-white);
+    font-size: var(--heading-3);
+    line-height: 1;
+    padding-right: var(--40px);
+  }
+
+  @media screen and (--screen-phone) {
+  }
+</style>

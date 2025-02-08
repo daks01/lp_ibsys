@@ -1,13 +1,97 @@
 ---
+import { getCollection } from "astro:content";
+import Button from "../ui/Button.astro";
+import CardVacancy from "../ui/CardVacancy.astro";
+import Dialog from "../ui/Dialog.astro";
 import Section from "../ui/Section.astro";
+const vacanciesEntries = await getCollection("vacancies");
 
 const { ...props } = Astro.props;
 ---
 
-<Section {...props}>1</Section>
+<Section {...props}>
+  <h2 class="lead">карьера — рост — потенциал</h2>
+  <Fragment slot="after-footer">
+    <ul class="vacancy-list">
+      {vacanciesEntries.map(async (vacancyPostEntry) => {
+        const { Content } = await vacancyPostEntry.render();
+        return (
+          <li class="vacancy-list__item">
+            <CardVacancy 
+              href={`/vacancies/${vacancyPostEntry.slug}`}
+              tag={vacancyPostEntry.data.tag} 
+              title={vacancyPostEntry.data.title}
+              onclick={`
+                window["${vacancyPostEntry.slug}"]?.showModal();
+                return false;
+              `}
+            />
+            <Dialog 
+              id={vacancyPostEntry.slug} 
+              title={vacancyPostEntry.data.title}
+            >
+              <Button as="span" class="button_type-transparent ">{vacancyPostEntry.data.tag}</Button>
+              <Content />
+            </Dialog>
+          </li>
+        );
+      })}
+    </ul>
+  </Fragment>
+</Section>
 
 <style>
   @import "/src/assets/css/_custom-media.css";
+
+  .vacancy-list {
+    display: flex;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    /* scrollbar-color: red orange; */
+    scroll-padding-left: var(--gutter);
+    scroll-padding-right: var(--gutter);
+    scrollbar-width: none;
+    padding: 0 var(--gutter);
+    margin: 0 auto;
+    gap: var(--30px);
+    justify-content: stretch;
+  }
+  .vacancy-list__item {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    min-width: calc(var(--1px) * 520);
+    scroll-snap-align: start;
+
+    &:nth-child(even) {
+      min-width: calc(var(--1px) * 660);
+    }
+    &:nth-child(3n + 2) {
+      .vacancy {
+        color: #181b24;
+        background: linear-gradient(
+            180deg,
+            rgba(20, 88, 228, 0) 0%,
+            rgba(0, 59, 194, 0.5) 91.44%
+          ),
+          currentColor;
+      }
+    }
+    &:nth-child(3n + 3) {
+      .vacancy {
+        color: #9747ff;
+        background: linear-gradient(
+            180deg,
+            rgba(20, 88, 228, 0) 0%,
+            rgba(0, 59, 194, 0.5) 91.44%
+          ),
+          currentColor;
+      }
+    }
+  }
 
   @media screen and (--screen-phone) {
   }

@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import Footer from "../../components/blocks/Footer.astro";
+import Header from "../../components/blocks/Header.astro";
+import Section from "../../components/ui/Section.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+	const blogEntries = await getCollection("vacancies");
+	return blogEntries.map((entry) => ({
+		params: { slug: entry.slug },
+		props: { entry },
+	}));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout>
+	<Header/>
+	<Section>
+    <article>
+      <h1 class="h3">{entry.data.title}</h1>
+      <span>{entry.data.tag}</span>
+      <p>Published on: 
+        <time datetime={entry.data.publishDate.toISOString()}>
+          {entry.data.publishDate.toDateString()}
+        </time>
+      </p>
+      <Content />
+    </article>
+  </Section>
+  <Footer />
+</Layout>

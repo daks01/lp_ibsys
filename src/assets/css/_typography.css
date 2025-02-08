@@ -7,7 +7,9 @@ h3,
 h4,
 .h4,
 h5,
-.h5 {
+.h5,
+h6,
+.h6 {
 	font-weight: 400;
 	text-wrap: balance;
 	color: var(--text-color);
@@ -32,21 +34,28 @@ h2,
 h3,
 .h3 {
 	font-size: var(--heading-3);
-	line-height: 1.33;
-	margin: var(--32px) 0;
-	letter-spacing: calc(var(--heading-3) / 100 * -2);
+	line-height: 1;
+	margin: var(--40px) 0;
 }
 
 h4,
 .h4 {
 	font-size: var(--heading-4);
-	line-height: 2;
-	margin: var(--20px) 0;
+	line-height: 1.33;
+	margin: var(--32px) 0;
+	letter-spacing: calc(var(--heading-4) / 100 * -2);
 }
 
 h5,
 .h5 {
 	font-size: var(--heading-5);
+	line-height: 2;
+	margin: var(--20px) 0;
+}
+
+h6,
+.h6 {
+	font-size: var(--heading-6);
 	line-height: 1.33;
 	margin: var(--16px) 0;
 }
@@ -100,7 +109,7 @@ li > ol {
 }
 
 @media screen and (--screen-phone) {
-	h1,
+	/* h1,
 	.h1 {
 		margin: var(--90px) 0 var(--30px);
 	}
@@ -109,15 +118,15 @@ li > ol {
 		margin: var(--60px) 0 var(--30px);
 	}
 	h3,
-	.h3 {
+	.h4 {
 		margin: var(--60px) 0 var(--30px);
 	}
 	h4,
-	.h4 {
+	.h5 {
 		margin: var(--30px) 0 var(--30px);
 	}
 	h5,
-	.h5 {
+	.h6 {
 		margin: var(--90px) 0 var(--15px);
 	}
 	p,
@@ -125,5 +134,5 @@ li > ol {
 	ol,
 	table {
 		margin: 0 0 var(--20px);
-	}
+	} */
 }

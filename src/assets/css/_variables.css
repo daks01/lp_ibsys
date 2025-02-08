@@ -6,7 +6,7 @@
         равна 1px на экранах 1440px
         и пропорционально скелится на меньших экранах
     */
-	--1px: min(.07vw, var(--container-width-in-px) / 100 * 0.07);
+	--1px: min(.069445vw, var(--container-width-in-px) / 100 * 0.069445);
 
 	--2px: calc(var(--1px) * 2);
 	--4px: calc(var(--1px) * 4);
@@ -20,6 +20,7 @@
 	--70px: calc(var(--1px) * 70);
 	--80px: calc(var(--1px) * 80);
 	--90px: calc(var(--1px) * 90);
+	--100px: calc(var(--1px) * 100);
 	--110px: calc(var(--1px) * 110);
 	--150px: calc(var(--1px) * 150);
 
@@ -27,10 +28,11 @@
 
 	--heading-1: calc(var(--1px) * 128);
 	--heading-2: calc(var(--1px) * 96);
-	--heading-3: calc(var(--1px) * 48);
-	--heading-4: calc(var(--1px) * 32);
-	--heading-5: calc(var(--1px) * 24);
-	--lead-font-size: var(--heading-3);
+	--heading-3: calc(var(--1px) * 64);
+	--heading-4: calc(var(--1px) * 48);
+	--heading-5: calc(var(--1px) * 32);
+	--heading-6: calc(var(--1px) * 24);
+	--lead-font-size: var(--heading-4);
 	--text-font-size: calc(var(--1px) * 20);
 	--small-font-size: calc(var(--1px) * 15);
 	--text-line-height: 1.6;
@@ -38,7 +40,7 @@
 	--color-product: #0076ff;
 	--color-white: #ffffff;
 	--color-black: #181b24;
-	--color-violet: #9747ff;
+	--color-violet: rgba(208, 119, 249, 0.8);
 
 	--text-product: var(--color-product);
 	--text-color: #1d1d1b;
@@ -48,14 +50,14 @@
 
 @media screen and (--screen-phone) {
 	:root {
-		--container-width: 320;
-		--container-width-in-px: 320px;
+		/* --container-width: 320;
+		--container-width-in-px: 320px; */
 		/* 
             адаптивная переменная в зависимости от размера экрана
             равна 1px на экранах 320px
             и пропорционально скелится на больших экранах
         */
-		--1px: calc(100vw / var(--container-width));
+		/* --1px: calc(100vw / var(--container-width));
 		--gutter: calc(var(--1px) * 24);
 
 		--section-height: auto;
@@ -63,12 +65,12 @@
 
 		--heading-1: calc(var(--1px) * 74);
 		--heading-2: calc(var(--1px) * 32);
-		--heading-3: calc(var(--1px) * 24);
-		--heading-4: calc(var(--1px) * 18);
-		--heading-5: calc(var(--1px) * 16);
+		--heading-4: calc(var(--1px) * 24);
+		--heading-5: calc(var(--1px) * 18);
+		--heading-6: calc(var(--1px) * 16);
 		--lead-font-size: calc(var(--1px) * 18);
 		--text-font-size: calc(var(--1px) * 16);
 		--small-font-size: calc(var(--1px) * 14);
-		--extra-small-font-size: calc(var(--1px) * 12);
+		--extra-small-font-size: calc(var(--1px) * 12); */
 	}
 }
