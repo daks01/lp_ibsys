@@ -4,11 +4,62 @@ import Section from "../ui/Section.astro";
 const { ...props } = Astro.props;
 ---
 
-<Section {...props}>1</Section>
+<Section {...props}>
+  <h2 class="lead">
+    направления работы — внедряем и прокачиваем
+  </h2>
+  <ul class="work-list">
+    <li class="work-list__item">
+      <button class="work-list__link h2">Решения на базе АI</button>
+    </li>
+    <li class="work-list__item">
+      <button class="work-list__link h2">Страхование</button>
+    </li>
+    <li class="work-list__item">
+      <button class="work-list__link h2">Ритейл</button>
+    </li>
+    <li class="work-list__item">
+      <button class="work-list__link h2">Банки</button>
+    </li>
+    <li class="work-list__item">
+      <button class="work-list__link h2">CRM системы</button>
+    </li>
+    <li class="work-list__item">
+      <button class="work-list__link h2">Корпоративные системы</button>
+    </li>
+    <li class="work-list__item">
+      <button class="work-list__link h2">Мобильные рабочие места</button>
+    </li>
+  </ul>
+</Section>
 
 <style>
   @import "/src/assets/css/_custom-media.css";
 
+  .section {
+    padding: var(--40px) 0;
+  }
+
+  .work-list {
+    margin: var(--100px) 0 0 0;
+    padding: 0;
+  }
+  .work-list__item {
+    list-style-type: none;
+    margin: 0 0 var(--60px);
+    padding: 0 0 var(--8px);
+  }
+  .work-list__link {
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+    &:hover {
+      color: var(--color-product)
+    }
+  }
   @media screen and (--screen-phone) {
   }
 </style>
