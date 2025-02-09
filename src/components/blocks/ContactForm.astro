@@ -303,5 +303,16 @@ const { ...props } = Astro.props;
     color: red;
   }
   @media screen and (--screen-phone) {
+    .form-layout {
+      flex-direction: column;
+      gap: 0;
+    }
+    .form-submit {
+      font-size: var(--heading-2);
+    }
+    .processing-of-personal-data {
+      padding: 0;
+      margin: 0;
+    }
   }
 </style>

@@ -51,27 +51,28 @@
 
 @media screen and (--screen-phone) {
 	:root {
-		/* --container-width: 320;
-		--container-width-in-px: 320px; */
+		--container-width: 375;
+		--container-width-in-px: 375px;
 		/* 
             адаптивная переменная в зависимости от размера экрана
             равна 1px на экранах 320px
             и пропорционально скелится на больших экранах
-        */
-		/* --1px: calc(100vw / var(--container-width));
-		--gutter: calc(var(--1px) * 24);
+		*/
+		--1px: calc(100vw / var(--container-width));
+		--gutter: var(--16px);
 
 		--section-height: auto;
 		--header-height: auto;
 
-		--heading-1: calc(var(--1px) * 74);
-		--heading-2: calc(var(--1px) * 32);
-		--heading-4: calc(var(--1px) * 24);
-		--heading-5: calc(var(--1px) * 18);
+		--heading-1: calc(var(--1px) * 64);
+		--heading-2: calc(var(--1px) * 48);
+		--heading-3: calc(var(--1px) * 42);
+		--heading-4: calc(var(--1px) * 36);
+		--heading-5: calc(var(--1px) * 24);
 		--heading-6: calc(var(--1px) * 16);
-		--lead-font-size: calc(var(--1px) * 18);
-		--text-font-size: calc(var(--1px) * 16);
+		--lead-font-size: var(--heading-5);
+		--text-font-size: calc(var(--1px) * 15);
 		--small-font-size: calc(var(--1px) * 14);
-		--extra-small-font-size: calc(var(--1px) * 12); */
+		--text-line-height: 1.6;
 	}
 }

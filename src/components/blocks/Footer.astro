@@ -86,6 +86,17 @@ const year = new Date().getFullYear();
   address {
     font-style: normal;
     margin-bottom: var(--20px);
+    position: relative;
+
+    &::after {
+      content: '';
+      width: calc(var(--1px) * 25);
+      height: calc(var(--1px) * 25);
+      background-color: #FF7700;
+      border-radius: var(--30px);
+      padding-left: var(--16px);
+      display: inline-block;
+    }
   }
 
   .social-list {
@@ -118,5 +129,8 @@ const year = new Date().getFullYear();
   }
 
   @media screen and (--screen-phone) {
+    .footer-layout {
+      flex-direction: column;
+    }
   }
 </style>

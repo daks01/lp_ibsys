@@ -90,7 +90,7 @@ const { ...props } = Astro.props;
     scroll-snap-type: x mandatory;
     scroll-padding-left: var(--gutter);
     scroll-padding-right: var(--gutter);
-    scrollbar-width: none;
+    /* scrollbar-width: none; */
     padding: 0 var(--gutter) 0;
     margin: 0 auto;
     gap: var(--30px);
@@ -216,5 +216,22 @@ const { ...props } = Astro.props;
     }
   }
   @media screen and (--screen-phone) {
+
+    .card {
+      width: 80vw;
+      height: calc(var(--1px) * 360);
+    }
+    .card__title {
+      white-space: normal;
+    }
+    .card__img-wrap {
+      height: 100%;
+      width: 100%;
+    }      
+    .card__img  {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
   }
 </style>

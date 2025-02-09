@@ -22,10 +22,44 @@ const optimizedLogo = astroLogo
       />
     </div>
     <nav>
-      <Menu />
+      <button class="header__burger" data-nav-burger>
+        <svg class="header__icon-menu" aria-hidden="true" width="40" height="30" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line y1="8.5" x2="40" y2="8.5" stroke="white"/>
+          <line y1="20.5" x2="40" y2="20.5" stroke="white"/>
+        </svg>
+        <svg class="header__icon-cross" aria-hidden="true" width="40" height="30" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="5.64645" y1="28.9306" x2="33.9307" y2="0.646356" stroke="white"/>
+          <line x1="6.35355" y1="0.646447" x2="34.6378" y2="28.9307" stroke="white"/>
+        </svg>
+          
+        <span class="sr-only">Мобильное меню</span>
+      </button>
+
+      <Menu data-nav-menu/>
     </nav>
   </div>
 </Section>
+
+<script>
+  initMobileMenu();
+
+  function initMobileMenu() {
+    const burger = document.querySelector('[data-nav-burger]');
+    const menu = document.querySelector('[data-nav-menu]');
+    const menuLinks = menu?.querySelectorAll('a');
+
+    burger?.addEventListener('click', () => {
+      burger.classList.toggle('active');
+      menu?.classList.toggle('active');
+    });
+
+    [].forEach.call(menuLinks, (link) => {
+      link.addEventListener('click', () => {
+          setTimeout(() => menu?.classList.remove('active'), 300);
+      });
+    });
+  }
+</script>
 
 <style>
   @import "/src/assets/css/_custom-media.css";
@@ -43,8 +77,65 @@ const optimizedLogo = astroLogo
     display: block;
   }
 
+  .header__burger {
+    display: none;
+  }
+
   @media screen and (--screen-phone) {
+    .section {
+      z-index: 10;
+    }
+    .logo {
+      transform: none;
+      width: calc(var(--1px) * 96);
+    }
     .header-layout {
+    }
+
+    .header__burger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--40px);
+      height: var(--40px);
+      background: none;
+      border: none;
+      padding: 0;
+
+      & .header__icon-cross { 
+        display: none;
+      }
+      &.active {
+        position: fixed;
+        z-index: 100;
+        top: 0;
+        right: 0;
+        & .header__icon-menu { 
+          display: none;
+        }
+        & .header__icon-cross { 
+          display: block;
+        }
+      }
+    }
+    .menu {
+      display: none;
+      flex-direction: column;
+      gap: var(--20px);
+      color: var(--color-product);
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(21, 30, 52, 0.8);
+      backdrop-filter: blur(var(--110px));
+      width: 100%;
+      z-index: 5;
+      padding: var(--100px) var(--30px);
+      border-radius: 0 0 calc(var(--1px) * 24) calc(var(--1px) * 24);
+      &.active {
+        display: flex;
+      }
     }
   }
 </style>

@@ -69,5 +69,23 @@ const { ...props } = Astro.props;
     justify-content: center;
   }
   @media screen and (--screen-phone) {
+    .client-list {
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: var(--gutter);
+      scroll-padding-right: var(--gutter);
+      /* scrollbar-width: none; */
+      padding: 0 var(--gutter) 0;
+      gap: var(--30px);
+      margin: 0 calc(var(--gutter) * -1);
+    }
+    .client-list__item {
+      scroll-snap-align: start;
+      min-width: 40%;
+      padding: 0;
+    }
   }
 </style>

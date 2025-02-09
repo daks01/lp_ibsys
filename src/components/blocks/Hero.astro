@@ -59,6 +59,10 @@ import PresentationLink from "./PresentationLink.astro";
       role="presentation"
       loading="lazy"
     />
+    <p class="mobile-text">
+      12 лет на рынке разработки <br>
+      Аккредитация Минсвязи
+    </p>
   </Section>
 </div>
 
@@ -102,10 +106,6 @@ import PresentationLink from "./PresentationLink.astro";
   .hero__footer {
     padding: var(--16px) 0;
   }
-  .hero__footer-layout {
-    display: flex;
-    justify-content: space-between;
-  }
 
   /* CUBES */
   .hero__cube {
@@ -132,13 +132,18 @@ import PresentationLink from "./PresentationLink.astro";
     padding-left: var(--20px);
     margin-bottom: 0;
   }
-  .colored {
-    background: var(--color-product);
-    background: linear-gradient(to right, var(--color-product) 30%, var(--color-violet) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
+  .mobile-text {
+    display: none;
   }
 
   @media screen and (--screen-phone) {
+    .hero {
+      overflow: hidden;
+      position: static;
+    }
+    .mobile-text {
+      display: block;
+    }
   }
 </style>
