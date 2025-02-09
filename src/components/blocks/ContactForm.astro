@@ -67,7 +67,20 @@ const { ...props } = Astro.props;
           <span class="form-field__error" data-field-error></span>
         </div>
         <div class="form-row">
-          <input class="form-field" type="file" name="file" aria-label="Детали проекта" />
+          <input 
+            class="form-field" 
+            type="file" 
+            name="file" 
+            aria-label="Детали проекта" 
+            onchange="
+              const oneMB = 1048576;
+              const fileSize = this.files[0].size;
+              if(fileSize > 16 * oneMB) { 
+                alert(`Файл слишком большой (${Math.round(fileSize / oneMB)}mb)`); 
+                this.value = '';
+              }
+            "
+          />
           <span class="form-field__error" data-field-error></span>
           <span class="form-field__description">Прикрепить файл (максимум 16 Мб)</span>
         </div>
@@ -227,15 +240,18 @@ const { ...props } = Astro.props;
     width: 100%;
     border: none;
     border-bottom: var(--1px) solid var(--color-product);
-    &:hover {
-      border-bottom-color: var(--color-black);
+    &:hover,
+    &:focus {
+      border-image: linear-gradient(to right, var(--color-product) 0%, var(--color-violet) 100%) 1;
     }
-    &:focus-visible {
-      /* outline: var(--1px) solid var(--color-product); */
+    
+    &:focus {
+      outline: var(--1px) solid var(--color-product);
+      border-bottom-width: var(--2px):
     }
 
     &_error {
-      outline: 1px solid #ffd8d8;
+      border-bottom-color: red;
     }
     &::placeholder {
       color: var(--text-color);
@@ -247,6 +263,29 @@ const { ...props } = Astro.props;
     min-height: calc(var(--1px) * 140);
     max-height: calc(var(--1px) * 230);
   }
+  input[type="file"].form-field {
+    cursor: pointer;
+
+    &::file-selector-button {
+      background-color: transparent;
+      color: var(--color-product);
+      border: none;
+      padding: 0 var(--16px) 0 0;
+    }
+    &:hover::file-selector-button {
+        background: var(--color-product);
+        background: linear-gradient(to right, var(--color-product) 30%, #db7aff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        cursor: pointer;
+      }
+    &::before {
+      content: '📎';
+      padding-right: var(--4px);
+    }
+  }
+
+
   .form-field__error,
   .form-field__description {
     display: flex;

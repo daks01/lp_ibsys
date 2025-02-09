@@ -15,9 +15,9 @@ body {
 
 /* Default (light) theme */
 :root {
-	--scrollbar-track: rgba(255, 255, 255, 0.1);
-	--scrollbar-thumb: rgba(255, 255, 255, 0.1);
-	--scrollbar-thumb-hover: rgba(255, 255, 255, 0.2);
+	--scrollbar-track: rgba(1, 1, 1, 0.1);
+	--scrollbar-thumb: rgba(1, 1, 1, 0.4);
+	--scrollbar-thumb-hover: var(--color-violet);
 
 	--scrollbar-width: 12px;
 }
@@ -41,7 +41,7 @@ body {
 *::-webkit-scrollbar-thumb {
 	background: var(--scrollbar-thumb);
 	border-radius: var(--scrollbar-width);
-	border: calc(var(--scrollbar-width) / 4) solid var(--page-background);
+	border: calc(var(--scrollbar-width) / 4) solid var(--color-white);
 }
 
 *::-webkit-scrollbar-thumb:hover {
