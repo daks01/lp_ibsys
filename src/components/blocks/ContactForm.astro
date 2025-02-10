@@ -11,7 +11,7 @@ const { ...props } = Astro.props;
   </h2>
 
   <form 
-    action="/contact.php"
+    action="/send_message.php"
     data-contact-form
     class="form"
     aria-labelledby="form-title"
@@ -119,45 +119,38 @@ const { ...props } = Astro.props;
       validateForm();
 
       if (!formEl.checkValidity()) {
-        // formEl.reportValidity();
-
         return;
       }
 
-      const formData = new FormData(e.target);
-      const fetchBody = {
-        name: formData.get("name"),
-        email: formData.get("liame"),
-        phone: formData.get("phone"),
-        message: formData.get("message"),
-        file: formData.get("file"),
-      };
+      const formData = new FormData(e.target); // Используем FormData для отправки файла
+      const fileInput = formEl.querySelector('input[type="file"]');
+      const file = fileInput?.files[0];
 
-      fetch('/', {
-        redirect: "follow",
+      if (file) {
+        formData.append("file", file); // Добавляем файл в FormData
+      }
+
+      fetch('/send_message.php', {
         method: "POST",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8",
-        },
-        body: JSON.stringify(fetchBody),
+        body: formData, // Отправляем FormData (не нужно явно указывать Content-Type)
       })
         .then((response) => {
           if (!response.ok) {
-            actionMessage.innerHTML = "❗ При отправке возникли проблемы.<br> Попробуйте позже";
             throw new Error("Network error");
           }
           return response.json();
         })
         .then((response) => {
           if (response.result === "success") {
-            actionMessage.innerHTML = "✅ Отправлено.";
+            actionMessage.innerHTML = "✅ Отправлено";
             formEl.reset();
           } else if (response.result === "error") {
-            actionMessage.innerHTML = "❗ При отправке возникли проблемы.<br> Попробуйте позже";
-            throw new Error(response.error);
+            // Выводим конкретную ошибку, возвращенную PHP
+            actionMessage.innerHTML = `❗ ${response.error}`;
           }
         })
         .catch((error) => {
+          // Обработка ошибок сети или других проблем
           actionMessage.innerHTML = "❗ При отправке возникли проблемы.<br> Попробуйте позже";
           console.error(error);
         });
