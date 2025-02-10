@@ -25,6 +25,7 @@
 		"lefthook": "^1.10.10"
 	},
 	"optionalDependencies": {
-		"@rollup/rollup-linux-x64-gnu": "4.9.5"
+		"@rollup/rollup-linux-x64-gnu": "4.9.5",
+		"lightningcss-linux-x64-gnu": "1.29.1"
 	}
 }
