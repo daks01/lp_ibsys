@@ -5,17 +5,17 @@ import { defineConfig } from "astro/config";
 import { Features } from "lightningcss";
 
 const siteMapUrlMap = {
-	production: "https://ibsys.ru/",
-	//staging: '',
+	production: "https://ibsys.ru",
+	staging: "https://daks01.github.io",
 	development: "http://localhost:4321",
 };
 const siteUrl = siteMapUrlMap[process?.env?.NODE_ENV];
-// const baseUrl = process?.env?.NODE_ENV === 'staging' ? 'ibsys' : '';
+const baseUrl = process?.env?.NODE_ENV === "staging" ? "lp_ibsys" : "";
 
 // https://astro.build/config
 export default defineConfig({
 	site: siteUrl,
-	// base: baseUrl,
+	base: baseUrl,
 	vite: {
 		css: {
 			transformer: "lightningcss",
