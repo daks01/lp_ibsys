@@ -20,7 +20,7 @@ const fullDevCycleCollection = defineCollection({
 			step: z.number(),
 		}),
 });
-fullDevCycleCollection.sort((a, b) => a.data.step - b.data.step);
+
 // 3. Экспортируйте единственный объект collections, чтобы зарегистрировать вашу коллекцию(и)
 // Этот ключ должен совпадать с именем вашего каталога коллекций в "src/content"
 export const collections = {

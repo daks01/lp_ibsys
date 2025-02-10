@@ -4,7 +4,9 @@ import { getCollection } from "astro:content";
 import Dialog from "../ui/Dialog.astro";
 import Section from "../ui/Section.astro";
 
-const fullDevCycleEntries = await getCollection("fullDevCycle");
+const fullDevCycleEntries = (await getCollection("fullDevCycle")).sort(
+	(a, b) => a.data.step - b.data.step,
+);
 
 const { ...props } = Astro.props;
 ---
