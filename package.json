@@ -23,5 +23,8 @@
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
 		"lefthook": "^1.10.10"
+	},
+	"optionalDependencies": {
+		"@rollup/rollup-linux-x64-gnu": "4.9.5"
 	}
 }
