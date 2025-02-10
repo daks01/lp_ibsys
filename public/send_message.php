@@ -33,7 +33,7 @@
     }
 
     // Отправка email
-    $to = "info@ibsys.ru"; // Замените на ваш email
+    $to = "you@email.com"; // Замените на ваш email
     $subject = "Новое сообщение от " . $name;
     $emailMessage = "Имя: " . $name . "\n" .
                     "Email: " . $email . "\n" .
