@@ -2,7 +2,7 @@
 import { defineCollection, z } from "astro:content";
 
 // 2. Определите `type` и `schema` для каждой коллекции
-const vacanciesCollection = defineCollection({
+const vacancies = defineCollection({
 	type: "content",
 	schema: z.object({
 		title: z.string(),
@@ -11,7 +11,7 @@ const vacanciesCollection = defineCollection({
 	}),
 });
 
-const fullDevCycleCollection = defineCollection({
+const fulldevcycle = defineCollection({
 	type: "content",
 	schema: ({ image }) =>
 		z.object({
@@ -24,6 +24,6 @@ const fullDevCycleCollection = defineCollection({
 // 3. Экспортируйте единственный объект collections, чтобы зарегистрировать вашу коллекцию(и)
 // Этот ключ должен совпадать с именем вашего каталога коллекций в "src/content"
 export const collections = {
-	vacancies: vacanciesCollection,
-	fulldevcycle: fullDevCycleCollection,
+	vacancies,
+	fulldevcycle,
 };
