@@ -2,10 +2,10 @@
 import { getCollection } from "astro:content";
 import Button from "../ui/Button.astro";
 import CardVacancy from "../ui/CardVacancy.astro";
-import Dialog from "../ui/Dialog.astro";
 import Section from "../ui/Section.astro";
-const vacanciesEntries = await getCollection("vacancies");
+import CareerDialog from "./CareerDialog.astro";
 
+const vacanciesEntries = await getCollection("vacancies");
 const { ...props } = Astro.props;
 ---
 
@@ -26,13 +26,14 @@ const { ...props } = Astro.props;
                 return false;
               `}
             />
-            <Dialog 
+            <CareerDialog 
               id={vacancyPostEntry.slug} 
               title={vacancyPostEntry.data.title}
+              position={vacancyPostEntry.data.title}
             >
               <Button as="span" class="button_type-transparent ">{vacancyPostEntry.data.tag}</Button>
               <Content />
-            </Dialog>
+            </CareerDialog>
           </li>
         );
       })}
@@ -77,23 +78,21 @@ const { ...props } = Astro.props;
     &:nth-child(3n + 2) {
       .vacancy {
         color: #181b24;
-        background: linear-gradient(
+        --background: linear-gradient(
             180deg,
             rgba(20, 88, 228, 0) 0%,
             rgba(0, 59, 194, 0.5) 91.44%
-          ),
-          currentColor;
+          );
       }
     }
     &:nth-child(3n + 3) {
       .vacancy {
         color: #9747ff;
-        background: linear-gradient(
+        --background: linear-gradient(
             180deg,
             rgba(20, 88, 228, 0) 0%,
             rgba(0, 59, 194, 0.5) 91.44%
-          ),
-          currentColor;
+          );
       }
     }
   }

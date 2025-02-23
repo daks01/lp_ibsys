@@ -1,0 +1,127 @@
+---
+import Button from "../ui/Button.astro";
+import ColoredText from "../ui/ColoredText.astro";
+import FieldFile from "../ui/FieldFile.astro";
+
+const { position, ...props } = Astro.props;
+---
+<div class="h3">откликнуться на вакансию</div>
+<form
+  data-form
+  class="form"
+  novalidate
+  {...props}
+>
+  <input type="hidden" name="email" />
+  <input type="hidden" name="vacancy" value={position} />
+  <div class="form-row">
+    <input 
+      type="text" 
+      class="form-field" 
+      name="name" 
+      aria-label="ФИО" 
+      placeholder="ФИО" 
+    />
+    <span class="form-field__error" data-field-error></span>
+  </div>
+  <div class="form-row">
+    <input 
+      type="text" 
+      class="form-field" 
+      name="phone" 
+      aria-label="Телефон" 
+      placeholder="Телефон" 
+    />
+    <span class="form-field__error" data-field-error></span>
+  </div>
+  <div class="form-row">
+    <input 
+      type="text" 
+      class="form-field" 
+      name="telegram" 
+      aria-label="Ник в телеграм" 
+      placeholder="Ник в телеграм"
+    />
+    <span class="form-field__error" data-field-error></span>
+  </div>
+  <div class="form-row">
+    <input 
+      type="email" 
+      class="form-field" 
+      name="liame" 
+      aria-label="Электропочта" 
+      placeholder="Электропочта"
+      required
+      aria-required="true"
+    />
+    <span class="form-field__error" data-field-error></span>
+  </div>
+  <fielset class="form-row">
+    <legend>Ваш грейд</legend>
+    <Button as="label" class="button_type-transparent">
+      <input type="radio" class="sr-only" name="experience" value="Junior"/>
+      Junior
+    </Button>
+    <Button as="label" class="button_type-transparent">
+      <input type="radio" class="sr-only" name="experience" value="Middle"/>
+      Middle
+    </Button>
+    <Button as="label" class="button_type-transparent">
+      <input type="radio" class="sr-only" name="experience" value="Middle+"/>
+      Middle+
+    </Button>
+    <Button as="label" class="button_type-transparent">
+      <input type="radio" class="sr-only" name="experience" value="Senior"/>
+      Senior
+    </Button>
+    <span class="form-field__error" data-field-error></span>
+  </fielset>
+  <div class="form-row">
+    <textarea 
+      name="message" 
+      rows="3"
+      aria-label="Расскажите о себе и своем опыте" 
+      placeholder="Расскажите о себе и своем опыте"
+      class="form-field"
+    ></textarea>
+    <span class="form-field__error" data-field-error></span>
+  </div>
+  <div class="form-row">
+    <FieldFile aria-label="Резюме" />
+    <span class="form-field__error" data-field-error></span>
+  </div>
+  <div class="form-footer">
+    <p
+      role="alert"
+      aria-live="polite"
+      data-form-msg
+      class="form-message"
+    ></p>
+    <button type="submit" class="form-submit">
+      <ColoredText onhover="true">отправить</ColoredText>
+    </button>
+    <p class="processing-of-personal-data">
+      Нажимая на кнопку, вы соглашаетесь с обработкой 
+      <a href="/Политика.pdf" target="_blank">персональных данных</a>
+    </p>
+  </div>
+</form>
+
+<style>
+  @import "/src/assets/css/_custom-media.css";
+
+  label:has( input[type="radio"]:checked ) {
+    background-color: var(--color-product);
+    color: var(--color-white);
+    box-shadow: none;
+
+  }
+
+  .form-submit {
+    --width: 160;
+  }
+
+  @media screen and (--screen-phone) {
+    
+  }
+</style>

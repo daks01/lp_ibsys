@@ -7,10 +7,13 @@
     }
 
     // Получаем данные из тела запроса
+    $vacancy = $_POST['vacancy'] ?? '';
     $name = $_POST['name'] ?? '';
     $email = $_POST['liame'] ?? '';
     $phone = $_POST['phone'] ?? '';
+    $telegram = $_POST['telegram'] ?? '';
     $message = $_POST['message'] ?? '';
+    $experience = $_POST['experience'] ?? '';
     $file = $_FILES['file'] ?? null;
 
     // Обработка файла, если он был загружен
@@ -39,6 +42,13 @@
                     "Email: " . $email . "\n" .
                     "Телефон: " . $phone . "\n" .
                     "Сообщение: " . $message;
+
+    // Проверяем наличие и непустоту параметра $vacancy
+    if (!empty($vacancy)) {
+        $emailMessage .= "Вакансия: " . $vacancy . "\n".
+                         "Опыт: " . $experience . "\n" .
+                         "Telegram: " . $telegram . "\n";
+    }
 
     // Добавляем информацию о файле, если он был загружен
     if ($file && $file['error'] === UPLOAD_ERR_OK) {

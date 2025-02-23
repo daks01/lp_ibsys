@@ -1,0 +1,25 @@
+---
+import Section from "../ui/Section.astro";
+import FormContact from "./FormContact.astro";
+
+const { ...props } = Astro.props;
+---
+
+<Section {...props}>
+  <h2 class="lead" id="form-title">
+    есть идеи?  — напишите нам  —  реализуем
+  </h2>
+
+  <FormContact aria-labelledby="form-title"/>
+</Section>
+
+<style>
+  @import "/src/assets/css/_custom-media.css";
+
+  .section {
+    padding-bottom: var(--90px);
+  }
+
+  @media screen and (--screen-phone) {
+  }
+</style>

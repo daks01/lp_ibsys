@@ -1,0 +1,86 @@
+---
+import ImageClip from "../../assets/img/clip.svg";
+const { name = "file", ...props } = Astro.props;
+---
+
+<label class="file-control">
+  <input 
+    class="form-field sr-only" 
+    type="file" 
+    name={name} 
+    onchange="
+      const oneMB = 1048576;
+      const fileSize = this.files?.[0]?.size;
+      if(fileSize > 16 * oneMB) { 
+        alert(`Файл слишком большой (${Math.round(fileSize / oneMB)}mb)`); 
+        this.value = '';
+      }
+      if(this.files?.[0]) {
+        this.classList.remove('sr-only');
+      } else {
+        this.classList.add('sr-only');
+      }
+    "
+    {...props}
+  />
+  <span class="file-control__label">
+    <img src={ImageClip.src} loading="lazy" />
+    Прикрепить файл (максимум 16 Мб)
+  </span>
+</label>
+
+<style>
+  @import "/src/assets/css/_custom-media.css";
+  
+  .file-control {
+    
+    &:focus-within {
+      outline: 1px solid var(--color-gray);
+    }
+
+    &:not(:has(.sr-only)) {
+      .file-control__label {
+        display: none;
+      }
+    }
+  }
+  .file-control__label {
+    display: flex;
+    gap: var(--8px);
+    color: var(--color-product);
+    cursor: pointer;
+    padding-top: var(--30px);
+
+    &:hover {
+      background: var(--color-product);
+      background: linear-gradient(to right, var(--color-product) 30%, #db7aff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+    }
+  }
+  input[type="file"].form-field {
+    cursor: pointer;
+
+    &::file-selector-button {
+      background-color: transparent;
+      color: var(--color-product);
+      border: none;
+      padding: 0 var(--16px) 0 0;
+    }
+    &:hover::file-selector-button {
+        background: var(--color-product);
+        background: linear-gradient(to right, var(--color-product) 30%, #db7aff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        cursor: pointer;
+      }
+    &::before {
+      content: '📎';
+      padding-right: var(--4px);
+    }
+  }
+
+  @media screen and (--screen-phone) {
+  }
+</style>
