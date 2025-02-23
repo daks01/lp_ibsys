@@ -1,5 +1,5 @@
 ---
-const { id, title, width = 985, class: className, ...props } = Astro.props;
+const { id, title, width = 1120, class: className, ...props } = Astro.props;
 ---
 
 <!-- How to open --><!-- <button onclick={`window.${id}?.showModal()`}>Открыть</button> -->
@@ -19,27 +19,11 @@ const { id, title, width = 985, class: className, ...props } = Astro.props;
         class="button-close"
         aria-label="Закрыть"
       >
-        <svg
-          role="presentation"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M18 6L6 18"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"></path>
-          <path
-            d="M6 6L18 18"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"></path>
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="24.2285" y="3.07734" width="1" height="31" transform="rotate(45 24.2285 3.07734)" fill="currentColor"/>
+          <rect x="24.9355" y="24.9976" width="1" height="31" transform="rotate(135 24.9355 24.9976)" fill="currentColor"/>
         </svg>
+        
       </button>
     </form>
   </header>
@@ -96,7 +80,7 @@ const { id, title, width = 985, class: className, ...props } = Astro.props;
     }
   }
   .dialog {
-    --dialog-gutter: var(--60px);
+    --dialog-gutter: var(--70px);
     --dialog-width: var(--width);
   }
   .dialog {
@@ -113,6 +97,7 @@ const { id, title, width = 985, class: className, ...props } = Astro.props;
     padding: 0;
     background-color: var(--color-white);
     border: none;
+    border-radius: var(--30px);
     animation-name: animate-top;
     animation-duration: 0.4s;
     color: var(--text-color);
@@ -128,9 +113,8 @@ const { id, title, width = 985, class: className, ...props } = Astro.props;
       right: 0px;
       bottom: 0px;
       left: 0px;
-      background: linear-gradient(267.46deg, var(--color-product) 1.33%, rgb(0, 0, 0) 97.51%);
-      filter: saturate(0.7);
-      opacity: 0.65;
+      background: rgba(21, 30, 52, 0.8);
+      backdrop-filter: blur(120);
     }
   }
   body:has(dialog[open]) {
@@ -159,16 +143,15 @@ const { id, title, width = 985, class: className, ...props } = Astro.props;
     margin: calc(var(--dialog-gutter) * -1) calc(var(--dialog-gutter) * -1) 0 0;
   }
   .button-close {
-    color: #c9c8d3;
-    padding: calc(var(--30px) + calc(var(--1px) * 6)) var(--dialog-gutter)
-      var(--30px) var(--30px);
+    color: var(--color-product);
+    padding: var(--30px);
     background: none;
     border: none;
     cursor: pointer;
     transition: color 0.15s ease;
 
     &:hover {
-      color: var(--color-product);
+      color: var(--color-black);
     }
   }
   @media screen and (--screen-phone) {
