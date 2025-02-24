@@ -6,7 +6,7 @@ const { ...props } = Astro.props;
 ---
 
 <form
-  data-contact-form
+  data-form
   class="form"
   {...props}
   novalidate
@@ -88,22 +88,34 @@ const { ...props } = Astro.props;
       e.preventDefault();
       const form = e.target;
 
-      if (form === null || !form?.hasAttribute('data-initialized')) {
-        initForm(form);
+      validateForm(form);
+
+      if (!form.checkValidity()) {
         return;
       }
 
-      form?.setAttribute('data-initialized', true);
+      sendForm(form);
     }
   });
 
-  function initForm(form: Element) {
-    validateForm(form);
+  function validateForm(form: Element) {
+    form.querySelectorAll(".form-field").forEach((element) => {
+      const errorMsgEl = element
+        ?.closest("div")
+        ?.querySelector("[data-field-error]");
 
-    if (!form.checkValidity()) {
-      return;
-    }
+      if (!element.checkValidity()) {
+        element.classList.add("form-field_error");
+        errorMsgEl.innerHTML = element?.validationMessage;
+        return;
+      }
 
+      element.classList.remove("form-field_error");
+      errorMsgEl.innerHTML = "";
+    });
+  }
+
+  function sendForm(form: Element) {
     const formData = new FormData(form); // Используем FormData для отправки файла
     const fileInput = form.querySelector('input[type="file"]');
     const file = fileInput?.files[0];
@@ -113,11 +125,13 @@ const { ...props } = Astro.props;
       formData.append("file", file); // Добавляем файл в FormData
     }
 
-    fetch('/send_message.php', {
+    fetch('https://green-mirilla-64.tiiny.io', {
       method: "POST",
       body: formData, // Отправляем FormData (не нужно явно указывать Content-Type)
     })
       .then((response) => {
+
+        console.log(6)
         if (!response.ok) {
           throw new Error("Network error");
         }
@@ -137,24 +151,6 @@ const { ...props } = Astro.props;
         actionMessage.innerHTML = "❗ При отправке возникли проблемы.<br> Попробуйте позже";
         console.error(error);
       });
-  }
-
-  function validateForm(form: Element) {
-
-    form.querySelectorAll(".form-field").forEach((element) => {
-      const errorMsgEl = element
-        ?.closest("div")
-        ?.querySelector("[data-field-error]");
-
-      if (!element.checkValidity()) {
-        element.classList.add("form-field_error");
-        errorMsgEl.innerHTML = element?.validationMessage;
-        return;
-      }
-
-      element.classList.remove("form-field_error");
-      errorMsgEl.innerHTML = "";
-    });
   }
 </script>
 
