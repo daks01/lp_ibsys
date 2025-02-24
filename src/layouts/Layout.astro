@@ -9,7 +9,7 @@ const optimizedOGImage = await getImage({
 	format: "png",
 });
 
-const { title = "ИБСИС" } = Astro.props;
+const { title } = Astro.props;
 const og_title = "ИБСИС - цифровые решения для вашего бизнеса на базе ИИ";
 const og_description =
 	"Разработка под ключ информационных систем для бизнеса с применением ИИ технологий";
@@ -20,52 +20,61 @@ const baseUrl =
 
 <!doctype html>
 <html lang="ru">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
 
-		<title>{`${title}. ${og_title}`}</title>
-		<meta name="description" content={og_description} />
-		<meta property="og:url" content={pageUrl} />
-		<meta property="og:title" content={og_title} />
-		<meta property="og:description" content={og_description} />
-		<meta property="og:image" content={`${pageUrl.origin}${optimizedOGImage.src}`} />
-		<meta property="og:image:secure_url" content={`${pageUrl.origin}${optimizedOGImage.src}`} />
-		<meta property="og:type" content="website" />
+    <title>{title || og_title}</title>
+    <meta name="description" content={og_description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:title" content={og_title} />
+    <meta property="og:description" content={og_description} />
+    <meta
+      property="og:image"
+      content={`${pageUrl.origin}${optimizedOGImage.src}`}
+    />
+    <meta
+      property="og:image:secure_url"
+      content={`${pageUrl.origin}${optimizedOGImage.src}`}
+    />
+    <meta property="og:type" content="website" />
 
-		<link rel="sitemap" href={`${baseUrl}/sitemap-index.xml`} />
-		<meta name="format-detection" content="telephone=no">
+    <link rel="sitemap" href={`${baseUrl}/sitemap-index.xml`} />
+    <meta name="format-detection" content="telephone=no" />
 
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500&display=swap" rel="stylesheet">
-	</head>
-	<body>
-		<slot />
-	</body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 
 <style>
+  /*! CSS custom properties (variables) */
+  @custom-media --screen-phone (width < 1024px);
 
-	/*! CSS custom properties (variables) */
-	@custom-media --screen-phone (width < 1024px);
-
-	@font-face {
-		font-family: "M PLUS 1p Fallback";
-		src: local(Arial);
-		font-weight: 400;
-		size-adjust: 105%;
-		/* ascent-override: 100.075%;
+  @font-face {
+    font-family: "M PLUS 1p Fallback";
+    src: local(Arial);
+    font-weight: 400;
+    size-adjust: 105%;
+    /* ascent-override: 100.075%;
 		advance-override: 143%;
 		descent-override: 20%; */
-		line-gap-override: 24.2%;
-		font-display: swap;
-	}
-	body {
-		font-family: "M PLUS 1p", "M PLUS 1p Fallback", Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		font-weight: 400;
-		font-style: normal;
-	}
+    line-gap-override: 24.2%;
+    font-display: swap;
+  }
+  body {
+    font-family: "M PLUS 1p", "M PLUS 1p Fallback", Inter, Roboto,
+      "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
 </style>
