@@ -1,16 +1,47 @@
 ---
+import { getImage } from "astro:assets";
 import Header from "../components/blocks/Header.astro";
 import Section from "../components/ui/Section.astro";
 import Layout from "../layouts/Layout.astro";
+import background from "./../assets/img/hero_bg.jpg";
+import ColoredText from "./../components/ui/ColoredText.astro";
+
+const optimizedBackgroundImage = await getImage({
+	src: background,
+	quality: "90",
+	format: "jpg",
+});
 ---
 
 <Layout title="ИБСИС | 404">
-	<main>
-		<Header />
+	<main style={{
+		backgroundImage: `url(${optimizedBackgroundImage.src})`,
+		backgroundSize: "cover",
+	}}>
+		<Header hideMenu="true" />
 		<Section invert={true} style="background-color: transparent;">
 			<div class="layout-404">
-				<h1>404</h1>
-				<p>страница не найдена</p>
+				<ColoredText class="title">
+					<h1>404</h1>
+					<span aria-hidden="true">404</span>
+					<span aria-hidden="true">404</span>
+					<span aria-hidden="true">404</span>
+
+					<span aria-hidden="true">404</span>
+					<span aria-hidden="true">404</span>
+					<span aria-hidden="true">404</span>
+					<span aria-hidden="true">404</span>
+
+					<span aria-hidden="true">404</span>
+					<span aria-hidden="true">404</span>
+					<span aria-hidden="true">404</span>
+					<span aria-hidden="true">404</span>
+				</ColoredText>
+
+				<p>
+					Страница затерялась, перейдите на <br>
+					<a href="/" class="h5">Главную</a>
+				</p>
 			</div>
 		</Section>
 	</main>
@@ -28,9 +59,20 @@ import Layout from "../layouts/Layout.astro";
   	}
 	.layout-404 {
 		text-align: center;
+		margin-bottom: var(--90px);
+	}
+	.title {
+		font-size: var(--heading-1);
+		line-height: 1.09;
+		margin: var(--20px) 0 var(--60px);
+		display: block;
 	}
 	h1 {
-		margin-bottom: var(--10px);
+		display: inline;
+	}
+
+	.menu {
+		display: none;
 	}
   
 	@media screen and (--screen-phone) {

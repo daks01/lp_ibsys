@@ -13,7 +13,7 @@ const {
 } = Astro.props;
 
 const optimizedBackgroundImage = backgroundImage
-	? await getImage({ src: backgroundImage, quality: "80" })
+	? await getImage({ src: backgroundImage, quality: "80", format: "jpg" })
 	: { src: "" };
 ---
 <Element 

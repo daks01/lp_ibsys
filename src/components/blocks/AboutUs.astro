@@ -1,12 +1,13 @@
 ---
-import Section from "../ui/Section.astro";
 // import { Image } from "astro:assets";
 // import face1 from "../../assets/img/fdc-1.png";
+import background from "../../assets/img/about_bg.jpg";
+import Section from "../ui/Section.astro";
 
 const { ...props } = Astro.props;
 ---
 
-<Section {...props}>
+<Section {...props} backgroundImage={background}>
   <p class="lead">
     Компания с&nbsp;<span class="big-text">2013</span> года совместно со&nbsp;своими
     партнерами реализует проекты в&nbsp;сфере информационных технологий&nbsp;&mdash;
