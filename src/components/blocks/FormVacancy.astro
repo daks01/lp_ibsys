@@ -5,7 +5,7 @@ import FieldFile from "../ui/FieldFile.astro";
 
 const { position, ...props } = Astro.props;
 ---
-<div class="h3">откликнуться на вакансию</div>
+<div class="h4">откликнуться на вакансию</div>
 <form
   data-form
   class="form"
@@ -110,6 +110,9 @@ const { position, ...props } = Astro.props;
 <style>
   @import "/src/assets/css/_custom-media.css";
 
+  .form {
+    margin-top: var(--30px);
+  }
   label:has( input[type="radio"]:checked ) {
     background-color: var(--color-product);
     color: var(--color-white);
@@ -117,8 +120,27 @@ const { position, ...props } = Astro.props;
 
   }
 
+  fielset.form-row {
+    border: none;
+    display: block;
+
+    & legend {
+      color: var(--text-color);
+      font-weight: 400;
+      font-size: var(--heading-6);
+      padding: calc(var(--1px)* 12) var(--16px);
+      width: 100%;
+      font-family: inherit;
+      line-height: 1.33;
+    }
+  }
+
   .form-submit {
-    --width: 160;
+    --width: 190;
+  }
+  .processing-of-personal-data {
+    padding-right: var(--40px);
+    margin-top: calc(var(--20px)* -1);
   }
 
   @media screen and (--screen-phone) {

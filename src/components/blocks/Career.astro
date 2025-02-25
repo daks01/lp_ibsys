@@ -31,7 +31,9 @@ const { ...props } = Astro.props;
               title={vacancyPostEntry.data.title}
               position={vacancyPostEntry.data.title}
             >
-              <Button as="span" class="button_type-transparent ">{vacancyPostEntry.data.tag}</Button>
+              <p class="subtitle">
+                <Button as="span" class="button_type-transparent">{vacancyPostEntry.data.tag}</Button>
+              </p>
               <Content />
             </CareerDialog>
           </li>
@@ -95,6 +97,10 @@ const { ...props } = Astro.props;
           );
       }
     }
+  }
+
+  .subtitle {
+    margin: calc(var(--30px) * -1) 0 var(--70px);
   }
 
   @media screen and (--screen-phone) {

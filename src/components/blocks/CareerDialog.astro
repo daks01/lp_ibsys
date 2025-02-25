@@ -10,41 +10,30 @@ const { position, ...props } = Astro.props;
 ---
 
 <Dialog {...props}>
-
   <slot />
 
   <div class="gallery">
-      <Image
-        src={imageOffice1}
-        alt=""
-        role="presentation"
-        loading="lazy"
-      />
-      <Image
-        src={imageOffice2}
-        alt=""
-        role="presentation"
-        loading="lazy"
-      />
-      <Image
-        src={imageOffice3}
-        alt=""
-        role="presentation"
-        loading="lazy"
-      />
+    <Image src={imageOffice1} alt="" role="presentation" loading="lazy" />
+    <Image src={imageOffice2} alt="" role="presentation" loading="lazy" />
+    <Image src={imageOffice3} alt="" role="presentation" loading="lazy" />
   </div>
-  <FormVacancy position={position} aria-label={`Форма отправки резюме на должность ${position}`}/>
+  <FormVacancy
+    position={position}
+    aria-label={`Форма отправки резюме на должность ${position}`}
+  />
 </Dialog>
 
 <style>
   @import "/src/assets/css/_custom-media.css";
 
   .gallery {
+    --gap: var(--24px);
     display: flex;
-    gap: calc(var(--1px) * 24);
+    gap: var(--gap);
+    margin: var(--30px) auto var(--60px);
 
     img {
-      width: 30%;
+      width: calc(100% / 3 - var(--gap));
       border-radius: var(--16px);
     }
   }
@@ -69,6 +58,5 @@ const { position, ...props } = Astro.props;
         scroll-snap-align: start;
       }
     }
-    
   }
 </style>

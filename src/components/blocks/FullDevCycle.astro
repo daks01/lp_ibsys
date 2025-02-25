@@ -20,11 +20,15 @@ const { ...props } = Astro.props;
   </p>
   <Fragment slot="after-footer">
     <ul class="work-list">
-      {fullDevCycleEntries.map(async (item) => {
+      {
+        fullDevCycleEntries.map(async (item) => {
         const { Content } = await item.render();
         return (
           <li class="work-list__item">
-            <button class="card" onclick={`window["${item.slug}"]?.showModal();`}>
+              <button
+                class="card"
+                onclick={`window["${item.slug}"]?.showModal();`}
+              >
               <div class="card__img-wrap">
                 <Image
                   src={item.data.cover}
@@ -36,10 +40,7 @@ const { ...props } = Astro.props;
               </div>
               <span class="card__title">{item.data.title}</span>
             </button>
-            <Dialog 
-              id={item.slug} 
-              title={item.data.title}
-            >
+              <Dialog id={item.slug} title={item.data.title} class="invert">
               <Content />
               
               <footer class="step-list">
@@ -49,7 +50,10 @@ const { ...props } = Astro.props;
                       window["${item.slug}"]?.close();
                       window["${entry.slug}"]?.showModal();
                     `}
-                    class:list={["step-list__item", {"active" : entry.data.step === item.data.step}]}
+                      class:list={[
+                        "step-list__item",
+                        { active: entry.data.step === item.data.step },
+                      ]}
                   >
                     #{entry.data.step}
                   </span>
@@ -59,7 +63,8 @@ const { ...props } = Astro.props;
             </Dialog>
           </li>
         );
-      })}
+        })
+      }
     </ul>
   </Fragment>
 </Section>

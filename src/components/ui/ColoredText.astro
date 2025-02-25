@@ -1,8 +1,8 @@
 ---
-const { onhover = false } = Astro.props;
+const { onhover = false, class: className, ...props } = Astro.props;
 ---
 
-<span class:list={["colored", {"hover" : onhover }]}>
+<span class:list={["colored", {"hover" : onhover }, className]} {...props}>
   <slot />
 </span>
 

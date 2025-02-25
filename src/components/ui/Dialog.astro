@@ -1,5 +1,11 @@
 ---
-const { id, title, width = 1120, class: className, ...props } = Astro.props;
+const {
+	id,
+	title,
+	width = 1120,
+	class: className, // invert
+	...props
+} = Astro.props;
 ---
 
 <!-- How to open --><!-- <button onclick={`window.${id}?.showModal()`}>Открыть</button> -->
@@ -12,18 +18,31 @@ const { id, title, width = 1120, class: className, ...props } = Astro.props;
   {...props}
 >
   <header class="dialog__header">
-    <span class="dialog__title h4" id={`dialog-${id}-title`}>{title}</span>
+    <span class="dialog__title" id={`dialog-${id}-title`}>{title}</span>
     <form method="dialog" class="dialog__close-form">
-      <button
-        type="submit"
-        class="button-close"
-        aria-label="Закрыть"
-      >
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="24.2285" y="3.07734" width="1" height="31" transform="rotate(45 24.2285 3.07734)" fill="currentColor"/>
-          <rect x="24.9355" y="24.9976" width="1" height="31" transform="rotate(135 24.9355 24.9976)" fill="currentColor"/>
+      <button type="submit" class="button-close" aria-label="Закрыть">
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 28 28"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            x="24.2285"
+            y="3.07734"
+            width="1"
+            height="31"
+            transform="rotate(45 24.2285 3.07734)"
+            fill="currentColor"></rect>
+          <rect
+            x="24.9355"
+            y="24.9976"
+            width="1"
+            height="31"
+            transform="rotate(135 24.9355 24.9976)"
+            fill="currentColor"></rect>
         </svg>
-        
       </button>
     </form>
   </header>
@@ -82,6 +101,7 @@ const { id, title, width = 1120, class: className, ...props } = Astro.props;
   .dialog {
     --dialog-gutter: var(--70px);
     --dialog-width: var(--width);
+    --background-color: var(--color-white);
   }
   .dialog {
     position: fixed;
@@ -95,7 +115,7 @@ const { id, title, width = 1120, class: className, ...props } = Astro.props;
     max-width: calc(100vw - var(--gutter) * 2);
     margin: var(--90px) auto auto;
     padding: 0;
-    background-color: var(--color-white);
+    background-color: var(--background-color);
     border: none;
     border-radius: var(--30px);
     animation-name: animate-top;
@@ -115,6 +135,14 @@ const { id, title, width = 1120, class: className, ...props } = Astro.props;
       left: 0px;
       background: rgba(21, 30, 52, 0.8);
       backdrop-filter: blur(120);
+    }
+
+    &.invert {
+      --text-color: var(--color-white);
+      --background-color: var(--color-black);
+      & .dialog__title {
+        font-size: var(--heading-4);
+      }
     }
   }
   body:has(dialog[open]) {
@@ -137,6 +165,9 @@ const { id, title, width = 1120, class: className, ...props } = Astro.props;
   }
   .dialog__title {
     margin: 0;
+    line-height: 0.95;
+    padding-right: var(--8px);
+    font-size: var(--heading-2);
   }
   .dialog__close-form {
     flex-shrink: 0;
@@ -151,7 +182,7 @@ const { id, title, width = 1120, class: className, ...props } = Astro.props;
     transition: color 0.15s ease;
 
     &:hover {
-      color: var(--color-black);
+      color: var(--text-color);
     }
   }
   @media screen and (--screen-phone) {
@@ -173,8 +204,8 @@ const { id, title, width = 1120, class: className, ...props } = Astro.props;
     .button-close {
       padding: var(--16px) var(--16px) 0 var(--16px);
       svg {
-        width: calc(var(--1px) * 24);
-        width: calc(var(--1px) * 24);
+        width: var(--24px);
+        width: var(--24px);
       }
     }
   }

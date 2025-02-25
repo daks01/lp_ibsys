@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Footer from "../../components/blocks/Footer.astro";
 import Header from "../../components/blocks/Header.astro";
+import Button from "../../components/ui/Button.astro";
 import Section from "../../components/ui/Section.astro";
 import Layout from "../../layouts/Layout.astro";
 
@@ -21,11 +22,13 @@ const { Content } = await entry.render();
 	<Header/>
 	<Section>
     <article>
-      <h1 class="h3">{entry.data.title}</h1>
-      <span>{entry.data.tag}</span>
-      <p>Published on: 
-        <time datetime={entry.data.publishDate.toISOString()}>
-          {entry.data.publishDate.toDateString()}
+      <h3 class="h2">{entry.data.title}</h1>
+      <p>
+        <Button as="span" class="button_type-transparent">{entry.data.tag}</Button>
+      </p>
+      <p>от: 
+        <time datetime={entry.data.publishDate.toLocaleDateString()}>
+          {entry.data.publishDate.toLocaleDateString()}
         </time>
       </p>
       <Content />
