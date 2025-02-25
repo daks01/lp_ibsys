@@ -13,7 +13,9 @@
 	--8px: calc(var(--1px) * 8);
 	--16px: calc(var(--1px) * 16);
 	--20px: calc(var(--1px) * 20);
+	--24px: calc(var(--1px) * 24);
 	--30px: calc(var(--1px) * 30);
+	--36px: calc(var(--1px) * 36);
 	--40px: calc(var(--1px) * 40);
 	--50px: calc(var(--1px) * 50);
 	--60px: calc(var(--1px) * 60);
@@ -31,7 +33,7 @@
 	--heading-3: calc(var(--1px) * 64);
 	--heading-4: calc(var(--1px) * 48);
 	--heading-5: calc(var(--1px) * 32);
-	--heading-6: calc(var(--1px) * 24);
+	--heading-6: var(--24px);
 	--lead-font-size: var(--heading-4);
 	--text-font-size: calc(var(--1px) * 20);
 	--small-font-size: calc(var(--1px) * 15);
@@ -68,8 +70,8 @@
 		--heading-1: calc(var(--1px) * 64);
 		--heading-2: calc(var(--1px) * 48);
 		--heading-3: calc(var(--1px) * 42);
-		--heading-4: calc(var(--1px) * 36);
-		--heading-5: calc(var(--1px) * 24);
+		--heading-4: var(--36px);
+		--heading-5: var(--24px);
 		--heading-6: calc(var(--1px) * 16);
 		--lead-font-size: var(--heading-5);
 		--text-font-size: calc(var(--1px) * 15);

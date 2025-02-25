@@ -62,5 +62,21 @@ const { ...props } = Astro.props;
     }
   }
   @media screen and (--screen-phone) {
+    .section {
+      padding-top: var(--16px);
+    }
+    .lead {
+      margin-top: 0;
+      font-size: var(--heading-4);
+      line-height: 1;
+      padding-right: var(--16px);
+    }
+    .work-list {
+      margin: var(--70px) 0 0 0;
+    }
+    .work-list__item {
+      margin: 0 0 var(--36px);
+      padding: 0;
+    }
   }
 </style>

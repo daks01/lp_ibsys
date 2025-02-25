@@ -14,7 +14,7 @@ const { ...props } = Astro.props;
     мобильная разработка, корпоративные системы, in-door системы для бизнеса и&nbsp;другие
     проекты.
   </p>
-  <p class="sub-lead h5">
+  <p class="sub-lead">
     <span class="sub-lead__upper-text">в&nbsp;портфолиo ibsys</span>
     <span class="sub-lead__main-text big-text">более 40</span>
     <span class="sub-lead__bottom-text">успешных кейсов</span>
@@ -108,5 +108,26 @@ const { ...props } = Astro.props;
   }
 
   @media screen and (--screen-phone) {
+    .section {
+      padding-bottom: 0;
+    }
+    .lead {
+      margin: 0 0 var(--30px);
+      line-height: 1.31;
+    }
+    .sub-lead {
+      padding-right: 0;
+      align-items: flex-start;
+      margin-bottom: 0;
+    }
+    .sub-lead__upper-text,
+    .sub-lead__bottom-text {
+      transform: none;
+      font-size: var(--heading-5);
+    }
+    .sub-lead__main-text {
+      margin: var(--16px) 0 var(--8px);
+      line-height: .8;
+    }
   }
 </style>

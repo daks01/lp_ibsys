@@ -49,8 +49,8 @@ h4,
 h5,
 .h5 {
 	font-size: var(--heading-5);
-	line-height: 2;
-	margin: var(--20px) 0;
+	line-height: 1.33;
+	margin: var(--30px) 0 var(--8px);
 }
 
 h6,
@@ -80,10 +80,10 @@ p:has(+ button) {
 
 ul,
 ol {
-	padding-left: var(--20px);
+	padding: 0;
 }
 ul > li {
-	list-style-type: disc;
+	list-style-type: "– ";
 }
 ul > li,
 ol > li,

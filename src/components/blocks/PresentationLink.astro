@@ -2,13 +2,13 @@
 import downloadPresentationImg from "/src/assets/img/download-presentation.svg";
 import Button from "../ui/Button.astro";
 
-const { isImage: boolean = true, ...props } = Astro.props;
+const { isImage: boolean = true, class: className, ...props } = Astro.props;
 
 const pdfPath = "/Презентация.pdf";
 ---
 
 { Astro.props.isImage && 
-    <a href={pdfPath} target="_blank" download class="download-presentation" {...props}>
+    <a href={pdfPath} target="_blank" download class:list={["download-presentation", className]} {...props}>
       <span class="sr-only">Скачать презентацию</span>
       <img
         src={downloadPresentationImg.src}
@@ -45,6 +45,9 @@ const pdfPath = "/Презентация.pdf";
     .download-presentation {
       position: static;
       transform: none;
+      margin: 0 auto;
+      display: block;
+      text-align: center;
     }
   }
 </style>

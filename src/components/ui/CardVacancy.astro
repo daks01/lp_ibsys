@@ -36,21 +36,27 @@ const { href, tag, title, ...props } = Astro.props;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-radius: calc(var(--1px) * 36);
+    border-radius: var(--36px);
     background: var(--background) currentColor;
     color: var(--color-product);
-    padding: calc(var(--1px) * 24) calc(var(--1px) * 36) calc(var(--1px) * 36) calc(var(--1px) * 24);
+    padding: var(--24px) var(--36px) var(--36px) var(--24px);
     height: 100%;
     position: relative;
 
     &:hover,
     &:focus {
-      background: linear-gradient(180deg, rgba(20, 88, 228, 0) 0%, rgba(0, 59, 194, 0.5) 91.44%), var(--background) currentColor;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(20, 88, 228, 0) 0%,
+          rgba(0, 59, 194, 0.5) 91.44%
+        ),
+        var(--background) currentColor;
     }
   }
   .vacancy__header {
     display: flex;
-    margin-bottom: calc(var(--1px)* 140);
+    margin-bottom: calc(var(--1px) * 140);
     gap: var(--16px);
     align-items: start;
     & *:last-child {

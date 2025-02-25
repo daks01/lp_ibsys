@@ -28,29 +28,19 @@ const optimizedBackgroundImage = await getImage({
     style="background-color: transparent;"
   >
     <div>
-      <h1 class="page-title h1" data-rotate-item>
-        <ColoredText>Создаем</ColoredText>
+      <h1 class="page-title h1">
+        <ColoredText data-rotate-item>Создаем</ColoredText>
+        <ColoredText data-rotate-item hidden>Анализируем</ColoredText>
+        <ColoredText data-rotate-item hidden>Внедряем</ColoredText>
         <br />
-        цифровые решения <br />
-        для вашего бизнеса
+        <span class="page-title__static">
+          цифровые решения <br />
+          для вашего бизнеса
+        </span>
       </h1>
-
-      <div class="page-title h1" data-rotate-item hidden>
-        <ColoredText>Анализируем</ColoredText>
-        <br />
-        цифровые решения <br />
-        для вашего бизнеса
-      </div>
-
-      <div class="page-title h1" data-rotate-item hidden>
-        <ColoredText>Внедряем</ColoredText>
-        <br />
-        цифровые решения <br />
-        для вашего бизнеса
-      </div>
     </div>
 
-    <PresentationLink isImage={true}/>
+    <PresentationLink isImage={true} />
     <Image
       src={CubeImg}
       class="hero__cube hero__cube_big"
@@ -66,7 +56,7 @@ const optimizedBackgroundImage = await getImage({
       loading="lazy"
     />
     <p class="mobile-text">
-      12 лет на рынке разработки <br>
+      12 лет на рынке разработки <br />
       Аккредитация Минсвязи
     </p>
   </Section>
@@ -148,8 +138,24 @@ const optimizedBackgroundImage = await getImage({
       overflow: hidden;
       position: static;
     }
-    .mobile-text {
+    .page-title {
+      padding-left: 0;
+      margin: var(--24px) calc(var(--gutter) * -1) var(--36px);
+      text-align: center;
+    }
+    .page-title__static {
+      font-size: var(--heading-2);
       display: block;
+    }
+    .mobile-text {
+      margin: var(--24px) 0;
+      text-align: center;
+      display: block;
+      font-size: var(--20px);
+    }
+    .hero__cube_big {
+      left: 23%;
+      top: calc(var(--30px)* -1);
     }
   }
 </style>

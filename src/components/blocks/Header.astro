@@ -1,15 +1,17 @@
 ---
 import { getImage } from "astro:assets";
-import astroLogo from "/src/assets/img/logo.png";
+import logo from "/src/assets/img/logo.png";
 import Section from "../ui/Section.astro";
 import Menu from "./Menu.astro";
 
-const optimizedLogo = astroLogo
-	? await getImage({ src: astroLogo, quality: "100" })
+const { hideMenu = false, ...props } = Astro.props;
+
+const optimizedLogo = logo
+	? await getImage({ src: logo, quality: "100" })
 	: { src: "" };
 ---
 
-<Section as="header" style="background-color: transparent;">
+<Section as="header" style="background-color: transparent;" {...props}>
   <div class="header-layout">
     <div>
       <img
@@ -21,21 +23,47 @@ const optimizedLogo = astroLogo
         fetchpriority="high"
       />
     </div>
-    <nav>
+    <nav hidden={hideMenu}>
       <button class="header__burger" data-nav-burger>
-        <svg class="header__icon-menu" aria-hidden="true" width="40" height="30" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line y1="8.5" x2="40" y2="8.5" stroke="white"/>
-          <line y1="20.5" x2="40" y2="20.5" stroke="white"/>
+        <svg
+          class="header__icon-menu"
+          aria-hidden="true"
+          width="40"
+          height="30"
+          viewBox="0 0 40 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <line y1="8.5" x2="40" y2="8.5" stroke="white"></line>
+          <line y1="20.5" x2="40" y2="20.5" stroke="white"></line>
         </svg>
-        <svg class="header__icon-cross" aria-hidden="true" width="40" height="30" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="5.64645" y1="28.9306" x2="33.9307" y2="0.646356" stroke="white"/>
-          <line x1="6.35355" y1="0.646447" x2="34.6378" y2="28.9307" stroke="white"/>
+        <svg
+          class="header__icon-cross"
+          aria-hidden="true"
+          width="40"
+          height="30"
+          viewBox="0 0 40 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <line
+            x1="5.64645"
+            y1="28.9306"
+            x2="33.9307"
+            y2="0.646356"
+            stroke="white"></line>
+          <line
+            x1="6.35355"
+            y1="0.646447"
+            x2="34.6378"
+            y2="28.9307"
+            stroke="white"></line>
         </svg>
-          
+
         <span class="sr-only">Мобильное меню</span>
       </button>
 
-      <Menu data-nav-menu/>
+      <Menu data-nav-menu />
     </nav>
   </div>
 </Section>
@@ -44,18 +72,18 @@ const optimizedLogo = astroLogo
   initMobileMenu();
 
   function initMobileMenu() {
-    const burger = document.querySelector('[data-nav-burger]');
-    const menu = document.querySelector('[data-nav-menu]');
-    const menuLinks = menu?.querySelectorAll('a');
+    const burger = document.querySelector("[data-nav-burger]");
+    const menu = document.querySelector("[data-nav-menu]");
+    const menuLinks = menu?.querySelectorAll("a");
 
-    burger?.addEventListener('click', () => {
-      burger.classList.toggle('active');
-      menu?.classList.toggle('active');
+    burger?.addEventListener("click", () => {
+      burger.classList.toggle("active");
+      menu?.classList.toggle("active");
     });
 
     [].forEach.call(menuLinks, (link) => {
-      link.addEventListener('click', () => {
-          setTimeout(() => menu?.classList.remove('active'), 300);
+      link.addEventListener("click", () => {
+        setTimeout(() => menu?.classList.remove("active"), 300);
       });
     });
   }
@@ -67,7 +95,7 @@ const optimizedLogo = astroLogo
     color: var(--color-product);
     display: flex;
     justify-content: space-between;
-    padding: calc(var(--1px) * 24) 0 0;
+    padding: var(--24px) 0 0;
   }
 
   .logo {
@@ -90,6 +118,7 @@ const optimizedLogo = astroLogo
       width: calc(var(--1px) * 96);
     }
     .header-layout {
+      padding-top: var(--8px);
     }
 
     .header__burger {
@@ -101,40 +130,23 @@ const optimizedLogo = astroLogo
       background: none;
       border: none;
       padding: 0;
+      position: absolute;
+      right: var(--16px);
+      top: var(--16px);
+      z-index: 1;
 
-      & .header__icon-cross { 
+      & .header__icon-cross {
         display: none;
       }
       &.active {
         position: fixed;
         z-index: 100;
-        top: 0;
-        right: 0;
-        & .header__icon-menu { 
+        & .header__icon-menu {
           display: none;
         }
-        & .header__icon-cross { 
+        & .header__icon-cross {
           display: block;
         }
-      }
-    }
-    .menu {
-      display: none;
-      flex-direction: column;
-      gap: var(--20px);
-      color: var(--color-product);
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background: rgba(21, 30, 52, 0.8);
-      backdrop-filter: blur(var(--110px));
-      width: 100%;
-      z-index: 5;
-      padding: var(--100px) var(--30px);
-      border-radius: 0 0 calc(var(--1px) * 24) calc(var(--1px) * 24);
-      &.active {
-        display: flex;
       }
     }
   }
