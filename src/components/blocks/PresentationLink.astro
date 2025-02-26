@@ -21,7 +21,7 @@ const pdfPath = "/Презентация.pdf";
 { !Astro.props.isImage && 
   <Button as="a" href={pdfPath} target="_blank" download class="button_type-tertiary" {...props}>
     <span class="display-mobile-none">Презентация</span>
-    <span class="display-mobile-block">Скачать презентацию</span>
+    <span class="display-none display-mobile-block">Скачать презентацию</span>
   </Button>
 }
 
