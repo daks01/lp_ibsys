@@ -248,16 +248,35 @@ const { ...props } = Astro.props;
   }
 
   @media screen and (--screen-phone) {
+    .form {
+      margin-top: calc(var(--8px)* -1);
+    }
     .form-layout {
       flex-direction: column;
       gap: 0;
     }
+    .form-field, 
+    legend {
+      font-size: var(--20px);
+      padding: calc(var(--1px)* 12) 0;
+    }
     .form-submit {
       font-size: var(--heading-2);
+      background: var(--color-product);
+      color: var(--color-white);
+      padding: var(--16px);
+      width: 100%;
+      border-radius: var(--60px);
+      justify-content: center;
+      .colo {
+        color: currentColor;
+      }
     }
     .processing-of-personal-data {
+      margin: calc(var(--1px) * 12) 0 0;
       padding: 0;
-      margin: 0;
+      text-align: center;
+      line-height: 1.3;
     }
   }
 </style>

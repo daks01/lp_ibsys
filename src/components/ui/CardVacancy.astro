@@ -59,9 +59,6 @@ const { href, tag, title, ...props } = Astro.props;
     margin-bottom: calc(var(--1px) * 140);
     gap: var(--16px);
     align-items: start;
-    & *:last-child {
-      margin-left: auto;
-    }
   }
   .vacancy__tag {
     background-color: var(--color-white);
@@ -78,6 +75,7 @@ const { href, tag, title, ...props } = Astro.props;
   }
   .vacancy__arrow {
     transform: translateY(var(--8px));
+    margin-left: auto;
   }
   .vacancy__title {
     color: var(--text-white);
@@ -87,8 +85,26 @@ const { href, tag, title, ...props } = Astro.props;
   }
 
   @media screen and (--screen-phone) {
+    .vacancy {
+      border-radius: var(--24px);
+      padding: var(--16px) var(--16px) var(--24px);
+    }
     .vacancy__header {
       margin-bottom: var(--90px);
+      gap: calc(var(--1px) * 12);
+    }
+    .vacancy__tag {
+      padding: var(--4px) calc(var(--1px) * 12);
+    }
+    .vacancy__logo {
+      height: var(--30px);
+    }
+    .vacancy__arrow {
+      width: var(--24px);
+      margin-right: var(--8px);
+    }
+    .vacancy__title {
+      padding: 0 var(--16px);
     }
   }
 </style>

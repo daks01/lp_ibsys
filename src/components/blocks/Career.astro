@@ -104,9 +104,15 @@ const { ...props } = Astro.props;
   }
 
   @media screen and (--screen-phone) {
+    .lead {
+      font-size: var(--heading-4);
+      padding-right: var(--16px);
+      line-height: 1;
+    }
     .vacancy-list {
       flex-direction: column;
       gap: 0;
+      padding-bottom: var(--20px);
     }
     .vacancy-list__item {
       min-width: auto !important;

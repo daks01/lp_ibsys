@@ -15,10 +15,10 @@ const year = new Date().getFullYear();
     <div class="footer-layout">
       <div class="footer-layout__col">
         <address class="h4">
-          Москва, Научный пр. 14а, стр. 1 <br />
+          <span class="address-street">Москва, Научный пр. 14а, стр. 1</span> <br />
           м. Калужская
         </address>
-        <p class="h6">Общество с ограниченной ответственностью “Махуру”</p>
+        <p class="h6 display-mobile-none">Общество с ограниченной ответственностью “Махуру”</p>
       </div>
       <div class="footer-layout__col">
         <a href="mailto:info@ibsys.ru" class="h4 colored">
@@ -48,9 +48,12 @@ const year = new Date().getFullYear();
   <div class="footer-2">
     <Menu>
       <Fragment slot="last">
-        <PresentationLink class="display-mobile-none"/>
+        <PresentationLink/>
       </Fragment>
     </Menu>
+    <div class="footer-3">
+      <p class="h6">Общество с ограниченной ответственностью “Махуру”</p>
+    </div>
   </div>
 </Section>
 
@@ -75,6 +78,9 @@ const year = new Date().getFullYear();
     margin-bottom: calc(var(--1px) * 180);
   }
   .footer-2 {}
+  .footer-3 {
+    display: none;
+  }
   .footer-layout {
     display: flex;
     gap: var(--30px);
@@ -129,8 +135,43 @@ const year = new Date().getFullYear();
   }
 
   @media screen and (--screen-phone) {
+    .footer {
+      padding: var(--40px) 0 var(--50px);
+    }
+    .footer::after {
+      writing-mode: unset;
+      position: static;
+      margin: 0 var(--gutter);
+      transform: none;
+    }
+    .footer-1 {
+      margin-bottom: var(--70px);
+    }
+    .footer-3 {
+      display: block;
+      margin: var(--40px) 0 var(--20px);
+    }
     .footer-layout {
       flex-direction: column;
+      gap: 0;
+    }
+    .footer-layout__col + .footer-layout__col {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+    }
+    .address-street {
+      line-height: 1;
+      display: inline-block;
+      margin-bottom: var(--16px);
+    }
+
+    .social-list {
+      justify-content: start;
+    }
+    .social-list__item {
+      padding: 0;
+      width: 31%;
     }
   }
 </style>

@@ -21,5 +21,14 @@ const { ...props } = Astro.props;
   }
 
   @media screen and (--screen-phone) {
+    .section {
+      padding-bottom: 0;
+    }
+    .lead {
+      font-size: var(--heading-4);
+      padding-right: var(--16px);
+      line-height: 1;
+      margin-bottom: var(--50px);
+    }
   }
 </style>

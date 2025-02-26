@@ -82,5 +82,11 @@ const { name = "file", ...props } = Astro.props;
   }
 
   @media screen and (--screen-phone) {
+    .file-control__label {
+      padding-top: 0;
+      font-size: var(--16px);
+      justify-content: center;
+      gap: var(--16px);
+    }
   }
 </style>
