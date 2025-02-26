@@ -9,7 +9,7 @@ const { href, tag, title, ...props } = Astro.props;
 
 <a href={href} class="vacancy" {...props}>
   <div class="vacancy__header">
-    <Button as="span" class="vacancy__tag">{tag}</Button>
+    <span class="vacancy__tag">{tag}</span>
     <Image
       src={Logo}
       class="vacancy__logo"
