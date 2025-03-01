@@ -84,13 +84,7 @@ const { ...props } = Astro.props;
   .section {
     padding: var(--80px) 0;
   }
-  .sticky-container {
-    height: calc(var(--1px) * 2000);
-  }
-  .sticky {
-    position: sticky;
-    top: var(--60px)
-  }
+
   .lead {
     margin: 0 0 var(--60px);
   }
@@ -125,7 +119,20 @@ const { ...props } = Astro.props;
   @supports (animation-timeline: scroll()) {
     @media (prefers-reduced-motion: no-preference) {
       .sticky-container {
+        height: calc(var(--1px) * 2000);
         view-timeline-name: --section;
+      }
+      .sticky {
+        position: sticky;
+        top: var(--60px)
+      }
+      @media screen and (--screen-phone) {
+        .sticky-container {
+          height: calc(var(--1px) * 1000);
+        }
+        .sticky {
+          top: var(--36px)
+        }
       }
       
       .hightlight {
@@ -307,14 +314,9 @@ const { ...props } = Astro.props;
     }
   }
   @media screen and (--screen-phone) {
+    
     .section {
       padding: var(--36px) 0;
-    }
-    .sticky-container {
-      height: calc(var(--1px) * 1000);
-    }
-    .sticky {
-      top: var(--36px)
     }
     .tag {
       padding: 0 var(--8px) var(--4px);
