@@ -127,6 +127,7 @@ const optimizedBackgroundImage = await getImage({
   .page-title {
     padding-left: var(--20px);
     margin-bottom: 0;
+    mix-blend-mode: difference;
   }
 
   [data-rotate-item] {
@@ -163,6 +164,8 @@ const optimizedBackgroundImage = await getImage({
       padding-left: 0;
       margin: var(--24px) calc(var(--gutter) * -1) var(--36px);
       text-align: center;
+      font-weight: 500;
+      font-size: calc(var(--1px) * 55);
     }
     [data-rotate-item] {
       left: 0;
