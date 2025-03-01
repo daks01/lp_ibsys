@@ -2,7 +2,8 @@ import sitemap from "@astrojs/sitemap";
 import vue from "@astrojs/vue";
 // @ts-check
 import { defineConfig } from "astro/config";
-import { Features } from "lightningcss";
+import browserslist from "browserslist";
+import { Features, browserslistToTargets } from "lightningcss";
 
 const siteMapUrlMap = {
 	production: "https://ibsys.ru",
@@ -21,7 +22,7 @@ export default defineConfig({
 			transformer: "lightningcss",
 			devSourcemap: true,
 			lightningcss: {
-				targets: {},
+				targets: browserslistToTargets(browserslist(">= 1%, not dead")),
 				include: Features.Nesting,
 				drafts: { customMedia: true },
 				// cssModules: true,

@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets";
+import imageOffice1 from "../../assets/img/office-1.png";
+import imageOffice2 from "../../assets/img/office-2.png";
+import imageOffice3 from "../../assets/img/office-3.png";
+
+const { ...props } = Astro.props;
+---
+
+<div class="gallery" {...props}>
+  <Image src={imageOffice1} alt="" role="presentation" loading="eager" />
+  <Image src={imageOffice2} alt="" role="presentation" loading="lazy" />
+  <Image src={imageOffice3} alt="" role="presentation" loading="lazy" />
+</div>
+
+<style>
+  @import "/src/assets/css/_custom-media.css";
+
+  .gallery {
+    --gap: var(--24px);
+    display: flex;
+    gap: var(--gap);
+    margin: var(--30px) auto var(--60px);
+
+    img {
+      width: calc(100% / 3 - var(--gap));
+      border-radius: var(--16px);
+    }
+  }
+
+  @media screen and (--screen-phone) {
+    .gallery {
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: var(--gutter);
+      scroll-padding-right: var(--gutter);
+      padding: 0 var(--gutter) var(--30px);
+      margin: 0 auto;
+      max-width: 100vw;
+      justify-content: stretch;
+
+      img {
+        width: 80%;
+        border-radius: var(--16px);
+        scroll-snap-align: start;
+      }
+    }
+  }
+</style>

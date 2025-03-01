@@ -1,7 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import Footer from "../../components/blocks/Footer.astro";
+import FormVacancy from "../../components/blocks/FormVacancy.astro";
 import Header from "../../components/blocks/Header.astro";
+import OfficeGallery from "../../components/blocks/OfficeGallery.astro";
 import Button from "../../components/ui/Button.astro";
 import Section from "../../components/ui/Section.astro";
 import Layout from "../../layouts/Layout.astro";
@@ -19,20 +21,53 @@ const { Content } = await entry.render();
 ---
 
 <Layout>
-	<Header/>
+	<Header hideMenu={true} />
 	<Section>
-    <article>
-      <h3 class="h2">{entry.data.title}</h1>
+    <article class="article">
+      <h1 class="h5">
+        Вакансия 
+        <span class="h6">
+          (<time datetime={entry.data.publishDate.toLocaleDateString()}>
+            {entry.data.publishDate.toLocaleDateString()}
+          </time>)
+        </span>
+      </h1>
+      <h2 class="h2">{entry.data.title}</h2>
       <p>
         <Button as="span" class="button_type-transparent">{entry.data.tag}</Button>
-      </p>
-      <p>от: 
-        <time datetime={entry.data.publishDate.toLocaleDateString()}>
-          {entry.data.publishDate.toLocaleDateString()}
-        </time>
+        <br>
+        
       </p>
       <Content />
+      <OfficeGallery />
     </article>
+  </Section>
+  <Section>
+    <FormVacancy
+      position={entry.data.title}
+      aria-label={`Форма отправки резюме на должность ${entry.data.title}`}
+    />
   </Section>
   <Footer />
 </Layout>
+
+<style>
+	@import "/src/assets/css/_custom-media.css";
+  section.section {
+    padding: var(--30px) 0 var(--90px);
+  }
+  .h2 {
+    margin-top: 0;
+    margin-bottom: var(--30px);
+  }
+
+  .form {
+    max-width: calc(var(--1px) * 950);
+  }
+
+	@media screen and (--screen-phone) {
+    .section:not(footer) {
+      padding: 0 0 var(--30px);
+    }
+	}
+</style>

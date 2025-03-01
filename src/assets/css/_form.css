@@ -1,0 +1,130 @@
+@import "_custom-media.css";
+
+.form {
+	margin-top: var(--110px);
+}
+.form-layout {
+	display: flex;
+	gap: var(--90px);
+}
+.form-layout__col {
+	flex: 1 1 0px;
+}
+.form-row {
+	margin-bottom: var(--30px);
+}
+.form-submit {
+	--width: 240;
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	font-family: inherit;
+	color: var(--color-product);
+	font-size: calc(var(--1px) * var(--width));
+	cursor: pointer;
+	line-height: 1.2;
+	display: flex;
+	overflow: hidden;
+}
+.form-message {
+	text-align: center;
+	margin: var(--30px) 0;
+	&:empty {
+		display: none;
+	}
+}
+
+.processing-of-personal-data {
+	font-size: calc(var(--1px) * 15);
+	color: var(--color-gray);
+	text-align: right;
+	padding-right: var(--80px);
+	margin-top: calc(var(--40px) * -1);
+}
+
+.form-field {
+	background: var(--color-white);
+	color: var(--text-color);
+	font-weight: 400;
+	font-size: var(--heading-6);
+	line-height: 1.33;
+	font-family: inherit;
+	padding: calc(var(--1px) * 12) var(--16px);
+	width: 100%;
+	border: none;
+	border-bottom: var(--1px) solid var(--color-product);
+	&:hover,
+	&:focus {
+		outline: none;
+		border-image: linear-gradient(
+			to right,
+			var(--color-product) 0%,
+			var(--color-violet) 100%
+		);
+	}
+	&:focus-visible {
+		box-shadow: 0 0 var(--4px) 0 var(--color-product) inner;
+		border-bottom-width: var(--2px);
+	}
+	&::placeholder {
+		color: var(--text-color);
+	}
+}
+textarea.form-field {
+	display: block;
+	resize: vertical;
+	min-height: calc(var(--1px) * 144);
+	max-height: calc(var(--1px) * 230);
+}
+.form-field__error,
+.form-field__description {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.3em;
+	color: var(--color-gray);
+	font-size: calc(var(--1px) * 12);
+	margin-top: calc(var(--1px) * 6);
+	padding-left: var(--16px);
+	&:empty {
+		display: none;
+	}
+}
+.form-field__error {
+	color: var(--color-error);
+	border-bottom-color: var(--color-error) !important;
+}
+
+@media screen and (--screen-phone) {
+	.form {
+		margin-top: calc(var(--8px) * -1);
+	}
+	.form-layout {
+		flex-direction: column;
+		gap: 0;
+	}
+	.form-field,
+	legend {
+		font-size: var(--20px);
+		padding: calc(var(--1px) * 12) 0;
+	}
+	.form-submit {
+		font-size: var(--heading-2);
+		background: var(--color-product);
+		color: var(--color-white);
+		padding: var(--16px);
+		width: 100%;
+		border-radius: var(--60px);
+		justify-content: center;
+		& .colored.hover:hover {
+			-webkit-text-fill-color: unset;
+			-webkit-background-clip: unset;
+			background: none;
+		}
+	}
+	.processing-of-personal-data {
+		margin: calc(var(--1px) * 12) 0 0;
+		padding: 0;
+		text-align: center;
+		line-height: 1.3;
+	}
+}

@@ -5,42 +5,37 @@ import FieldFile from "../ui/FieldFile.astro";
 const { ...props } = Astro.props;
 ---
 
-<form
-  data-form
-  class="form"
-  {...props}
-  novalidate
->
+<form data-form class="form" {...props} novalidate>
   <input type="hidden" name="email" />
   <div class="form-layout">
     <div class="form-layout__col">
       <div class="form-row">
-        <input 
-          type="text" 
-          class="form-field" 
-          name="name" 
-          aria-label="Представьтесь, пожалуйста" 
-          placeholder="Представьтесь, пожалуйста" 
+        <input
+          type="text"
+          class="form-field"
+          name="name"
+          aria-label="Представьтесь, пожалуйста"
+          placeholder="Представьтесь, пожалуйста"
         />
         <span class="form-field__error" data-field-error></span>
       </div>
       <div class="form-row">
-        <input 
-          type="text" 
-          class="form-field" 
-          name="phone" 
-          aria-label="Телефон" 
-          placeholder="Телефон" 
+        <input
+          type="text"
+          class="form-field"
+          name="phone"
+          aria-label="Телефон"
+          placeholder="Телефон"
         />
         <span class="form-field__error" data-field-error></span>
       </div>
       <div class="form-row">
-        <input 
-          type="email" 
-          class="form-field" 
-          name="liame" 
-          aria-label="Электропочта" 
-          placeholder="Электропочта" 
+        <input
+          type="email"
+          class="form-field"
+          name="liame"
+          aria-label="Электропочта"
+          placeholder="Электропочта"
           required
           aria-required="true"
         />
@@ -49,13 +44,12 @@ const { ...props } = Astro.props;
     </div>
     <div class="form-layout__col">
       <div class="form-row">
-        <textarea 
-          name="message" 
+        <textarea
+          name="message"
           rows="3"
-          aria-label="Расскажите о проекте" 
+          aria-label="Расскажите о проекте"
           placeholder="Расскажите о проекте"
-          class="form-field"
-        ></textarea>
+          class="form-field"></textarea>
         <span class="form-field__error" data-field-error></span>
       </div>
       <div class="form-row">
@@ -65,218 +59,21 @@ const { ...props } = Astro.props;
     </div>
   </div>
   <div class="form-footer">
-    <p
-      role="alert"
-      aria-live="polite"
-      data-form-msg
-      class="form-message"
-    ></p>
+    <p role="alert" aria-live="polite" data-form-msg class="form-message"></p>
     <button type="submit" class="form-submit">
       <ColoredText onhover="true">отправить</ColoredText>
     </button>
     <p class="processing-of-personal-data">
-      Нажимая на кнопку, вы соглашаетесь с обработкой 
+      Нажимая на кнопку, вы соглашаетесь с обработкой
       <a href="/Политика.pdf" target="_blank">персональных данных</a>
     </p>
   </div>
 </form>
 
 <script>
-  // init on any form on page
-  document.addEventListener("submit", function(e){
-    if (e.target?.hasAttribute("data-form")) {
-      e.preventDefault();
-      const form = e.target;
-
-      validateForm(form);
-
-      if (!form.checkValidity()) {
-        return;
-      }
-
-      sendForm(form);
-    }
-  });
-
-  function validateForm(form: Element) {
-    form.querySelectorAll(".form-field").forEach((element) => {
-      const errorMsgEl = element
-        ?.closest("div")
-        ?.querySelector("[data-field-error]");
-
-      if (!element.checkValidity()) {
-        element.classList.add("form-field_error");
-        errorMsgEl.innerHTML = element?.validationMessage;
-        return;
-      }
-
-      element.classList.remove("form-field_error");
-      errorMsgEl.innerHTML = "";
-    });
-  }
-
-  function sendForm(form: Element) {
-    const formData = new FormData(form); // Используем FormData для отправки файла
-    const fileInput = form.querySelector('input[type="file"]');
-    const file = fileInput?.files[0];
-    const actionMessage = form.querySelector("[data-form-msg]");
-
-    if (file) {
-      formData.append("file", file); // Добавляем файл в FormData
-    }
-
-    fetch('https://green-mirilla-64.tiiny.io', {
-      method: "POST",
-      body: formData, // Отправляем FormData (не нужно явно указывать Content-Type)
-    })
-      .then((response) => {
-
-        console.log(6)
-        if (!response.ok) {
-          throw new Error("Network error");
-        }
-        return response.json();
-      })
-      .then((response) => {
-        if (response.result === "success") {
-          actionMessage.innerHTML = "✅ Отправлено";
-          form.reset();
-        } else if (response.result === "error") {
-          // Выводим конкретную ошибку, возвращенную PHP
-          actionMessage.innerHTML = `❗ ${response.error}`;
-        }
-      })
-      .catch((error) => {
-        // Обработка ошибок сети или других проблем
-        actionMessage.innerHTML = "❗ При отправке возникли проблемы.<br> Попробуйте позже";
-        console.error(error);
-      });
-  }
+  import "../../assets/js/form.js";
 </script>
 
-<style is:global>
-  @import "/src/assets/css/_custom-media.css";
-
-  .form {
-    margin-top: var(--110px);
-  }
-  .form-layout {
-    display: flex;
-    gap: var(--90px);
-  }
-  .form-layout__col {
-    flex: 1 1 0px;
-  }
-  .form-row {
-    margin-bottom: var(--30px);
-  }
-  .form-submit {
-    --width: 240;
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    font-family: inherit;
-    color: var(--color-product);
-    font-size: calc(var(--1px) * var(--width));
-    cursor: pointer;
-    line-height: 1.2;
-    display: flex;
-    overflow: hidden;
-  }
-  .form-message {
-    text-align: center;
-    margin: var(--30px) 0;
-    &:empty {
-      display: none;
-    }
-  }
-
-  .processing-of-personal-data {
-    font-size: calc(var(--1px) * 15);
-    color: var(--color-gray);
-    text-align: right;
-    padding-right: var(--80px);
-    margin-top: calc(var(--40px)* -1);
-  }
-
-  .form-field {
-    background: var(--color-white);
-    color: var(--text-color);
-    font-weight: 400;
-    font-size: var(--heading-6);
-    line-height: 1.33;
-    font-family: inherit;
-    padding: calc(var(--1px) * 12) var(--16px);
-    width: 100%;
-    border: none;
-    border-bottom: var(--1px) solid var(--color-product);
-    &:hover,
-    &:focus {
-      outline: none;
-      border-image: linear-gradient(to right, var(--color-product) 0%, var(--color-violet) 100%) 1;
-    }
-    &:focus-visible {
-      box-shadow: 0 0 var(--4px) 0 var(--color-product) inner;
-      border-bottom-width: var(--2px):
-    }
-    &::placeholder {
-      color: var(--text-color);
-    }
-  }
-  textarea.form-field {
-    display: block;
-    resize: vertical;
-    min-height: calc(var(--1px) * 144);
-    max-height: calc(var(--1px) * 230);
-  }
-  .form-field__error,
-  .form-field__description {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.3em;
-    color: var(--color-gray);
-    font-size: calc(var(--1px) * 12);
-    margin-top: calc(var(--1px) * 6);
-    padding-left: var(--16px);
-    &:empty {
-      display: none;
-    }
-  }
-  .form-field__error {
-    color: var(--color-error);
-    border-bottom-color: var(--color-error) !important;
-  }
-
-  @media screen and (--screen-phone) {
-    .form {
-      margin-top: calc(var(--8px)* -1);
-    }
-    .form-layout {
-      flex-direction: column;
-      gap: 0;
-    }
-    .form-field, 
-    legend {
-      font-size: var(--20px);
-      padding: calc(var(--1px)* 12) 0;
-    }
-    .form-submit {
-      font-size: var(--heading-2);
-      background: var(--color-product);
-      color: var(--color-white);
-      padding: var(--16px);
-      width: 100%;
-      border-radius: var(--60px);
-      justify-content: center;
-      .colo {
-        color: currentColor;
-      }
-    }
-    .processing-of-personal-data {
-      margin: calc(var(--1px) * 12) 0 0;
-      padding: 0;
-      text-align: center;
-      line-height: 1.3;
-    }
-  }
+<style>
+  @import "/src/assets/css/_form.css";
 </style>
