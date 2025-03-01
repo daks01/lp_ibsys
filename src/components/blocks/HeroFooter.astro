@@ -46,9 +46,6 @@ import Section from "../ui/Section.astro";
       background: linear-gradient(90deg, var(--color-product) 40%, var(--color-violet) 100%), var(--color-product);
       text-decoration: none;
     }
-    &:focus-visible {
-      outline: none;
-    }
   }
 
   @media screen and (--screen-phone) {
@@ -60,6 +57,9 @@ import Section from "../ui/Section.astro";
       text-align: center;
       & span {
         font-size: var(--60px);
+      }
+      &:focus-visible {
+        outline: none;
       }
     }
   }
