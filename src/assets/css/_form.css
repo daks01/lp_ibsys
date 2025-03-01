@@ -109,9 +109,11 @@ textarea.form-field {
 	}
 	.form-submit {
 		font-size: var(--heading-2);
+		font-weight: normal;
 		background: var(--color-product);
 		color: var(--color-white);
-		padding: var(--16px);
+		padding: calc(var(--16px) - var(--4px)) var(--16px)
+			calc(var(--16px) + var(--4px));
 		width: 100%;
 		border-radius: var(--60px);
 		justify-content: center;
