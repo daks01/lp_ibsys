@@ -21,9 +21,18 @@ const fulldevcycle = defineCollection({
 		}),
 });
 
+const whatwedo = defineCollection({
+	type: "content",
+	schema: z.object({
+		title: z.string(),
+		step: z.number(),
+	}),
+});
+
 // 3. Экспортируйте единственный объект collections, чтобы зарегистрировать вашу коллекцию(и)
 // Этот ключ должен совпадать с именем вашего каталога коллекций в "src/content"
 export const collections = {
 	vacancies,
 	fulldevcycle,
+	whatwedo,
 };

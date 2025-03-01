@@ -1,5 +1,11 @@
 ---
+import { getCollection } from "astro:content";
+import Dialog from "../ui/Dialog.astro";
 import Section from "../ui/Section.astro";
+
+const whatWeDoEntries = (await getCollection("whatwedo")).sort(
+	(a, b) => a.data.step - b.data.step,
+);
 
 const { ...props } = Astro.props;
 ---
@@ -9,27 +15,25 @@ const { ...props } = Astro.props;
     направления работы — внедряем и прокачиваем
   </h2>
   <ul class="work-list">
-    <li class="work-list__item">
-      <button class="work-list__link h2">Решения на базе АI</button>
-    </li>
-    <li class="work-list__item">
-      <button class="work-list__link h2">Страхование</button>
-    </li>
-    <li class="work-list__item">
-      <button class="work-list__link h2">Ритейл</button>
-    </li>
-    <li class="work-list__item">
-      <button class="work-list__link h2">Банки</button>
-    </li>
-    <li class="work-list__item">
-      <button class="work-list__link h2">CRM системы</button>
-    </li>
-    <li class="work-list__item">
-      <button class="work-list__link h2">Корпоративные системы</button>
-    </li>
-    <li class="work-list__item">
-      <button class="work-list__link h2">Мобильные рабочие места</button>
-    </li>
+    {
+      whatWeDoEntries.map(async (item) => {
+        const { Content } = await item.render();
+        return (
+          <li class="work-list__item">
+            <button
+              type="button"
+              class="work-list__link h2"
+              onclick={`window["${item.slug}"]?.showModal();`}
+            >
+              {item.data.title}
+            </button>
+            <Dialog id={item.slug} title={item.data.title} class="invert">
+              <Content />
+            </Dialog>
+          </li>
+        );
+      })
+    }
   </ul>
 </Section>
 

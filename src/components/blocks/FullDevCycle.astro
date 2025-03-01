@@ -33,6 +33,7 @@ const { ...props } = Astro.props;
               return (
                 <li class="work-list__item">
                   <button
+                    type="button"
                     class="card"
                     onclick={`window["${item.slug}"]?.showModal();`}
                   >
