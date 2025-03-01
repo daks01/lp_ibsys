@@ -41,9 +41,13 @@ import Section from "../ui/Section.astro";
     & * {
       color: currentColor;
     }
-    &:hover {
+    &:hover,
+    &:focus-visible {
       background: linear-gradient(90deg, var(--color-product) 40%, var(--color-violet) 100%), var(--color-product);
       text-decoration: none;
+    }
+    &:focus-visible {
+      outline: none;
     }
   }
 
