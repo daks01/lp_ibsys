@@ -30,8 +30,8 @@ const optimizedBackgroundImage = await getImage({
     <div>
       <h1 class="page-title h1">
         <ColoredText data-rotate-item>Создаем</ColoredText>
-        <ColoredText data-rotate-item hidden>Анализируем</ColoredText>
-        <ColoredText data-rotate-item hidden>Внедряем</ColoredText>
+        <ColoredText data-rotate-item aria-hidden="true">Анализируем</ColoredText>
+        <ColoredText data-rotate-item aria-hidden="true">Внедряем</ColoredText>
         <br />
         <span class="page-title__static">
           цифровые решения <br />
@@ -73,7 +73,7 @@ const optimizedBackgroundImage = await getImage({
   }
 
   if (items) {
-    setInterval(showNextPageTitle, 2000);
+    // setInterval(showNextPageTitle, 2000);
   }
 </script>
 
@@ -129,6 +129,27 @@ const optimizedBackgroundImage = await getImage({
     margin-bottom: 0;
   }
 
+  [data-rotate-item] {
+    position: absolute;
+    height: 1.2em;
+    opacity: 0;
+    animation: rotateWord 9s linear 0s infinite;
+  }
+  [data-rotate-item]:nth-child(2) {
+    animation-delay: 3s;
+  }
+  [data-rotate-item]:nth-child(3) {
+    animation-delay: 6s; 
+  }
+  @keyframes rotateWord {
+    0% { opacity: 0; }
+    1% { opacity: 0; transform: translateY(calc(.3em * -1)); }
+    5% { opacity: 1; transform: translateY(0px);}
+    34% { opacity: 1; transform: translateY(0px);}
+    41% { opacity: 0; transform: translateY(.7em); }
+    100% { opacity: 0; }
+  }
+
   .mobile-text {
     display: none;
   }
@@ -142,6 +163,10 @@ const optimizedBackgroundImage = await getImage({
       padding-left: 0;
       margin: var(--24px) calc(var(--gutter) * -1) var(--36px);
       text-align: center;
+    }
+    [data-rotate-item] {
+      left: 0;
+      width: 100%;
     }
     .page-title__static {
       font-size: var(--heading-2);
