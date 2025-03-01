@@ -136,6 +136,20 @@ const optimizedLogo = logo
       right: var(--16px);
       top: var(--16px);
       z-index: 1;
+      position: absolute;
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: var(--70px);
+        height: var(--70px);
+        border-radius: var(--70px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: transparent;
+        z-index: -1;
+      }
 
       & .header__icon-cross {
         display: none;
