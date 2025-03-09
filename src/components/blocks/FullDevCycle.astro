@@ -26,7 +26,7 @@ const { ...props } = Astro.props;
             </span>
           </p>
         </Container>
-        <ul class="work-list">
+        <ul class="work-list" data-scroll>
           {
             fullDevCycleEntries.map(async (item) => {
               const { Content } = await item.render();
@@ -185,9 +185,11 @@ const { ...props } = Astro.props;
     gap: var(--30px);
     max-width: 100vw;
   }
-  @media screen and (width > 2200px) {
+  @media screen and (--screen-large-desktop) {
     .work-list {
-      justify-content: center;
+      --padding-left: calc((100vw - var(--container-width-in-px) + var(--gutter) * 2) / 2);
+      padding-left: var(--padding-left);
+      scroll-padding-left: var(--padding-left);
     }
   }
   .work-list__item {

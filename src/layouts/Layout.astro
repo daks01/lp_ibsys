@@ -55,7 +55,56 @@ const baseUrl =
     <slot />
   </body>
 </html>
+<script>
+  [...document.querySelectorAll('[data-scroll]')].forEach((carousel) => {
+    let idleX = 0;
+    let currentX = 0
+    let idleScrollLeftX = 0;
 
+    carousel.setAttribute('draggable', 'true');
+
+    [...carousel.querySelectorAll('img, a')].forEach((item) => {
+      item.setAttribute('draggable', 'false');
+    });
+
+    carousel.addEventListener("dragstart", (event) => {
+      idleX = event.clientX;
+      idleScrollLeftX = carousel.scrollLeft;
+
+      carousel.dataset.scroll = "dragging";
+      carousel.style.scrollSnapType = 'none';
+
+      // hide drag preview
+      const blankImg = new Image();
+      blankImg.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=";
+      event.dataTransfer.setDragImage(blankImg, 0, 0)
+    });
+
+    carousel.addEventListener("dragover", (event) => {
+      if (currentX === event.clientX) {
+        return;
+      }
+      currentX = event.clientX;
+      const newPositionX = idleX - currentX + idleScrollLeftX;
+
+      carousel.scrollLeft = newPositionX > 0 ? newPositionX : 0;
+    }, false);
+
+    carousel.addEventListener("dragend", () => {
+      carousel.dataset.scroll = ""
+    });
+  });
+</script>
+<style is:global>
+  [data-scroll] {
+    cursor: grab;
+  }
+  [data-scroll="dragging"] {
+    &, & * {
+      cursor: grabbing !important;
+    }
+  }
+</style>
 <style>
   /*! CSS custom properties (variables) */
   @custom-media --screen-phone (width < 1024px);
@@ -71,6 +120,7 @@ const baseUrl =
     line-gap-override: 24.2%;
     font-display: swap;
   }
+
   body {
     font-family: "M PLUS 1p", "M PLUS 1p Fallback", Inter, Roboto,
       "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif;

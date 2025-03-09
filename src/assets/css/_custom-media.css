@@ -1,2 +1,3 @@
 /*! CSS custom properties (variables) */
+@custom-media --screen-large-desktop (width > 1440px);
 @custom-media --screen-phone (width < 1024px);

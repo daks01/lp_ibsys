@@ -7,7 +7,7 @@ import imageOffice3 from "../../assets/img/office-3.png";
 const { ...props } = Astro.props;
 ---
 
-<div class="gallery" {...props}>
+<div class="gallery" data-scroll {...props}>
   <Image src={imageOffice1} alt="" role="presentation" loading="eager" />
   <Image src={imageOffice2} alt="" role="presentation" loading="lazy" />
   <Image src={imageOffice3} alt="" role="presentation" loading="lazy" />
