@@ -91,16 +91,12 @@ const optimizedBackgroundImage = await getImage({
       position: sticky;
       top: 0;
       z-index: 0;
-      min-height: calc(100vh - (var(--1px) * 65));
     }
   }
 
   .hero__content {
     flex-grow: 1;
     margin-bottom: var(--70px);
-  }
-  .hero__footer {
-    padding: var(--16px) 0;
   }
 
   /* CUBES */
@@ -123,6 +119,24 @@ const optimizedBackgroundImage = await getImage({
     left: 50%;
     transform: translateX(calc(var(--1px) * -700));
   }
+
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      @media screen and (--screen-desktop) {
+        .hero__cube_big {
+          animation: move linear;
+          animation-timeline: scroll();
+          animation-range-end: 100vh;
+        }
+      }
+    }
+    @keyframes move {
+      to { 
+        transform: translateX(calc(var(--1px) * 150));
+      }
+    }
+  }
+
 
   .page-title {
     padding-left: var(--20px);

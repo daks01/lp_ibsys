@@ -2,12 +2,12 @@
 import Section from "../ui/Section.astro";
 ---
 
-<Section invert={true} class="hero__footer">
-  <div class="hero__footer-layout">
-    <p class="hero__footer-text">
+<Section invert={true} class="hero-footer">
+  <div class="hero-footer__layout">
+    <p class="hero-footer__text">
       <span class="h6">12 лет на рынке разработки • Аккредитация Минсвязи</span>
     </p>
-    <a href="#contact-form" class="hero__footer-link">
+    <a href="#contact-form" class="hero-footer__link">
       <span class="h2">связаться</span>
     </a>
   </div>
@@ -16,18 +16,18 @@ import Section from "../ui/Section.astro";
 <style>
   @import "/src/assets/css/_custom-media.css";
 
-  .hero__footer {
+  .hero-footer {
     padding: var(--16px) 0;
   }
-  .hero__footer-layout {
+  .hero-foote__layout {
     display: flex;
     justify-content: space-between;
   }
 
-  .hero__footer-text {
+  .hero-footer__text {
     margin: 0;
   }
-  .hero__footer-link {
+  .hero-footer__link {
     position: absolute;
     border-radius: var(--30px) var(--30px) 0 0;
     background-color: var(--color-product);
@@ -48,11 +48,35 @@ import Section from "../ui/Section.astro";
     }
   }
 
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      @media screen and (height >= 810) and (--screen-desktop) {
+        .hero-footer {
+          animation: hide 1s;
+          animation-timeline: view();
+          transform: translateY(calc(var(--1px) * 65 * -1));
+        }
+      }
+    }
+    @keyframes hide {
+      0% {
+        z-index: 3;
+      }
+      30% { 
+        transform: translateY(calc(var(--1px) * 500));
+        z-index: -1;
+      }
+      100% {
+        transform: translateY(calc(var(--1px) * 65 * 2000));
+      }
+    }
+  }
+
   @media screen and (--screen-phone) {
-    .hero__footer-text {
+    .hero-footer__text {
       display: none;
     }
-    .hero__footer-link {
+    .hero-footer__link {
       width: 100%;
       text-align: center;
       & span {

@@ -1,5 +1,5 @@
 ---
-import downloadPresentationImg from "/src/assets/img/download-presentation.svg";
+import DownloadPdfImg from "/src/assets/img/download-presentation.svg";
 import Button from "../ui/Button.astro";
 
 const { isImage: boolean = true, class: className, ...props } = Astro.props;
@@ -10,12 +10,7 @@ const pdfPath = "/Презентация.pdf";
 { Astro.props.isImage && 
     <a href={pdfPath} target="_blank" download class:list={["download-presentation", className]} {...props}>
       <span class="sr-only">Скачать презентацию</span>
-      <img
-        src={downloadPresentationImg.src}
-        alt=""
-        role="presentation"
-        fetchpriority="high"
-      />
+      <DownloadPdfImg />
     </a>
 }
 { !Astro.props.isImage && 
@@ -34,11 +29,31 @@ const pdfPath = "/Презентация.pdf";
     left: 50%;
     transform: translateX(calc(var(--1px) * 540));
     text-decoration: none;
-    &:hover {
-      filter: hue-rotate(45deg);
+    color: var(--color-product);
+    transition: color .1s ease;
+    & :global(.circle) {
+        transform-origin: center;
+        animation: rotating 20s linear infinite;
+        animation-play-state: paused;
     }
-    img {
+    &:hover {
+      color: #59A7F8;
+      & :global(.circle) {
+        animation-play-state: running;
+      }
+    }
+    svg {
       width: calc(var(--1px) * 145);
+    }
+  }
+
+
+  @keyframes rotating {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
     }
   }
 

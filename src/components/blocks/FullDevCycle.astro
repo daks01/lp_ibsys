@@ -241,6 +241,36 @@ const { ...props } = Astro.props;
       color: var(--color-product);
     }
   }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      @media screen and (--screen-desktop) {
+        .card {
+          &::before {
+            animation: lineFadeIn;
+            animation-timeline: view(inline);
+            opacity: 0;
+          }
+          &::after {
+            animation: numberFadeIn;
+            animation-timeline: view(inline);
+            opacity: 0;
+          }
+        }
+      }
+    }
+    @keyframes lineFadeIn {
+      0% { opacity: 0; }
+      15% { opacity: 0; }
+      16% { opacity: 1; }
+      100% { opacity: 1; }
+    }
+    @keyframes numberFadeIn {
+      0% { opacity: 0; }
+      4% { opacity: 0; }
+      5% { opacity: 1; }
+      100% { opacity: 1; }
+    }
+  }
   .card__img-wrap {
     border-radius: var(--36px);
     overflow: hidden;

@@ -30,4 +30,7 @@ export default defineConfig({
 		},
 	},
 	integrations: [sitemap(), vue({ include: ["**/vue/**.vue"] })],
+	experimental: {
+		svg: true,
+	},
 });
