@@ -57,14 +57,14 @@
 	&:focus {
 		outline: none;
 		border-image: linear-gradient(
-			to right,
-			var(--color-product) 0%,
-			var(--color-violet) 100%
-		);
+				to right,
+				var(--color-product),
+				var(--color-violet)
+			)
+			1;
 	}
 	&:focus-visible {
 		box-shadow: 0 0 var(--4px) 0 var(--color-product) inner;
-		border-bottom-width: var(--2px);
 	}
 	&::placeholder {
 		color: var(--text-color);

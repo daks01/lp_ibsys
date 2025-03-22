@@ -14,14 +14,16 @@ const optimizedLogo = logo
 <Section as="header" style="background-color: transparent;" {...props}>
   <div class="header-layout">
     <div>
-      <img
-        src={optimizedLogo.src}
-        class="logo"
-        width="227"
-        height="137"
-        alt="логотип ИБСИС"
-        fetchpriority="high"
-      />
+      <!-- <a href="/" aria-label="Главная"> -->
+        <img
+          src={optimizedLogo.src}
+          class="logo"
+          width="227"
+          height="137"
+          alt="логотип ИБСИС"
+          fetchpriority="high"
+        />
+      <!-- </a> -->
     </div>
     <nav hidden={hideMenu}>
       <button class="header__burger" data-nav-burger>

@@ -58,22 +58,24 @@ const { position, ...props } = Astro.props;
   </div>
   <fielset class="form-row">
     <legend>Ваш грейд</legend>
-    <Button as="label" class="button_type-transparent">
-      <input type="radio" class="sr-only" name="experience" value="Junior"/>
-      Junior
-    </Button>
-    <Button as="label" class="button_type-transparent">
-      <input type="radio" class="sr-only" name="experience" value="Middle"/>
-      Middle
-    </Button>
-    <Button as="label" class="button_type-transparent">
-      <input type="radio" class="sr-only" name="experience" value="Middle+"/>
-      Middle+
-    </Button>
-    <Button as="label" class="button_type-transparent">
-      <input type="radio" class="sr-only" name="experience" value="Senior"/>
-      Senior
-    </Button>
+    <div class="grade-list">
+      <Button as="label" class="button_type-transparent">
+        <input type="radio" class="sr-only" name="experience" value="Junior"/>
+        Junior
+      </Button>
+      <Button as="label" class="button_type-transparent">
+        <input type="radio" class="sr-only" name="experience" value="Middle"/>
+        Middle
+      </Button>
+      <Button as="label" class="button_type-transparent">
+        <input type="radio" class="sr-only" name="experience" value="Middle+"/>
+        Middle+
+      </Button>
+      <Button as="label" class="button_type-transparent">
+        <input type="radio" class="sr-only" name="experience" value="Senior"/>
+        Senior
+      </Button>
+    </div>
     <span class="form-field__error" data-field-error></span>
   </fielset>
   <div class="form-row">
@@ -149,6 +151,18 @@ const { position, ...props } = Astro.props;
   }
 
   @media screen and (--screen-phone) {
-    
+    fielset.form-row legend {
+      padding-left: 0;
+    }
+    .grade-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--8px);
+    }
+    .processing-of-personal-data {
+      padding-right: 0;
+      margin-top: var(--8px);
+      text-align: center;
+    }
   }
 </style>

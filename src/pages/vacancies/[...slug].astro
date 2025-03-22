@@ -24,16 +24,16 @@ const { Content } = await entry.render();
 	<Header hideMenu={true} />
 	<Section>
     <article class="article">
-      <h1 class="h5">
+      <p class="h5">
         Вакансия 
         <span class="h6">
           (<time datetime={entry.data.publishDate.toLocaleDateString()}>
             {entry.data.publishDate.toLocaleDateString()}
           </time>)
         </span>
-      </h1>
-      <h2 class="h2">{entry.data.title}</h2>
-      <p>
+      </p>
+      <h1 class="h2">{entry.data.title}</h1>
+      <p class="tag">
         <Button as="span" class="button_type-transparent">{entry.data.tag}</Button>
         <br>
         
@@ -67,7 +67,15 @@ const { Content } = await entry.render();
 
 	@media screen and (--screen-phone) {
     .section:not(footer) {
-      padding: 0 0 var(--30px);
+      padding: 0;
+    }
+    .h2 {
+      font-size: calc(var(--1px) * 32);
+      letter-spacing: -1px;
+      margin-bottom: var(--16px);
+    }
+    .tag {
+      margin-bottom: calc(var(--1px) * -20);
     }
 	}
 </style>

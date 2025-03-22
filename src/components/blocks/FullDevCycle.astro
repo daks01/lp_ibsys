@@ -245,30 +245,14 @@ const { ...props } = Astro.props;
     @media (prefers-reduced-motion: no-preference) {
       @media screen and (--screen-desktop) {
         .card {
-          &::before {
-            animation: lineFadeIn;
-            animation-timeline: view(inline);
-            opacity: 0;
-          }
-          &::after {
-            animation: numberFadeIn;
-            animation-timeline: view(inline);
-            opacity: 0;
-          }
+          animation-timeline: view(inline);
+          animation: fadeIn;
         }
       }
     }
-    @keyframes lineFadeIn {
-      0% { opacity: 0; }
-      15% { opacity: 0; }
-      16% { opacity: 1; }
-      100% { opacity: 1; }
-    }
-    @keyframes numberFadeIn {
-      0% { opacity: 0; }
-      4% { opacity: 0; }
-      5% { opacity: 1; }
-      100% { opacity: 1; }
+    @keyframes fadeIn {
+      enter 0% { opacity: 0; }
+      enter 10% { opacity: 1; }
     }
   }
   .card__img-wrap {
