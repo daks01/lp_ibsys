@@ -27,10 +27,6 @@ export default defineConfig({
 				drafts: { customMedia: true },
 			},
 		},
-		build: {
-			cssMinify: "lightningcss",
-			sourcemap: true,
-		},
 	},
 	integrations: [sitemap(), vue({ include: ["**/vue/**.vue"] })],
 	experimental: {
