@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import Section from "../ui/Section.astro";
 
 const imageList = import.meta.glob(
-	"/src/assets/img/clients/*.{jpeg,jpg,png,svg,webp}",
+	"/src/assets/img/clients/*.{jpeg,jpg,png,webp}",
 );
 
 const { ...props } = Astro.props;
@@ -13,19 +13,21 @@ const { ...props } = Astro.props;
   <h2 class="lead">уже работаем вместе — нам доверяют</h2>
   <div class="client-list-wrapper" data-scroll>
     <ul class="client-list">
-      {Object.keys(imageList).map((key, index) => (
-        <li class="client-list__item">
-          <Image
-            src={imageList[key]()}
-            alt=""
-            role="presentation"
-            loading={index <= 3 ? "eager" : "lazy"}
-            quality="85"
-            width="190"
-            densities={[2]}
-          />
-        </li>
-      ))}
+      {
+        Object.keys(imageList).map((key, index) => (
+          <li class="client-list__item">
+            <Image
+              src={imageList[key]()}
+              alt=""
+              role="presentation"
+              loading={index <= 3 ? "eager" : "lazy"}
+              quality="85"
+              width="190"
+              densities={[2]}
+            />
+          </li>
+        ))
+      }
     </ul>
   </div>
 </Section>
@@ -73,9 +75,9 @@ const { ...props } = Astro.props;
       display: grid;
       grid-template-rows: repeat(2, 1fr); /* Две строки */
       grid-auto-flow: column; /* Заполнение по столбцам */
-      
+
       gap: var(--36px);
-      margin: 0 calc(var(--gutter) * -1) calc(var(--16px)* -1);
+      margin: 0 calc(var(--gutter) * -1) calc(var(--16px) * -1);
       padding: 0 var(--gutter) 0;
 
       -webkit-overflow-scrolling: touch;
@@ -87,7 +89,9 @@ const { ...props } = Astro.props;
     }
     @media screen and (--screen-large-desktop) {
       .client-list-wrapper {
-        --padding-left: calc((100vw - var(--container-width-in-px) + var(--gutter) * 2) / 2);
+        --padding-left: calc(
+          (100vw - var(--container-width-in-px) + var(--gutter) * 2) / 2
+        );
         padding-left: var(--padding-left);
         scroll-padding-left: var(--padding-left);
       }
