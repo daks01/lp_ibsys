@@ -184,6 +184,9 @@ const optimizedLogo = logo
       display: none;
       &.active {
         display: flex;
+        body:has(&) {
+          overflow: hidden;
+        }
       }
     }
   }

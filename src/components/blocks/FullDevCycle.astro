@@ -212,7 +212,7 @@ const { ...props } = Astro.props;
     border-radius: var(--36px);
     width: max-content;
     position: relative;
-    margin: 0 0 calc(var(--1px) * 130);
+    margin: 0 0 calc(var(--1px) * 120);
     cursor: pointer;
     &:hover img,
     &:focus img {
@@ -222,7 +222,7 @@ const { ...props } = Astro.props;
     &:before {
       content: "";
       position: absolute;
-      bottom: calc(var(--110px) * -1);
+      bottom: calc(var(--100px) * -1);
       transform: translateY(50%);
       width: calc(100% + var(--30px));
       height: calc(var(--1px) * 3);
@@ -233,7 +233,7 @@ const { ...props } = Astro.props;
       position: absolute;
       left: 50%;
       transform: translate(-50%, 50%);
-      bottom: calc(var(--110px) * -1);
+      bottom: calc(var(--100px) * -1);
       font-size: var(--heading-4);
       padding: 0 var(--16px);
       line-height: 1;
@@ -265,7 +265,7 @@ const { ...props } = Astro.props;
     transition: transform 0.15s ease;
   }
   .card__title {
-    --height: calc(var(--1px) * 130);
+    --height: calc(var(--1px) * 120);
     display: flex;
     align-items: end;
     justify-content: center;
