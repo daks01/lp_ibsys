@@ -19,14 +19,17 @@ export default defineConfig({
 	base: baseUrl,
 	vite: {
 		css: {
-			transformer: "lightningcss",
 			devSourcemap: true,
+			transformer: "lightningcss",
 			lightningcss: {
 				targets: browserslistToTargets(browserslist(">= 1%, not dead")),
 				include: Features.Nesting,
 				drafts: { customMedia: true },
-				// cssModules: true,
 			},
+		},
+		build: {
+			cssMinify: "lightningcss",
+			sourcemap: true,
 		},
 	},
 	integrations: [sitemap(), vue({ include: ["**/vue/**.vue"] })],
