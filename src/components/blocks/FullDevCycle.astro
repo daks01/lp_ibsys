@@ -117,7 +117,8 @@ const { ...props } = Astro.props;
     color: var(--finish-fill);
   }
 
-  @supports (animation-timeline: scroll()) {
+  /* scroll animation v.1 */
+  /* @supports (animation-timeline: scroll()) {
     @media (prefers-reduced-motion: no-preference) {
       .sticky-container {
         height: calc(var(--1px) * 2000);
@@ -157,8 +158,38 @@ const { ...props } = Astro.props;
         to { color: var(--finish-fill); }
       }
     }
-  }
+  } */
 
+
+  /* scroll animation v.2 */
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .sticky-container {
+        view-timeline-name: --section;
+      }
+      
+      .hightlight {
+        background-position-x:
+          calc(var(--underline-block-width) * -1),
+          calc(var(--underline-block-width) * -1),
+          0;
+        color: transparent;
+        animation-name: fill-up, color-in;
+        animation-fill-mode: both;
+        animation-timing-function: linear;
+        animation-timeline: --section;
+        animation-range: entry 50% cover 40%, cover 40% exit 30%;
+      }
+
+      @keyframes fill-up {
+        to { background-position-x: 0, 0, 0; }
+      }
+
+      @keyframes color-in {
+        to { color: var(--finish-fill); }
+      }
+    }
+  }
 
   .tag {
     color: var(--text-white);
