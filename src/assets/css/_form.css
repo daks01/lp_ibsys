@@ -42,6 +42,13 @@
 	margin-top: calc(var(--40px) * -1);
 }
 
+.form-label {
+	font-size: calc(var(--1px) * 12);
+	padding: 0 var(--16px);
+	margin-bottom: calc(var(--1px) * -12);
+	display: block;
+	position: relative;
+}
 .form-field {
 	background: var(--color-white);
 	color: var(--text-color);
@@ -68,7 +75,7 @@
 		box-shadow: 0 0 var(--4px) 0 var(--color-product) inner;
 	}
 	&::placeholder {
-		color: var(--text-color);
+		color: rgba(29, 29, 27, 0.2);
 	}
 }
 textarea.form-field {
@@ -102,6 +109,9 @@ textarea.form-field {
 	.form-layout {
 		flex-direction: column;
 		gap: 0;
+	}
+	.form-label {
+		padding: 0;
 	}
 	.form-field,
 	legend {
