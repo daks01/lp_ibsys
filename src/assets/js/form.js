@@ -7,6 +7,13 @@ document.addEventListener("submit", (e) => {
 		validateForm(form);
 
 		if (!form.checkValidity()) {
+			const firstInvalidField = form.querySelector(".form-field_error");
+			if (firstInvalidField) {
+				firstInvalidField.scrollIntoView({
+					behavior: "smooth",
+					block: "start",
+				});
+			}
 			return;
 		}
 
@@ -24,7 +31,6 @@ function validateForm(form) {
 			element.classList.add("form-field_error");
 			element.setAttribute("aria-invalid", "true");
 			errorMsgEl.textContent = element?.title || element?.validationMessage;
-			element.scrollIntoView({ behavior: "smooth" });
 			return;
 		}
 
