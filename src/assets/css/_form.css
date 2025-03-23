@@ -60,7 +60,7 @@
 	width: 100%;
 	border-radius: 0;
 	border: none;
-	border-bottom: var(--1px) solid var(--color-product);
+	border-bottom: var(--2px) solid var(--color-product);
 	&:hover,
 	&:focus {
 		outline: none;
@@ -92,14 +92,21 @@ textarea.form-field {
 	color: var(--color-gray);
 	font-size: calc(var(--1px) * 12);
 	margin-top: calc(var(--1px) * 6);
-	padding-left: var(--16px);
+	padding: 0 var(--16px);
 	&:empty {
 		display: none;
 	}
 }
+.form-field_error {
+	&,
+	&:hover,
+	&:focus {
+		border-bottom-color: var(--color-error);
+		border-image: unset !important;
+	}
+}
 .form-field__error {
 	color: var(--color-error);
-	border-bottom-color: var(--color-error) !important;
 }
 
 @media screen and (--screen-phone) {
@@ -117,6 +124,10 @@ textarea.form-field {
 	legend {
 		font-size: var(--20px);
 		padding: calc(var(--1px) * 12) 0;
+	}
+	.form-field__error,
+	.form-field__description {
+		padding: 0;
 	}
 	.form-submit {
 		font-size: var(--heading-2);

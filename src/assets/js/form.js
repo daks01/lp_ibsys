@@ -22,12 +22,15 @@ function validateForm(form) {
 
 		if (!element.checkValidity()) {
 			element.classList.add("form-field_error");
-			errorMsgEl.innerHTML = element?.validationMessage;
+			element.setAttribute("aria-invalid", "true");
+			errorMsgEl.textContent = element?.title || element?.validationMessage;
+			element.scrollIntoView({ behavior: "smooth" });
 			return;
 		}
 
 		element.classList.remove("form-field_error");
-		errorMsgEl.innerHTML = "";
+		element.setAttribute("aria-invalid", "false");
+		errorMsgEl.textContent = "";
 	});
 }
 
@@ -54,17 +57,20 @@ function sendForm(form) {
 		})
 		.then((response) => {
 			if (response.result === "success") {
-				actionMessage.innerHTML = "✅ Отправлено";
+				actionMessage.textContent = "✅ Отправлено";
+				actionMessage.scrollIntoView({ behavior: "smooth" });
 				form.reset();
 			} else if (response.result === "error") {
 				// Выводим конкретную ошибку, возвращенную PHP
-				actionMessage.innerHTML = `❗ ${response.error}`;
+				actionMessage.textContent = `❗ ${response.error}`;
+				actionMessage.scrollIntoView({ behavior: "smooth" });
 			}
 		})
 		.catch((error) => {
 			// Обработка ошибок сети или других проблем
-			actionMessage.innerHTML =
-				"❗ При отправке возникли проблемы.<br> Попробуйте позже";
+			actionMessage.textContent =
+				"❗ При отправке возникли проблемы. Попробуйте позже";
+			actionMessage.scrollIntoView({ behavior: "smooth" });
 			console.error(error);
 		});
 }

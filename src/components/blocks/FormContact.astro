@@ -1,6 +1,9 @@
 ---
+import ButtonSubmit from "../ui/ButtonSubmit.astro";
 import ColoredText from "../ui/ColoredText.astro";
 import FieldFile from "../ui/FieldFile.astro";
+import FieldText from "../ui/FieldText.astro";
+import FieldTextarea from "../ui/FieldTextarea.astro";
 
 const { ...props } = Astro.props;
 ---
@@ -10,66 +13,53 @@ const { ...props } = Astro.props;
   <div class="form-layout">
     <div class="form-layout__col">
       <div class="form-row">
-        <label class="form-label">ФИО</label>
-        <input
-          type="text"
-          class="form-field"
+        <FieldText
+          label="ФИО"
           name="name"
-          aria-label="ФИО"
+          id="contact_name"
           placeholder="Представьтесь, пожалуйста"
         />
-        <span class="form-field__error" data-field-error></span>
       </div>
       <div class="form-row">
-        <label class="form-label">Телефон</label>
-        <input
-          type="text"
-          class="form-field"
+        <FieldText
+          label="Телефон"
           name="phone"
-          aria-label="Телефон"
+          id="contact_phone"
           placeholder="+7"
-        />
-        <span class="form-field__error" data-field-error></span>
-      </div>
-      <div class="form-row">
-        <label class="form-label">Электропочта</label>
-        <input
-          type="email"
-          class="form-field"
-          name="liame"
-          aria-label="Электропочта"
-          placeholder="example@domain.ru"
+          type="tel"
+          pattern="^[+\\d][\\d\\s\\-\\(\\)]{6,}$"
+          title="Введите номер телефона без букв. Например, +7 123 456-78-90"
           required
           aria-required="true"
         />
-        <span class="form-field__error" data-field-error></span>
+      </div>
+      <div class="form-row">
+        <FieldText
+          label="Электропочта"
+          name="liame"
+          id="contact_liame"
+          placeholder="example@domain.ru"
+          type="email"
+          required
+          aria-required="true"
+        />
       </div>
     </div>
     <div class="form-layout__col">
       <div class="form-row">
-        <label class="form-label">Расскажите о проекте</label>
-        <textarea
+        <FieldTextarea
+          label="Расскажите о проекте"
           name="message"
-          rows="3"
-          aria-label="Расскажите о проекте"
-          class="form-field"></textarea>
-        <span class="form-field__error" data-field-error></span>
+          id="contact_message"
+        />
       </div>
       <div class="form-row">
-        <FieldFile aria-label="Детали проекта" />
-        <span class="form-field__error" data-field-error></span>
+        <FieldFile id="contact_file" name="file" aria-label="Резюме" />
       </div>
     </div>
   </div>
   <div class="form-footer">
-    <p role="alert" aria-live="polite" data-form-msg class="form-message"></p>
-    <button type="submit" class="form-submit">
-      <ColoredText onhover="true">отправить</ColoredText>
-    </button>
-    <p class="processing-of-personal-data">
-      Нажимая на кнопку, вы соглашаетесь с обработкой
-      <a href="/Политика.pdf" target="_blank">персональных данных</a>
-    </p>
+    <ButtonSubmit />
   </div>
 </form>
 

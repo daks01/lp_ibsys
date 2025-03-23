@@ -26,16 +26,18 @@ const { ...props } = Astro.props;
                 return false;
               `}
             />
-            <CareerDialog 
-              id={vacancyPostEntry.slug} 
-              title={vacancyPostEntry.data.title}
-              position={vacancyPostEntry.data.title}
-            >
-              <p class="subtitle">
-                <Button as="span" class="button_type-transparent">{vacancyPostEntry.data.tag}</Button>
-              </p>
-              <Content />
-            </CareerDialog>
+            <!--noindex-->
+              <CareerDialog 
+                id={vacancyPostEntry.slug} 
+                title={vacancyPostEntry.data.title}
+                position={vacancyPostEntry.data.title}
+              >
+                <p class="subtitle">
+                  <Button as="span" class="button_type-transparent">{vacancyPostEntry.data.tag}</Button>
+                </p>
+                <Content />
+              </CareerDialog>
+            <!--/noindex-->
           </li>
         );
       })}

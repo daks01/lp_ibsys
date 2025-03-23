@@ -1,0 +1,25 @@
+---
+const { label, name, rows = "3", id, ...props } = Astro.props;
+---
+
+<label for={id} class="form-label">{label}</label>
+<textarea 
+  name={name}
+  rows={rows}
+  id={id}
+  class="form-field"
+  placeholder="I"
+  aria-invalid="false"
+  aria-errormessage={`${id}-error`}
+  {...props}
+></textarea>
+<span class="form-field__error" id={`${id}-error`} data-field-error></span>
+
+<style>
+  @import "/src/assets/css/_custom-media.css";
+  @import "/src/assets/css/_form.css";
+
+  @media screen and (--screen-phone) {
+
+  }
+</style>

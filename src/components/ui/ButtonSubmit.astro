@@ -1,0 +1,25 @@
+---
+import ColoredText from "./ColoredText.astro";
+
+const { label, name, type = "text", id, ...props } = Astro.props;
+---
+
+<div { ...props}>
+  <p role="alert" aria-live="polite" data-form-msg class="form-message"></p>
+  <button type="submit" class="form-submit">
+    <ColoredText onhover="true">отправить</ColoredText>
+  </button>
+  <p class="processing-of-personal-data">
+    Нажимая на кнопку, вы соглашаетесь с обработкой
+    <a href="/Политика.pdf" target="_blank">персональных данных</a>
+  </p>
+</div>
+
+<style>
+  @import "/src/assets/css/_custom-media.css";
+  @import "/src/assets/css/_form.css";
+
+  @media screen and (--screen-phone) {
+
+  }
+</style>

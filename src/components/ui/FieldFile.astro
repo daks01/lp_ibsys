@@ -1,6 +1,6 @@
 ---
 import ImageClip from "../../assets/img/clip.svg";
-const { name = "file", ...props } = Astro.props;
+const { name, id, ...props } = Astro.props;
 ---
 
 <label class="file-control">
@@ -8,29 +8,52 @@ const { name = "file", ...props } = Astro.props;
     class="form-field sr-only" 
     type="file" 
     name={name} 
-    onchange="
-      const oneMB = 1048576;
-      const fileSize = this.files?.[0]?.size;
-      if(fileSize > 16 * oneMB) { 
-        alert(`Файл слишком большой (${Math.round(fileSize / oneMB)}mb)`); 
-        this.value = '';
-      }
-      if(this.files?.[0]) {
-        this.classList.remove('sr-only');
-      } else {
-        this.classList.add('sr-only');
-      }
-    "
+    aria-describedby={`${id}-details`}
+    aria-invalid="false"
+    aria-errormessage={`${id}-error`}
     {...props}
   />
-  <span class="file-control__label">
+  <span class="file-control__label" id={`${id}-details`}>
     <img src={ImageClip.src} loading="lazy" />
     Прикрепить файл (максимум 16 Мб)
   </span>
 </label>
+<span class="form-field__error" id={`${id}-error`} data-field-error></span>
+
+<script>
+  const inputFiles = document.querySelectorAll("input[type='file']");
+
+  [...inputFiles].forEach((item) => {
+    const errorElement = item.parentNode?.parentNode?.querySelector('[data-field-error]');
+
+    item?.addEventListener("change", (event) => {
+      const oneMB = 1048576;
+      const file = event.target?.files?.[0];
+      const fileSize = file?.size;
+
+      if (errorElement) {
+        if (fileSize > 16 * oneMB) { 
+          errorElement.textContent = `Файл слишком большой (${Math.round(fileSize / oneMB)}mb)`; 
+          item.value = '';
+          item.setAttribute('aria-invalid', 'true');
+        } else {
+          errorElement.textContent = '';
+          item.setAttribute('aria-invalid', 'false');
+        }
+      }
+
+      if(file) {
+        item.classList.remove('sr-only');
+      } else {
+        item.classList.add('sr-only');
+      }
+    });
+  });
+</script>
 
 <style>
   @import "/src/assets/css/_custom-media.css";
+  @import "/src/assets/css/_form.css";
   
   .file-control {
     

@@ -1,7 +1,10 @@
 ---
 import Button from "../ui/Button.astro";
+import ButtonSubmit from "../ui/ButtonSubmit.astro";
 import ColoredText from "../ui/ColoredText.astro";
 import FieldFile from "../ui/FieldFile.astro";
+import FieldText from "../ui/FieldText.astro";
+import FieldTextarea from "../ui/FieldTextarea.astro";
 
 const { position, ...props } = Astro.props;
 ---
@@ -15,101 +18,82 @@ const { position, ...props } = Astro.props;
   <input type="hidden" name="email" />
   <input type="hidden" name="vacancy" value={position} />
   <div class="form-row">
-    <label class="form-label">ФИО</label>
-    <input 
-      type="text" 
-      class="form-field" 
-      name="name"
-      aria-label="ФИО" 
-      placeholder="Представьтесь, пожалуйста" 
+    <FieldText 
+      label="ФИО" 
+      name="name" 
+      id={`${position}_name`} 
+      placeholder="Представьтесь, пожалуйста"
     />
-    <span class="form-field__error" data-field-error></span>
   </div>
   <div class="form-row">
-    <label class="form-label">Телефон</label>
-    <input 
-      type="text" 
-      class="form-field" 
-      name="phone" 
-      aria-label="Телефон" 
-      placeholder="+7" 
-    />
-    <span class="form-field__error" data-field-error></span>
-  </div>
-  <div class="form-row">
-    <label class="form-label">Ник в телеграм</label>
-    <input 
-      type="text" 
-      class="form-field" 
-      name="telegram" 
-      aria-label="Ник в телеграм" 
-      placeholder="@"
-    />
-    <span class="form-field__error" data-field-error></span>
-  </div>
-  <div class="form-row">
-    <label class="form-label">Электропочта</label>
-    <input 
-      type="email" 
-      class="form-field" 
-      name="liame" 
-      aria-label="Электропочта" 
-      placeholder="example@domain.ru"
+    <FieldText
+      label="Телефон"
+      name="phone"
+      id={`${position}_phone`} 
+      placeholder="+7"
+      type="tel"
+      pattern="^[+\\d][\\d\\s\\-\\(\\)]{6,}$"
+      title="Введите номер телефона без букв. Например, +7 123 456-78-90"
       required
       aria-required="true"
     />
-    <span class="form-field__error" data-field-error></span>
+  </div>
+  <div class="form-row">
+    <FieldText
+      label="Ник в телеграм" 
+      name="telegram" 
+      id={`${position}_telegram`} 
+      placeholder="@"
+    />
+  </div>
+  <div class="form-row">
+    <FieldText 
+      label="Электропочта" 
+      name="liame" 
+      id={`${position}_liame`} 
+      placeholder="example@domain.ru"
+      type="email"
+      required
+      aria-required="true"
+    />
   </div>
   <fielset class="form-row">
     <legend>Ваш грейд</legend>
     <div class="grade-list">
-      <Button as="label" class="button_type-transparent">
+      <Button as="label" class="button_type-info">
         <input type="radio" class="sr-only" name="experience" value="Junior"/>
         Junior
       </Button>
-      <Button as="label" class="button_type-transparent">
+      <Button as="label" class="button_type-info">
         <input type="radio" class="sr-only" name="experience" value="Middle"/>
         Middle
       </Button>
-      <Button as="label" class="button_type-transparent">
+      <Button as="label" class="button_type-info">
         <input type="radio" class="sr-only" name="experience" value="Middle+"/>
         Middle+
       </Button>
-      <Button as="label" class="button_type-transparent">
+      <Button as="label" class="button_type-info">
         <input type="radio" class="sr-only" name="experience" value="Senior"/>
         Senior
       </Button>
     </div>
-    <span class="form-field__error" data-field-error></span>
   </fielset>
   <div class="form-row">
-    <label class="form-label">Расскажите о себе и своем опыте</label>
-    <textarea 
+    <FieldTextarea
+      label="Расскажите о себе и своем опыте" 
       name="message" 
-      rows="3"
-      aria-label="Расскажите о себе и своем опыте"
-      class="form-field"
-    ></textarea>
-    <span class="form-field__error" data-field-error></span>
+      id={`${position}_message`} 
+    />
   </div>
   <div class="form-row">
-    <FieldFile aria-label="Резюме" />
-    <span class="form-field__error" data-field-error></span>
+    <FieldFile 
+      id={`${position}_file`} 
+      name="file"
+      aria-label="Резюме"
+    />
   </div>
   <div class="form-footer">
-    <p
-      role="alert"
-      aria-live="polite"
-      data-form-msg
-      class="form-message"
-    ></p>
-    <button type="submit" class="form-submit">
-      <ColoredText onhover="true">отправить</ColoredText>
-    </button>
-    <p class="processing-of-personal-data">
-      Нажимая на кнопку, вы соглашаетесь с обработкой 
-      <a href="/Политика.pdf" target="_blank">персональных данных</a>
-    </p>
+    <ButtonSubmit />
   </div>
 </form>
 
@@ -123,12 +107,6 @@ const { position, ...props } = Astro.props;
 
   .form {
     margin-top: var(--30px);
-  }
-  label:has( input[type="radio"]:checked ) {
-    background-color: var(--color-product);
-    color: var(--color-white);
-    box-shadow: none;
-
   }
 
   fielset.form-row {
@@ -146,12 +124,14 @@ const { position, ...props } = Astro.props;
     }
   }
 
-  .form-submit {
-    --width: 190;
-  }
-  .processing-of-personal-data {
-    padding-right: var(--40px);
-    margin-top: calc(var(--20px)* -1);
+  .form-footer{
+    & :global(.form-submit) {
+      --width: 190;
+    }
+    & :global(.processing-of-personal-data) {
+      padding-right: var(--40px);
+      margin-top: calc(var(--20px)* -1);
+    }
   }
 
   @media screen and (--screen-phone) {
@@ -163,10 +143,12 @@ const { position, ...props } = Astro.props;
       flex-wrap: wrap;
       gap: var(--8px);
     }
-    .processing-of-personal-data {
-      padding-right: 0;
-      margin-top: var(--8px);
-      text-align: center;
+    .form-footer {
+      & :global(.processing-of-personal-data) {
+        padding-right: 0;
+        margin-top: var(--8px);
+        text-align: center;
+      }
     }
   }
 </style>

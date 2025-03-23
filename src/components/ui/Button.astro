@@ -71,6 +71,17 @@ const {
     }
   }
 
+  .button_type-info {
+    background-color: rgba(0, 118, 255, 0.1);
+    color: var(--color-product);
+    &:hover {
+      background-color: rgba(0, 118, 255, 0.2);
+    }
+    &:has(input[type="radio"]:checked) {
+      background-color: rgba(0, 118, 255, 0.3);
+    }
+  }
+
   .button_type-transparent {
     background-color: transparent;
     color: var(--color-black);
