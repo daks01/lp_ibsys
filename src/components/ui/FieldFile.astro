@@ -72,7 +72,7 @@ const { name, id, ...props } = Astro.props;
     gap: var(--8px);
     color: var(--color-product);
     cursor: pointer;
-    padding-top: var(--30px);
+    padding-top: 0;
 
     &:hover {
       background: var(--color-product);
@@ -84,6 +84,7 @@ const { name, id, ...props } = Astro.props;
   }
   input[type="file"].form-field {
     cursor: pointer;
+    margin-top: calc(var(--1px) * 7);
 
     &::file-selector-button {
       background-color: transparent;
