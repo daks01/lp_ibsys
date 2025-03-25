@@ -28,6 +28,11 @@ a:visited {
 	color: var(--text-product);
 }
 
+a:link,
+button {
+	user-select: none;
+}
+
 .sr-only {
 	position: absolute;
 	width: 1px !important;
