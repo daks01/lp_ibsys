@@ -2,6 +2,7 @@
 step: 2
 title: "Разработка"
 cover: "../../assets/img/fdc-2.png" 
+cover_mobile: "../../assets/img/fdc-2_mobile.png" 
 ---
 
 - Выделяем команду на проект: архитектор, руководитель проекта, разработчики, аналитики, тестировщики, DevOps;

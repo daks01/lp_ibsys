@@ -17,6 +17,7 @@ const fulldevcycle = defineCollection({
 		z.object({
 			title: z.string(),
 			cover: image(),
+			cover_mobile: image().optional() || undefined,
 			step: z.number(),
 		}),
 });

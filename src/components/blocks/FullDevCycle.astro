@@ -30,6 +30,7 @@ const { ...props } = Astro.props;
           {
             fullDevCycleEntries.map(async (item) => {
               const { Content } = await item.render();
+              const hasUnicMobileImg = item.data?.cover_mobile
               return (
                 <li class="work-list__item">
                   <button
@@ -38,13 +39,31 @@ const { ...props } = Astro.props;
                     onclick={`window["${item.slug}"]?.showModal();`}
                   >
                     <div class="card__img-wrap">
-                      <Image
-                        src={item.data.cover}
-                        class="card__img"
-                        alt=""
-                        role="presentation"
-                        loading="eager"
-                      />
+                      { !hasUnicMobileImg && 
+                        <Image
+                          src={item.data.cover}
+                          class="card__img"
+                          alt=""
+                          role="presentation"
+                          loading="eager"
+                        />
+                      }
+                      { hasUnicMobileImg && 
+                        <Image
+                          src={item.data.cover}
+                          class="card__img display-mobile-none"
+                          alt=""
+                          role="presentation"
+                          loading="eager"
+                        />
+                        <Image
+                          src={item.data.cover_mobile}
+                          class="card__img display-none display-mobile-block"
+                          alt=""
+                          role="presentation"
+                          loading="eager"
+                        />
+                      }
                     </div>
                     <span class="card__title">{item.data.title}</span>
                   </button>
