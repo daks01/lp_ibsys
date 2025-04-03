@@ -1,0 +1,22 @@
+image: node:lts
+
+build:
+  before_script:
+    - npm ci
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist
+
+pages:
+  needs:
+    - build
+  script:
+    - mkdir -p public
+    - mv dist/* public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
